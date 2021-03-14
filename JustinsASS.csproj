@@ -73,6 +73,8 @@
     <Compile Include="Engine\Contract\DataModel\SkillContributor.cs" />
     <Compile Include="Engine\Contract\DataModel\Solution.cs" />
     <Compile Include="Engine\Contract\DataModel\VacantSlot.cs" />
+    <Compile Include="Engine\Contract\FrontEndInterface\ASS.cs" />
+    <Compile Include="Engine\Contract\Interfaces\IASS.cs" />
     <Compile Include="Engine\Contract\Interfaces\ISearchWorker.cs" />
     <Compile Include="Engine\Search\SearchWorker.cs" />
     <Compile Include="Engine\Search\SolutionSorter.cs" />
@@ -108,8 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Engine\Contract\FrontEndInterface\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
