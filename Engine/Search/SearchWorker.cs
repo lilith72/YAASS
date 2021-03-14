@@ -11,70 +11,55 @@ namespace JustinsASS.Engine.Search
     {
         private ISet<Solution> seenPartialSolutions = null;
 
-        public IEnumerable<Solution> SearchForSolutions(
+        public IEnumerable<Solution> FindAllSolutions(
             Inventory inventory,
-            SearchTarget target,
-            Solution partialSolution = null)
+            SearchTarget target)
         {
             seenPartialSolutions = new HashSet<Solution>();
-            throw new NotImplementedException();
-            /*
-            approach 1: Naive DFS
-            result = Clone partialSolution
-            pick vacant slot in result
-            sort inventory by desired skills contribution
-            pick first N, recurse
-             * */
 
-            /*
-            approach 2: A* search, where distance to goal = points needed to achieve SearchTarget, (potentially minus pessimistic points from decorations)
-            k = max size of candidates
-            candidates = SortedList<Pair<Contributor, Rating>> = sorted list by rating
-            foreach chooseable contributor c:
-                if (seen(c)):
-                    continue
-                rating = rate(c);
-                if (rating > candidates.Worst):
-                    candidates.add(rating)
-                    if (candidates.Count > k):
-                        candidates.Remove(worst)
-
-            */
-
-            //IntervalHeap<int> heap;
-
-            
+            return SearchForSolutionsRecursive(
+                inventory,
+                target,
+                new Solution());
         }
 
         private IEnumerable<Solution> SearchForSolutionsRecursive(
             Inventory inventory,
             SearchTarget target,
-            Solution partialSolution = null)
+            Solution partialSolution)
         {
             List<Solution> resultSolutions = new List<Solution>();
-            if (partialSolution.partialSolutionDistance <= 0)
+            
+            if (target.SolutionFulfillsTarget(partialSolution))
             {
                 resultSolutions.Add(partialSolution);
                 return resultSolutions;
             }
 
-            Inventory helpfulInventory = inventory.FilterInventory((SkillContributor sc) =>
-            {
-                return target.SkillContributorHelpsTarget(sc, partialSolution); // TODO add consideration for armor that does not contribute useful skills but does contribute deco slots
-            });
+            Inventory helpfulInventory = inventory.FilterInventory((SkillContributor sc) => target.SkillContributorHelpsTarget(sc, partialSolution));
 
             foreach (SkillContributor chosenItem in helpfulInventory.AllContributors)
             {
-                Solution newSolution = partialSolution
-            }
-        }
+                // Check that the chosen item fits on the set
+                if (!partialSolution.CanFitNewPiece(chosenItem))
+                {
+                    continue;
+                }
+                // Create new solution with chosen item
+                Solution newPartialSolution = partialSolution.Clone();
+                newPartialSolution.AddNewPiece(chosenItem);
 
-        public int RateChoice(
-            SkillContributor candidate,
-            Solution partialSolutionBeforeAdd,
-            SearchTarget target)
-        {
-            throw new NotImplementedException();
+                // Skip new solution if we've checked this path before
+                if (seenPartialSolutions.Contains(newPartialSolution))
+                {
+                    continue;
+                }
+                seenPartialSolutions.Add(newPartialSolution);
+
+                // Recurse and check using this chosen item
+                resultSolutions.AddRange(SearchForSolutionsRecursive(helpfulInventory, target, newPartialSolution));
+            }
+            return resultSolutions;
         }
     }
 }

@@ -11,22 +11,16 @@ namespace JustinsASS.Engine.Contract.DataModel
     /// </summary>
     public class Inventory
     {
-        // Should precompute indexes for various parameters -- e.g, look up all head pieces, look up all providers of a given skill.
-
-        public IList<SkillContributor> AllContributors { get; set; }
-
-        private IDictionary<string, int> skillNameToContributorIndex;
-
-        private IDictionary<ArmorSlot, IList<string>> armorSlotToSkillNames;
-
-        public static IList<SkillContributor> SortInventory(IComparer<SkillContributor> comparer)
+        public Inventory(IList<SkillContributor> contributors)
         {
-            throw new NotImplementedException();
+            this.AllContributors = contributors;
         }
+
+        public IList<SkillContributor> AllContributors { get; private set; }
 
         public Inventory FilterInventory(Func<SkillContributor, bool> filter)
         {
-            throw new NotImplementedException();
+            return new Inventory(this.AllContributors.Where(contributor => filter(contributor)).ToList());
         }
     }
 }

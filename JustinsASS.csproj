@@ -67,13 +67,14 @@
     <Compile Include="Engine\Contract\DataModel\Inventory.cs" />
     <Compile Include="Engine\Contract\DataModel\ArmorSlot.cs" />
     <Compile Include="Engine\Contract\DataModel\SearchTarget.cs" />
-    <Compile Include="Engine\Contract\DataModel\Skill.cs" />
-    <Compile Include="Engine\Contract\DataModel\SkillContribution.cs" />
+    <Compile Include="Engine\Contract\DataModel\SkillValue.cs" />
     <Compile Include="Engine\Contract\DataModel\SkillContributor.cs" />
     <Compile Include="Engine\Contract\DataModel\Solution.cs" />
     <Compile Include="Engine\Contract\DataModel\VacantSlot.cs" />
     <Compile Include="Engine\Contract\Interfaces\ISearchWorker.cs" />
     <Compile Include="Engine\Search\SearchWorker.cs" />
+    <Compile Include="Engine\Search\SolutionSorter.cs" />
+    <Compile Include="Engine\Search\Utils.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
