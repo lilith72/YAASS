@@ -46,5 +46,10 @@ namespace JustinsASS.Engine.Contract.DataModel
         {
             return this.SkillContributorId.GetHashCode();
         }
+
+        public override string ToString()
+        {
+            return this.SkillContributorId;
+        }
     }
 }

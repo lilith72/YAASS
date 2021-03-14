@@ -11,6 +11,11 @@ namespace JustinsASS.Engine.Search
     {
         private ISet<Solution> seenPartialSolutions = null;
 
+        public SearchWorker()
+        {
+            // Intentionally empty
+        }
+
         public IEnumerable<Solution> FindAllSolutions(
             Inventory inventory,
             SearchTarget target)

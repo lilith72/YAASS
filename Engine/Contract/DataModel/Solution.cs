@@ -16,6 +16,18 @@ namespace JustinsASS.Engine.Contract.DataModel
         public Solution()
         {
             this.Contributors = new List<SkillContributor>();
+
+            // Initialize all the slots as empty
+            // If there end up being different slots game, abstract this constructor to a factory.
+            foreach (ArmorSlot slot in Enum.GetValues(typeof(ArmorSlot)))
+            {
+                if (slot == ArmorSlot.None || slot == ArmorSlot.Deco)
+                {
+                    continue;
+                }
+                this.Contributors.Add(new VacantSlot(slot));
+            }
+
             this.OpenDecoSlots = new List<int>();
         }
 
@@ -50,16 +62,8 @@ namespace JustinsASS.Engine.Contract.DataModel
                 {
                     this.OpenDecoSlots.Add(slot);
                 }
+                this.Contributors.Remove(this.Contributors.Find(contributor => (contributor is VacantSlot) && contributor.Slot == piece.Slot));
             }
-        }
-
-        public void RemovePiece(SkillContributor piece)
-        {
-            // Search for piece in ArmorPieces
-            // if !exist, throw argument exception
-            // if all its deco slots aren't open, throw argument exception
-            // remove piece and its deco slots
-            throw new NotImplementedException();
         }
 
 
@@ -70,13 +74,9 @@ namespace JustinsASS.Engine.Contract.DataModel
                 return this.CanFitNewDeco(deco);
             }
 
-            if (this.Contributors.Any((piece) => 
-                (piece is VacantSlot)
-                || Utils.AllowsDuplicates(piece.Slot)))
-            {
-                return false;
-            }
-            return true;
+            return this.Contributors.Any((piece) =>
+                piece.Slot == candidate.Slot
+                 && ((piece is VacantSlot) || Utils.AllowsDuplicates(piece.Slot)));
         }
 
         public bool CanFitNewDeco(Decoration deco)
@@ -108,6 +108,21 @@ namespace JustinsASS.Engine.Contract.DataModel
                 hashResult += contr.GetHashCode();
             }
             return hashResult;
+        }
+
+        public override string ToString()
+        {
+            return $"=============" + Environment.NewLine +
+                $"Head:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Head)}" + Environment.NewLine +
+                $"Chest:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Chest)}" + Environment.NewLine +
+                $"Arm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Arm)}" + Environment.NewLine +
+                $"Waist:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Waist)}" + Environment.NewLine +
+                $"Feet:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Feet)}" + Environment.NewLine +
+                $"Charm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Charm)}" + Environment.NewLine +
+                string.Join(Environment.NewLine, Contributors.Where(contr => contr.Slot == ArmorSlot.Deco).Select(s => $"Deco:\t{s}")) + Environment.NewLine +
+                $"=============" + Environment.NewLine;
+
+
         }
     }
 }

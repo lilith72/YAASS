@@ -8,8 +8,8 @@ namespace JustinsASS.Engine.Contract.DataModel
 {
     public class VacantSlot : SkillContributor
     {
-        public VacantSlot(string id, ArmorSlot slot) : base(
-            id: id,
+        public VacantSlot(ArmorSlot slot) : base(
+            id: $"vacantId_{slot.ToString()}",
             armorPoints: 0,
             decoSlots: new List<int>(),
             slot: slot,

@@ -8,8 +8,13 @@ namespace JustinsASS.Engine.Contract.DataModel
 {
     public class SearchTarget
     {
-        private IList<SkillValue> desiredSkills;
+        private IList<SkillValue> DesiredSkills { get; set; }
 
+        public SearchTarget(
+            List<SkillValue> desiredSkills)
+        {
+            this.DesiredSkills = desiredSkills;
+        }
 
         /// <summary>
         /// Filters out:
@@ -24,12 +29,6 @@ namespace JustinsASS.Engine.Contract.DataModel
             if (!partialSolution.CanFitNewPiece(contributor))
             {
                 return false;
-            }
-
-            // Always want to consider sets with vacant slots.
-            if (contributor is VacantSlot)
-            {
-                return true;
             }
 
             // TODO: take armors that don't help skills but do add skill slots
@@ -52,13 +51,16 @@ namespace JustinsASS.Engine.Contract.DataModel
                     return false;
                 }
             }
+
+            // TODO: If user doesn't want vacant slots shown, then check against vacant non-deco slots here.
+
             return true;
         }
 
         private Dictionary<string, int> GetRemainingSkillPointsGivenSolution(Solution solution)
         {
             Dictionary<string, int> remainingSkillPoints = new Dictionary<string, int>();
-            foreach (SkillValue desiredSkill in desiredSkills)
+            foreach (SkillValue desiredSkill in this.DesiredSkills)
             {
                 remainingSkillPoints.Add(desiredSkill.SkillId, desiredSkill.Points);
             }

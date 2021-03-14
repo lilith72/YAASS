@@ -11,7 +11,11 @@ namespace JustinsASS.Engine.Contract.DataModel
         // TODO add the others
         None,
         Head,
+        Chest,
         Arm,
+        Waist,
+        Feet,
+        Charm,
         Deco
     }
 }

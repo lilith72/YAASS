@@ -13,13 +13,10 @@ namespace JustinsASS.Engine.Search
         {
             switch (slot)
             {
-                // TODO add the others
-                case ArmorSlot.Head:
-                    return false;
                 case ArmorSlot.Deco:
                     return true;
                 default:
-                    throw new ArgumentException($"Unsupported slot type called to AllowsDuplicates: {slot}");
+                    return false;
             }
         }
     }
