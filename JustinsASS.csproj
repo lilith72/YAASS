@@ -14,6 +14,8 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -63,6 +65,20 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Engine\Contract\DataModel\Decoration.cs" />
+    <Compile Include="Engine\Contract\DataModel\Inventory.cs" />
+    <Compile Include="Engine\Contract\DataModel\ArmorSlot.cs" />
+    <Compile Include="Engine\Contract\DataModel\SearchTarget.cs" />
+    <Compile Include="Engine\Contract\DataModel\SkillValue.cs" />
+    <Compile Include="Engine\Contract\DataModel\SkillContributor.cs" />
+    <Compile Include="Engine\Contract\DataModel\Solution.cs" />
+    <Compile Include="Engine\Contract\DataModel\VacantSlot.cs" />
+    <Compile Include="Engine\Contract\FrontEndInterface\ASS.cs" />
+    <Compile Include="Engine\Contract\Interfaces\IASS.cs" />
+    <Compile Include="Engine\Contract\Interfaces\ISearchWorker.cs" />
+    <Compile Include="Engine\Search\SearchWorker.cs" />
+    <Compile Include="Engine\Search\SolutionSorter.cs" />
+    <Compile Include="Engine\Search\Utils.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -94,5 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
