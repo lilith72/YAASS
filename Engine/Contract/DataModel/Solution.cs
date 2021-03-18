@@ -53,6 +53,14 @@ namespace JustinsASS.Engine.Contract.DataModel
 
             if (piece is Decoration deco)
             {
+                int selectedSlotSize = deco.SlotSize;
+                for (int i = 0; i < this.OpenDecoSlots.Count(); i++)
+                {
+                    if (OpenDecoSlots[i] >= deco.SlotSize && OpenDecoSlots[i] < selectedSlotSize)
+                    {
+                        selectedSlotSize = OpenDecoSlots[i];
+                    }
+                }
                 this.OpenDecoSlots.Remove(deco.SlotSize);
             }
             else
@@ -81,7 +89,7 @@ namespace JustinsASS.Engine.Contract.DataModel
 
         public bool CanFitNewDeco(Decoration deco)
         {
-            return OpenDecoSlots.Contains(deco.SlotSize);
+            return OpenDecoSlots.Any(slot => slot >= deco.SlotSize);
         }
 
         public override bool Equals(object obj)

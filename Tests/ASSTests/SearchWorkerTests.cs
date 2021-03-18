@@ -30,18 +30,19 @@ namespace ASSTests
         public void FindAllSolutions_EmptyTarget()
         {
             List<string> skillIds = GenerateSkillIds(2);
-            Inventory mockInventory = GenerateInventory(skillIds);
+            Inventory mockInventory = GenerateInventory(skillIds, generateDecos: false);
             SearchWorker worker = new SearchWorker();
             List<Solution> actualSolutions = worker.FindAllSolutions(mockInventory, new SearchTarget(new List<SkillValue>())).ToList();
             Assert.AreEqual(1, actualSolutions.Count());
             actualSolutions.First().Contributors.ForEach(contributor => Assert.IsTrue(contributor is VacantSlot));
+            AssertListDistinct(actualSolutions);
         }
 
         [Test]
         public void FindAllSolutions_OneSkillTarget()
         {
             List<string> skillIds = GenerateSkillIds(2);
-            Inventory mockInventory = GenerateInventory(skillIds);
+            Inventory mockInventory = GenerateInventory(skillIds, generateDecos: false);
             SearchWorker worker = new SearchWorker();
             List<Solution> actualSolutions = worker.FindAllSolutions(mockInventory, new SearchTarget(new List<SkillValue>()
             {
@@ -58,13 +59,158 @@ namespace ASSTests
             int expectedSolutions = biCoefficient(countOfDistinctNonDecoSlots, 2);
             Assert.AreEqual(expectedSolutions, actualSolutions.Count(),
                 $"Got {actualSolutions.Count()} solutions, expected {expectedSolutions}. Solutions:{string.Join(",", actualSolutions)}");
+            AssertListDistinct(actualSolutions);
+        }
+
+        [Test]
+        public void FindAllSolutions_TwoSkillTarget()
+        {
+            List<string> skillIds = GenerateSkillIds(2);
+            Inventory mockInventory = GenerateInventory(skillIds, generateDecos: false);
+            SearchWorker worker = new SearchWorker();
+            List<Solution> actualSolutions = worker.FindAllSolutions(mockInventory, new SearchTarget(new List<SkillValue>()
+            {
+                new SkillValue(skillIds[0], 2),
+                new SkillValue(skillIds[1], 2)
+            })).ToList();
+            actualSolutions.ForEach((solution) =>
+            {
+                // Takes 2 nonvacant slots to get the skill
+                Assert.AreEqual(4, solution.Contributors.Where(contr => !(contr is VacantSlot)).Count());
+                Assert.AreEqual(6, solution.Contributors.Count());
+            });
+
+            // Number solutions too hard to calculate; assert invariants
+            AssertListDistinct(actualSolutions);
+        }
+
+        [Test]
+        public void FindAllSolutions_Decorations_OneSlotDecos()
+        {
+            List<string> skillIds = GenerateSkillIds(2);
+            Inventory mockInventory = GenerateInventory(skillIds, maxSkillValuesForDecos: 1, generateDecos: true);
+            SearchWorker worker = new SearchWorker();
+            List<Solution> actualSolutions = worker.FindAllSolutions(mockInventory, new SearchTarget(new List<SkillValue>()
+            {
+                new SkillValue(skillIds[0], 7)
+            })).ToList();
+            actualSolutions.ForEach((solution) =>
+            {
+                // Takes 2 nonvacant slots to get the skill
+                int countVacantSlots = solution.Contributors.Where(contr => !(contr is VacantSlot)).Count();
+                Assert.AreEqual(0, countVacantSlots,
+                    $"Expected 4 empty slots but was {countVacantSlots}, solution: {solution}");
+                Assert.AreEqual(7, solution.Contributors.Count());
+            });
+
+            // Number solutions too hard to calculate; assert invariants
+            AssertListDistinct(actualSolutions);
+        }
+
+        [Test]
+        public void FindAllSolutions_Decorations_OversizeSlotDecos()
+        {
+            List<string> skillIds = GenerateSkillIds(2);
+            Dictionary<int, int> slotSizes = new Dictionary<int, int>()
+            {
+                { 1, 0 },
+                { 2, 0 },
+                { 3, 0 },
+                { 4, 1 },
+            };
+            Inventory mockInventory = GenerateInventory(skillIds, maxSkillValuesForDecos: 1, generateDecos: true);
+            SearchWorker worker = new SearchWorker();
+            List<Solution> actualSolutions = worker.FindAllSolutions(mockInventory, new SearchTarget(new List<SkillValue>()
+            {
+                new SkillValue(skillIds[0], 7)
+            })).ToList();
+            actualSolutions.ForEach((solution) =>
+            {
+                // Takes 2 nonvacant slots to get the skill
+                int countVacantSlots = solution.Contributors.Where(contr => !(contr is VacantSlot)).Count();
+                Assert.AreEqual(0, countVacantSlots,
+                    $"Expected 4 empty slots but was {countVacantSlots}, solution: {solution}");
+                Assert.AreEqual(7, solution.Contributors.Count());
+            });
+
+            // Number solutions too hard to calculate; assert invariants
+            AssertListDistinct(actualSolutions);
+        }
+
+        [Test]
+        public void FindAllSolutions_LargeSearchSet()
+        {
+            List<string> skillIds = GenerateSkillIds(6);
+            Inventory mockInventory = GenerateInventory(skillIds, maxSkillValues: 5, generateDecos: false);
+            SearchWorker worker = new SearchWorker();
+            List<Solution> actualSolutions = worker.FindAllSolutions(mockInventory, new SearchTarget(new List<SkillValue>()
+            {
+                new SkillValue(skillIds[0], 5),
+                new SkillValue(skillIds[1], 5),
+                new SkillValue(skillIds[2], 5),
+                new SkillValue(skillIds[3], 5),
+                new SkillValue(skillIds[4], 5)
+            })).ToList();
+            actualSolutions.ForEach((solution) =>
+            {
+                // Takes 2 nonvacant slots to get the skill
+                Assert.AreEqual(4, solution.Contributors.Where(contr => !(contr is VacantSlot)).Count());
+                Assert.AreEqual(6, solution.Contributors.Count());
+            });
+
+            // Number solutions too hard to calculate; assert invariants
+            AssertListDistinct(actualSolutions);
+        }
+
+        [Test]
+        public void FindAllSolutions_LargeSearchSet_ManyIrrelevantSkills()
+        {
+            List<string> skillIds = GenerateSkillIds(40);
+            Inventory mockInventory = GenerateInventory(skillIds, maxSkillValues: 5, generateDecos: false);
+            SearchWorker worker = new SearchWorker();
+            List<Solution> actualSolutions = worker.FindAllSolutions(mockInventory, new SearchTarget(new List<SkillValue>()
+            {
+                new SkillValue(skillIds[0], 5),
+                new SkillValue(skillIds[1], 5),
+                new SkillValue(skillIds[2], 5),
+                new SkillValue(skillIds[3], 5),
+                new SkillValue(skillIds[4], 5)
+            })).ToList();
+            actualSolutions.ForEach((solution) =>
+            {
+                // Takes 2 nonvacant slots to get the skill
+                Assert.AreEqual(4, solution.Contributors.Where(contr => !(contr is VacantSlot)).Count());
+                Assert.AreEqual(6, solution.Contributors.Count());
+            });
+
+            // Number solutions too hard to calculate; assert invariants
+            AssertListDistinct(actualSolutions);
         }
 
         private Inventory GenerateInventory(
             List<string> skillIds,
-            bool generateDecos = true)
+            bool generateDecos = true,
+            int maxSkillValues = 1,
+            int maxSkillValuesForDecos = 1,
+            Dictionary<int, int> slotSizesPerArmor = null,
+            List<SkillContributor> specialContributors = null)
         {
+            if (slotSizesPerArmor == null)
+            {
+                slotSizesPerArmor = new Dictionary<int, int>()
+                {
+                    { 1, 1 },
+                    { 2, 0 },
+                    { 3, 0 },
+                    { 4, 0 }
+                };
+            }
             List<SkillContributor> availableContributors = new List<SkillContributor>();
+            if (specialContributors != null)
+            {
+                availableContributors.AddRange(specialContributors);
+            }
+
             for (int i = 0; i < skillIds.Count(); i++)
             {
                 foreach (ArmorSlot slot in Enum.GetValues(typeof(ArmorSlot)))
@@ -73,12 +219,29 @@ namespace ASSTests
                     {
                         continue;
                     }
-                    availableContributors.Add(new SkillContributor(
-                        id: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
-                        armorPoints: 0,
-                        decoSlots: makeDecoSlotList(0, 0, 0, 0),
-                        slot: slot,
-                        new List<SkillValue>() { new SkillValue(skillIds[i], 1) }));
+
+                    if (slot == ArmorSlot.Deco)
+                    {
+                        for (int j = 1; j <= maxSkillValuesForDecos; j++)
+                        {
+                            availableContributors.Add(new Decoration(
+                            id: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
+                            slotSize: 1,
+                            skillValues: new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
+                        }
+                    }
+                    else
+                    {
+                        for (int j = 1; j <= maxSkillValues; j++)
+                        {
+                            availableContributors.Add(new SkillContributor(
+                                id: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
+                                armorPoints: 0,
+                                decoSlots: makeDecoSlotList(slotSizesPerArmor[1], slotSizesPerArmor[2], slotSizesPerArmor[3], slotSizesPerArmor[4]),
+                                slot: slot,
+                                new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
+                        }
+                    }
                 }
             }
             return new Inventory(availableContributors);
@@ -130,6 +293,13 @@ namespace ASSTests
                 c = c / (i + 1);
             }
             return c;
+        }
+
+        private static void AssertListDistinct(List<Solution> solutions)
+        {
+            HashSet<Solution> distinctSolutions = new HashSet<Solution>(solutions);
+            Assert.AreEqual(solutions.Count(), distinctSolutions.Count(),
+                $"Solutions list contained {solutions.Count() - distinctSolutions.Count()} duplicates.");
         }
     }
 }
