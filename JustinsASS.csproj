@@ -72,10 +72,13 @@
     <Compile Include="Engine\Contract\DataModel\SkillValue.cs" />
     <Compile Include="Engine\Contract\DataModel\SkillContributor.cs" />
     <Compile Include="Engine\Contract\DataModel\Solution.cs" />
+    <Compile Include="Engine\Contract\DataModel\SolutionSortCondition.cs" />
     <Compile Include="Engine\Contract\DataModel\VacantSlot.cs" />
     <Compile Include="Engine\Contract\FrontEndInterface\ASS.cs" />
     <Compile Include="Engine\Contract\Interfaces\IASS.cs" />
+    <Compile Include="Engine\Contract\Interfaces\IInventoryProvider.cs" />
     <Compile Include="Engine\Contract\Interfaces\ISearchWorker.cs" />
+    <Compile Include="Engine\DataReader\CsvInventoryProvider.cs" />
     <Compile Include="Engine\Search\SearchWorker.cs" />
     <Compile Include="Engine\Search\SolutionSorter.cs" />
     <Compile Include="Engine\Search\Utils.cs" />
@@ -102,6 +105,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AppData\SkillContributors\skillContributors.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="AppData\SkillMetadata\skillMetadata.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -110,6 +119,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

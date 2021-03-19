@@ -13,13 +13,23 @@ namespace JustinsASS.Engine.Contract.DataModel
             int armorPoints,
             IList<int> decoSlots,
             ArmorSlot slot,
-            IList<SkillValue> skills)
+            IList<SkillValue> skills,
+            int fireRes = 0,
+            int iceRes = 0,
+            int waterRes = 0,
+            int thunderRes = 0,
+            int dragonRes = 0)
         {
             this.SkillContributorId = id;
             this.ArmorPoints = armorPoints;
             this.ProvidedDecoSlots = decoSlots;
             this.Slot = slot;
             this.ProvidedSkillValues = skills;
+            this.FireRes = fireRes;
+            this.IceRes = iceRes;
+            this.WaterRes = waterRes;
+            this.ThunderRes = thunderRes;
+            this.DragonRes = dragonRes;
         }
 
         public string SkillContributorId { get; private set; }
@@ -27,6 +37,12 @@ namespace JustinsASS.Engine.Contract.DataModel
         public IList<int> ProvidedDecoSlots { get; private set; }
         public ArmorSlot Slot { get; private set; }
         public IList<SkillValue> ProvidedSkillValues { get; private set; }
+
+        public int FireRes { get; private set; }
+        public int IceRes { get; private set; }
+        public int WaterRes { get; private set; }
+        public int ThunderRes { get; private set; }
+        public int DragonRes { get; private set; }
 
         public override bool Equals(object obj)
         {

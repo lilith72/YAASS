@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace JustinsASS.Engine.Contract.Interfaces
 {
-    public interface ISearchWorker
+    public interface IInventoryProvider
     {
-        IEnumerable<Solution> FindAllSolutions(
-            Inventory inventory,
-            SearchTarget target,
-            IList<int> weaponDecoSlots = null);
+        List<SkillContributor> GetSkillContributors();
+
+        Dictionary<string, int> GetSkillNameToMaxLevelMapping();
     }
 }
