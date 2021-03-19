@@ -72,6 +72,7 @@
     <Compile Include="Engine\Contract\DataModel\SkillValue.cs" />
     <Compile Include="Engine\Contract\DataModel\SkillContributor.cs" />
     <Compile Include="Engine\Contract\DataModel\Solution.cs" />
+    <Compile Include="Engine\Contract\DataModel\SolutionSortCondition.cs" />
     <Compile Include="Engine\Contract\DataModel\VacantSlot.cs" />
     <Compile Include="Engine\Contract\FrontEndInterface\ASS.cs" />
     <Compile Include="Engine\Contract\Interfaces\IASS.cs" />

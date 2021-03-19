@@ -1,4 +1,5 @@
 ﻿using JustinsASS.Engine.Contract.DataModel;
+using JustinsASS.Engine.Contract.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JustinsASS.Engine.Search
 {
-    public class SearchWorker
+    public class SearchWorker : ISearchWorker
     {
         private ISet<Solution> seenPartialSolutions = null;
 
@@ -16,16 +17,20 @@ namespace JustinsASS.Engine.Search
             // Intentionally empty
         }
 
-        public IEnumerable<Solution> FindAllSolutions(
-            Inventory inventory,
-            SearchTarget target)
+        public IEnumerable<Solution> FindAllSolutions(Inventory inventory, SearchTarget target, IList<int> weaponDecoSlots = null)
         {
             seenPartialSolutions = new HashSet<Solution>();
+
+            Solution partialSolution = new Solution();
+            if (weaponDecoSlots != null)
+            {
+                partialSolution.OpenDecoSlots.AddRange(weaponDecoSlots);
+            }
 
             return SearchForSolutionsRecursive(
                 inventory,
                 target,
-                new Solution());
+                partialSolution);
         }
 
         private IEnumerable<Solution> SearchForSolutionsRecursive(

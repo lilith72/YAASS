@@ -9,9 +9,9 @@ namespace JustinsASS.Engine.Contract.Interfaces
 {
     public interface ISearchWorker
     {
-        IEnumerable<Solution> SearchForSolutions(
+        IEnumerable<Solution> FindAllSolutions(
             Inventory inventory,
             SearchTarget target,
-            Solution partialSolution = null);
+            IList<int> weaponDecoSlots = null);
     }
 }
