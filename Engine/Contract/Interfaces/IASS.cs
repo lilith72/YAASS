@@ -21,8 +21,8 @@ namespace JustinsASS.Engine.Contract.Interfaces
         /// <returns></returns>
         IList<Solution> GetSolutionsForSearch(
             IDictionary<string, int> skillNameToDesiredLevel,
-            IList<int> weaponDecoSlots,
-            IList<Func<SkillContributor, bool>> inventoryFilters);
+            IList<int> weaponDecoSlots = null,
+            IList<Func<SkillContributor, bool>> inventoryFilters = null);
 
         /// <summary>
         /// Returns all skill names in the game (key) and their max level (value).

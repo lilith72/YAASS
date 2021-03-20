@@ -9,7 +9,6 @@ namespace JustinsASS.Engine.Contract.DataModel
 {
     public class Solution
     {
-
         public List<SkillContributor> Contributors { get; private set; }
 
         public List<int> OpenDecoSlots { get; private set; }
@@ -131,6 +130,59 @@ namespace JustinsASS.Engine.Contract.DataModel
                 $"=============" + Environment.NewLine;
             // TODO print spare slots
 
+        }
+
+        public int GetTotalFireResistance()
+        {
+            return this.Contributors.Sum(contr => contr.FireRes);
+        }
+
+        public int GetTotalIceResistance()
+        {
+            return this.Contributors.Sum(contr => contr.IceRes);
+        }
+
+        public int GetTotalWaterResistance()
+        {
+            return this.Contributors.Sum(contr => contr.WaterRes);
+        }
+
+        public int GetTotalThunderResistance()
+        {
+            return this.Contributors.Sum(contr => contr.ThunderRes);
+        }
+
+        public int GetTotalDragonResistance()
+        {
+            return this.Contributors.Sum(contr => contr.DragonRes);
+        }
+
+        public int GetTotalArmorPoints()
+        {
+            return this.Contributors.Sum(contr => contr.ArmorPoints);
+        }
+
+        // Index is slot size, value is number of slots spare
+        public IList<int> GetSpareSlots()
+        {
+            return OpenDecoSlots;
+        }
+
+        public IList<SkillValue> GetSkillValues()
+        {
+            Dictionary<string, int> skillsToTotals = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            foreach (SkillContributor contributor in this.Contributors)
+            {
+                foreach (SkillValue skillValue in contributor.ProvidedSkillValues)
+                {
+                    if (!skillsToTotals.ContainsKey(skillValue.SkillId))
+                    {
+                        skillsToTotals[skillValue.SkillId] = 0;
+                    }
+                    skillsToTotals[skillValue.SkillId] += skillValue.Points;
+                }
+            }
+            return skillsToTotals.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList();
         }
     }
 }

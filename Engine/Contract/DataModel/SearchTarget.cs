@@ -59,7 +59,7 @@ namespace JustinsASS.Engine.Contract.DataModel
 
         private Dictionary<string, int> GetRemainingSkillPointsGivenSolution(Solution solution)
         {
-            Dictionary<string, int> remainingSkillPoints = new Dictionary<string, int>();
+            Dictionary<string, int> remainingSkillPoints = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             foreach (SkillValue desiredSkill in this.DesiredSkills)
             {
                 remainingSkillPoints.Add(desiredSkill.SkillId, desiredSkill.Points);

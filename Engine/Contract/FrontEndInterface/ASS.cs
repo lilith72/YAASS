@@ -48,14 +48,17 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
 
         public IList<Solution> GetSolutionsForSearch(
             IDictionary<string, int> skillNameToDesiredLevel,
-            IList<int> weaponDecoSlots,
-            IList<Func<SkillContributor, bool>> inventoryFilters)  // this filtering probably needs work, a bit clunky
+            IList<int> weaponDecoSlots = null,
+            IList<Func<SkillContributor, bool>> inventoryFilters = null)  // this filtering probably needs work, a bit clunky
         {
             SearchTarget searchTarget = new SearchTarget(skillNameToDesiredLevel.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList());
             Inventory targetInventory = new Inventory(new List<SkillContributor>(allInventoryFromFile));
-            foreach (Func<SkillContributor, bool> filter in inventoryFilters)
+            if (inventoryFilters != null)
             {
-                targetInventory = targetInventory.FilterInventory(filter);
+                foreach (Func<SkillContributor, bool> filter in inventoryFilters)
+                {
+                    targetInventory = targetInventory.FilterInventory(filter);
+                }
             }
             return searchWorker.FindAllSolutions(targetInventory, searchTarget, weaponDecoSlots).ToList();
         }
