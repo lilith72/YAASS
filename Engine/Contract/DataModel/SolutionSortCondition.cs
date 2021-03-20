@@ -11,5 +11,13 @@ namespace JustinsASS.Engine.Contract.DataModel
         None,
         ArmorPoints,
         FireResistance,
+        IceResistance,
+        DragonResistance,
+        WaterResistance,
+        ThunderResistance,
+        TotalExtraSkillLevels,
+        TotalExtraDecorationSlots,
+        TotalEmptyArmorSlots
     }
+    // extra skills, extra slots, 
 }

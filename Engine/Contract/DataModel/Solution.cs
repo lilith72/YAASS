@@ -127,6 +127,8 @@ namespace JustinsASS.Engine.Contract.DataModel
                 $"Feet:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Feet)}" + Environment.NewLine +
                 $"Charm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Charm)}" + Environment.NewLine +
                 string.Join(Environment.NewLine, Contributors.Where(contr => contr.Slot == ArmorSlot.Deco).Select(s => $"Deco:\t{s}")) + Environment.NewLine +
+                $"---stats---" + Environment.NewLine +
+                $"ArmorPoints:\t{this.GetTotalArmorPoints()}" + Environment.NewLine +
                 $"=============" + Environment.NewLine;
             // TODO print spare slots
 
