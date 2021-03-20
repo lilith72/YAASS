@@ -103,6 +103,18 @@ namespace ASSTests
                 conditions: new List<SolutionSortCondition>() { SolutionSortCondition.TotalEmptyArmorSlots });
         }
 
+        [Test]
+        public void ReturnSortedSolutions_SortByThunderResistanceThenByFireResistance()
+        {
+            ReturnSortedSolutions_Helper(
+                high: MakeSolutionWithTwoPiecesGivenStats(thunderRes: 10, fireRes: 1),
+                mid: MakeSolutionWithTwoPiecesGivenStats(thunderRes: 5, fireRes: 5),
+                low: MakeSolutionWithTwoPiecesGivenStats(thunderRes: 5, fireRes: 2),
+                conditions: new List<SolutionSortCondition>() {
+                    SolutionSortCondition.ThunderResistance,
+                    SolutionSortCondition.FireResistance });
+        }
+
         private void ReturnSortedSolutions_Helper(
             Solution high,
             Solution mid,
