@@ -14,6 +14,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
     {
         private readonly IInventoryProvider inventoryProvider;
         private readonly ISearchWorker searchWorker;
+        private readonly ISolutionSorter solutionSorter;
 
         private List<SkillContributor> allInventoryFromFile;
         private Dictionary<string, int> skillNameToMaxValue;
@@ -22,6 +23,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         {
             this.inventoryProvider = new CsvInventoryProvider();
             this.searchWorker = new SearchWorker();
+            this.solutionSorter = new SolutionSorter();
             this.RefreshDataFromFiles();
         }
 
@@ -67,7 +69,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
             IList<Solution> unorderedSolutions,
             IList<SolutionSortCondition> sortConditions)
         {
-            throw new NotImplementedException();
+            return solutionSorter.ReturnSortedSolutions(unorderedSolutions, sortConditions);
         }
     }
 }

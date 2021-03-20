@@ -78,6 +78,7 @@
     <Compile Include="Engine\Contract\Interfaces\IASS.cs" />
     <Compile Include="Engine\Contract\Interfaces\IInventoryProvider.cs" />
     <Compile Include="Engine\Contract\Interfaces\ISearchWorker.cs" />
+    <Compile Include="Engine\Contract\Interfaces\ISolutionSorter.cs" />
     <Compile Include="Engine\DataReader\CsvInventoryProvider.cs" />
     <Compile Include="Engine\Search\SearchWorker.cs" />
     <Compile Include="Engine\Search\SolutionSorter.cs" />
