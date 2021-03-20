@@ -21,7 +21,7 @@ namespace JustinsASS.Engine.DataReader
             foreach (Dictionary<string, string> entry in this.GetCsvRows(SkillContributorFilePath))
             {
                 List<SkillValue> skillValues = GetSkillValuesFromCsvEntry(entry);
-                ArmorSlot slot = (ArmorSlot) Enum.Parse(typeof(ArmorSlot), entry["slotType"]);
+                ArmorSlot slot = (ArmorSlot) Enum.Parse(typeof(ArmorSlot), entry["slotType"], ignoreCase: true);
                 string itemId = entry["ItemUniqueName"];
                 if (seenArmorNames.Contains(itemId))
                 {
@@ -102,7 +102,7 @@ namespace JustinsASS.Engine.DataReader
             {
                 throw new Exception("input CSV file was malformed; expected first line to define schema in the form of #Fields:field1,field2,...");
             }
-            string[] keys = csvFileLines[0].Remove("#Fields:".Length).Split(new[] { "," }, StringSplitOptions.None);
+            string[] keys = csvFileLines[0].Remove(0, "#Fields:".Length).Split(new[] { "," }, StringSplitOptions.None);
             for (int i = 1; i < csvFileLines.Length; i++)
             {
                 string line = csvFileLines[i];
