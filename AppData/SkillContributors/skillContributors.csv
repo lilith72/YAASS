@@ -1,4 +1,4 @@
 ﻿#Fields:ItemUniqueName,armorPoints,slotType,decoSlotSizeIfDeco,FireResist,IceResist,WaterResist,ThunderResist,DragonResist,size1DecoSlots,size2DecoSlots,size3DecoSlots,size4DecoSlots,SkillName1,SkillPoints1,SkillName2,SkillPoints2,SkillName3,SkillPoints3,SkillName4,SkillPoints4,SkillName5,SkillPoints5
 testItemHandicraftHead2,4,head,,1,2,3,4,5,1,1,1,1,handicraft,2,,,,,,,,
-testItemEvasionFeet1,4,feet,,1,2,3,4,5,1,1,1,1,evasion,1,,,,,,,,
-testItemEvasionChest2,4,chest,,1,2,3,4,5,1,1,1,1,evasion,1,,,,,,,,
+testItemEvasionFeet1,5,feet,,1,2,3,4,5,1,1,1,1,evasion,1,,,,,,,,
+testItemEvasionChest2,4,chest,,5,2,3,4,5,1,1,1,1,evasion,1,,,,,,,,

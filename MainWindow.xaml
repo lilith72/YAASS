@@ -5,8 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JustinsASS"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="700" Width="1200">
+
+    <StackPanel Background="Gray" Orientation="Horizontal">
+        <StackPanel Orientation="Vertical" Width="400" Height="Auto" Margin="10" >
+            <StackPanel Orientation="Vertical" Background="White">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Hunter Rank" />
+                    <TextBox Name="txtBoxHunterRank" Text="5" VerticalAlignment="Center" Width="30" TextAlignment="Right"/>
+                </StackPanel>
+                <Button Name="btnSearch" Content="Search" Click="SearchForSolutions" Width="100" Margin="10" />
+            </StackPanel>
+            <StackPanel Background="White" Orientation="Vertical">
+                <Label Content="Add Skill" />
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox Name="cbAddSkill" Width="100" />
+                    <Button x:Name="btnAddSkill" Width="50" Content="+" Click="OnClick_AddSkill" />
+                    <ComboBox Name="cbAddSort" Width="100" />
+                    <Button x:Name="btnAddSort" Width="50" Content="+" Click="OnClick_AddSort" />
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ListView Name="lvSkillList" Grid.Row="0" Grid.Column="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
+                                        <Label Content="{Binding Path=Key}" />
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="-" Width="20" Height="20" Tag="{Binding Path=Key}" Click="OnClick_DecreaseSkill" />
+                                            <Label Content="{Binding Path=Value}" Width="50" HorizontalContentAlignment="Center" />
+                                            <Button Content="+" Width="20" Height="20" Tag="{Binding Path=Key}" Click="OnClick_IncreaseSkill" />
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <Button Content="-" Width="20" Height="20" Margin="10" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Tag="{Binding Path=Key}" Click="OnClick_RemoveSkill"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ListView Name="lvSortList" Grid.Row="0" Grid.Column="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  Content="{Binding}" />
+                                    <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                        <Button Content="/\" Width="15" Height="15" Tag="{Binding}" Click="OnClick_MoveSortUp" />
+                                        <Button Content="\/" Width="15" Height="15" Tag="{Binding}" Click="OnClick_MoveSortDown" />
+                                    </StackPanel>
+                                    <Button Grid.Row="0" Grid.Column="2" Content="-" Width="30" Height="30" Margin="10" VerticalAlignment="Center" Tag="{Binding}" Click="OnClick_RemoveSort" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                </Grid>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Width="770" Margin="0, 10, 10, 10" Background="White">
+            <StackPanel Orientation="Horizontal">
+                <Label Name="lblNumResults" Content="0"/>
+                <Label Content="Results" />
+            </StackPanel>
+            <Separator />
+            <ListView Name="lvSearchResults">
+            </ListView>
+        </StackPanel>
+    </StackPanel>
 </Window>
