@@ -119,19 +119,33 @@ namespace JustinsASS.Engine.Contract.DataModel
 
         public override string ToString()
         {
-            return $"=============" + Environment.NewLine +
-                $"Head:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Head)}" + Environment.NewLine +
-                $"Chest:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Chest)}" + Environment.NewLine +
-                $"Arm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Arm)}" + Environment.NewLine +
-                $"Waist:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Waist)}" + Environment.NewLine +
-                $"Feet:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Feet)}" + Environment.NewLine +
-                $"Charm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Charm)}" + Environment.NewLine +
-                string.Join(Environment.NewLine, Contributors.Where(contr => contr.Slot == ArmorSlot.Deco).Select(s => $"Deco:\t{s}")) + Environment.NewLine +
-                $"---stats---" + Environment.NewLine +
-                $"ArmorPoints:\t{this.GetTotalArmorPoints()}" + Environment.NewLine +
-                $"=============" + Environment.NewLine;
-            // TODO print spare slots
-
+            return 
+                string.Join(Environment.NewLine,
+                new[] { 
+                    $"=============",
+                    $"Head:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Head)}",
+                    $"Chest:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Chest)}",
+                    $"Arm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Arm)}",
+                    $"Waist:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Waist)}",
+                    $"Feet:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Feet)}",
+                    $"Talisman:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Talisman)}",
+                    $"---decorations---",
+                    string.Join(Environment.NewLine, Contributors.Where(contr => contr.Slot == ArmorSlot.Deco).Select(s => $"Deco:\t{s}")),
+                    $"---skills---",
+                    string.Join(Environment.NewLine, this.GetSkillValues().Select(skillValue => $"{skillValue.SkillId}: Lv.{skillValue.Points}")),
+                    $"---stats---",
+                    $"ArmorPoints:\t{this.GetTotalArmorPoints()}",
+                    $"Fire Resist:\t{this.GetTotalFireResistance()}",
+                    $"Water Resist:\t{this.GetTotalWaterResistance()}",
+                    $"Ice Resist:\t{this.GetTotalIceResistance()}",
+                    $"Thunder Resist:\t{this.GetTotalThunderResistance()}",
+                    $"Dragon Resist:\t{this.GetTotalDragonResistance()}",
+                    $"Spare size 1 slots:\t{this.GetSpareSlots().Count(s => s == 1)}",
+                    $"Spare size 2 slots:\t{this.GetSpareSlots().Count(s => s == 2)}",
+                    $"Spare size 3 slots:\t{this.GetSpareSlots().Count(s => s == 3)}",
+                    $"Spare size 4 slots:\t{this.GetSpareSlots().Count(s => s == 4)}",
+                    $"============="
+                }) + Environment.NewLine;
         }
 
         public int GetTotalFireResistance()

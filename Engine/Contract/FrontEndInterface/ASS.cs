@@ -51,8 +51,14 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         public IList<Solution> GetSolutionsForSearch(
             IDictionary<string, int> skillNameToDesiredLevel,
             IList<int> weaponDecoSlots = null,
-            IList<Func<SkillContributor, bool>> inventoryFilters = null)  // this filtering probably needs work, a bit clunky
+            IList<Func<SkillContributor, bool>> inventoryFilters = null,
+            IList<SkillContributor> talismans = null)  // this filtering probably needs work, a bit clunky
         {
+            if (talismans != null && talismans.Any(t => t.Slot != ArmorSlot.Talisman))
+            {
+                throw new ArgumentException($"Custom talisman list contained non-talisman skill contributor:" +
+                    $" {talismans.Where(t => t.Slot != ArmorSlot.Talisman).First().SkillContributorId}");
+            }
             SearchTarget searchTarget = new SearchTarget(skillNameToDesiredLevel.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList());
             Inventory targetInventory = new Inventory(new List<SkillContributor>(allInventoryFromFile));
             if (inventoryFilters != null)
