@@ -15,7 +15,7 @@ namespace JustinsASS.Engine.Contract.DataModel
         Arm,
         Waist,
         Feet,
-        Charm,
+        Talisman,
         Deco
     }
 }

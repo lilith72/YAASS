@@ -225,9 +225,9 @@ namespace ASSTests
                         for (int j = 1; j <= maxSkillValuesForDecos; j++)
                         {
                             availableContributors.Add(new Decoration(
-                            id: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
-                            slotSize: 1,
-                            skillValues: new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
+                                id: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
+                                slotSize: 1,
+                                skillValues: new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
                         }
                     }
                     else
@@ -236,6 +236,7 @@ namespace ASSTests
                         {
                             availableContributors.Add(new SkillContributor(
                                 id: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
+                                setId: "mockSetId",
                                 armorPoints: 0,
                                 decoSlots: makeDecoSlotList(slotSizesPerArmor[1], slotSizesPerArmor[2], slotSizesPerArmor[3], slotSizesPerArmor[4]),
                                 slot: slot,
@@ -274,7 +275,7 @@ namespace ASSTests
             }
             for (int i = 0; i < size4Slots; i++)
             {
-                result.Add(size4Slots);
+                result.Add(4);
             }
             return result;
         }

@@ -170,6 +170,7 @@ namespace ASSTests
                 // Add occupied piece that doesn't do anything
                 result.AddNewPiece(new SkillContributor(
                     id: "Armor" + Guid.NewGuid().ToString(),
+                    setId: "mockSetId",
                     armorPoints: 0,
                     decoSlots: new List<int>(),
                     slot: ArmorSlot.Head,
@@ -181,6 +182,7 @@ namespace ASSTests
                 // Add occupied piece that doesn't do anything
                 result.AddNewPiece(new SkillContributor(
                     id: "Armor" + Guid.NewGuid().ToString(),
+                    setId: "mockSetId",
                     armorPoints: 0,
                     decoSlots: new List<int>(),
                     slot: ArmorSlot.Feet,
@@ -189,6 +191,7 @@ namespace ASSTests
 
             result.AddNewPiece(new SkillContributor(
                 id: "Armor" + Guid.NewGuid().ToString(),
+                setId: "mockSetId",
                 armorPoints: armorPoints,
                 decoSlots: new List<int>() { countDecoSlots },
                 slot: ArmorSlot.Arm,

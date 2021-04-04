@@ -23,6 +23,7 @@ namespace JustinsASS.Engine.DataReader
                 List<SkillValue> skillValues = GetSkillValuesFromCsvEntry(entry);
                 ArmorSlot slot = (ArmorSlot) Enum.Parse(typeof(ArmorSlot), entry["slotType"], ignoreCase: true);
                 string itemId = entry["ItemUniqueName"];
+                string setId = entry["SetId"];
                 if (seenArmorNames.Contains(itemId))
                 {
                     throw new Exception($"Found duplicate itemId in skillContributors: {itemId}");
@@ -46,12 +47,31 @@ namespace JustinsASS.Engine.DataReader
                     int.TryParse(entry["WaterResist"], out int waterRes);
                     int.TryParse(entry["ThunderResist"], out int thunderRes);
                     int.TryParse(entry["DragonResist"], out int dragonRes);
+                    int.TryParse(entry["MinRank"], out int minRank);
+                    List<int> decoSlots = new List<int>();
+                    for (int i = 0; i < slotsSize1; i++)
+                    {
+                        decoSlots.Add(1);
+                    }
+                    for (int i = 0; i < slotsSize2; i++)
+                    {
+                        decoSlots.Add(2);
+                    }
+                    for (int i = 0; i < slotsSize3; i++)
+                    {
+                        decoSlots.Add(3);
+                    }
+                    for (int i = 0; i < slotsSize4; i++)
+                    {
+                        decoSlots.Add(4);
+                    }
                     results.Add(new SkillContributor(
                         id: itemId,
                         armorPoints: armorPoints,
-                        new List<int>() { slotsSize1, slotsSize2, slotsSize3, slotsSize4 },
+                        decoSlots,
                         slot: slot,
                         skills: skillValues,
+                        setId: string.IsNullOrWhiteSpace(setId) ? null : setId,
                         fireRes: fireRes,
                         iceRes: iceRes,
                         waterRes: waterRes,
