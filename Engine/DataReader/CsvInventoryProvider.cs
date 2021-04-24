@@ -41,13 +41,13 @@ namespace JustinsASS.Engine.DataReader
                     int.TryParse(entry["size1DecoSlots"], out int slotsSize1);
                     int.TryParse(entry["size2DecoSlots"], out int slotsSize2);
                     int.TryParse(entry["size3DecoSlots"], out int slotsSize3);
-                    int.TryParse(entry["size4DecoSlots"], out int slotsSize4);
+                    int slotsSize4 = 0;
                     int.TryParse(entry["FireResist"], out int fireRes);
                     int.TryParse(entry["IceResist"], out int iceRes);
                     int.TryParse(entry["WaterResist"], out int waterRes);
                     int.TryParse(entry["ThunderResist"], out int thunderRes);
                     int.TryParse(entry["DragonResist"], out int dragonRes);
-                    int.TryParse(entry["MinRank"], out int minRank);
+                    //int.TryParse(entry["MinRank"], out int minRank);
                     List<int> decoSlots = new List<int>();
                     for (int i = 0; i < slotsSize1; i++)
                     {

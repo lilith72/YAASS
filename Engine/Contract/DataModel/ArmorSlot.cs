@@ -12,9 +12,9 @@ namespace JustinsASS.Engine.Contract.DataModel
         None,
         Head,
         Chest,
-        Arm,
+        Hands,
         Waist,
-        Feet,
+        Legs,
         Talisman,
         Deco
     }

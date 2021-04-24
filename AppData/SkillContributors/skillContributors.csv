@@ -1,4 +1,13 @@
-﻿#Fields:ItemUniqueName,armorPoints,slotType,decoSlotSizeIfDeco,FireResist,IceResist,WaterResist,ThunderResist,DragonResist,size1DecoSlots,size2DecoSlots,size3DecoSlots,size4DecoSlots,SkillName1,SkillPoints1,SkillName2,SkillPoints2,SkillName3,SkillPoints3,SkillName4,SkillPoints4,SkillName5,SkillPoints5,MinRank,SetId
-testItemHandicraftHead2,4,head,,1,2,3,4,5,1,1,1,1,handicraft,2,,,,,,,,,0,testSetId1
-testItemEvasionFeet1,5,feet,,1,2,3,4,5,1,1,1,1,evasion,1,,,,,,,,,0,testSetId2
-testItemEvasionChest2,4,chest,,5,2,3,4,5,1,1,1,1,evasion,1,,,,,,,,,0,testSetId2
+﻿#Fields:ItemUniqueName,armorPoints,slotType,FireResist,IceResist,WaterResist,ThunderResist,DragonResist,size1DecoSlots,size2DecoSlots,size3DecoSlots,SkillName1,SkillPoints1,SkillName2,SkillPoints2,SkillName3,SkillPoints3,SkillName4,SkillPoints4,SetId
+Kulu-Ya-Ku Greaves,16,Legs,,-3,,1,,,,,Stun Resistance,1,Critical Eye,1,,,,,
+Kulu-Ya-Ku Coil,16,Waist,,-3,,1,,,,,Stamina Thief,1,,,,,,,
+Kamura Head Scarf S,30,Head,2,0,0,0,0,1,0,0,Divine Blessing,1,Resuscitate,1,,,,,Kamura
+Kaura Garb S,30,Chest,2,0,0,0,0,1,0,0,Wirebug Whisperer,2,Wall Runner,1,Critical Eye,1,,,Kamura
+Kamura Braces S,30,Hands,2,0,0,0,0,2,0,0,Critical Eye,2,Heroics,1,,,,,Kamura
+Kamura Obi S,30,Waist,2,0,0,0,0,1,1,0,Wirebug Whisperer,1,Critical Eye,1,,,,,Kamura
+Kamura Leggings S,30,Legs,2,0,0,0,0,1,0,0,Wall Runner,2,Resuscitate,1,,,,,Kamura
+Leather Headgear S,30,Head,0,0,0,0,0,1,1,0,Geologist,1,Hunger Resistance,1,,,,,Leather
+Leather Vest S,30,Chest,0,0,0,0,0,2,0,0,Botanist,1,,,,,,,Leather
+Leather Gloves S,30,Hands,0,0,0,0,0,1,1,0,Geologist,1,Special Ammo Boost,1,,,,,Leather
+Leather Belt S,30,Waist,0,0,0,0,0,1,0,0,Recovery Up,1,Hunger Resistance,2,,,,,Leather
+Leather Pants S,30,Legs,0,0,0,0,0,2,0,0,Geologist,1,,,,,,,Leather
