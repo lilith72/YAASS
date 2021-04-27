@@ -135,6 +135,7 @@ namespace JustinsASS
             mSkills[skill] = mSkills[skill] <= 1 ? 1 : mSkills[skill] - 1;
             UpdateSkills();
         }
+
         private void UpdateSkills()
         {
             lvSkillList.ItemsSource = null;

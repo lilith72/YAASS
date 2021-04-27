@@ -1,13 +1,71 @@
-﻿#Fields:ItemUniqueName,armorPoints,slotType,FireResist,IceResist,WaterResist,ThunderResist,DragonResist,size1DecoSlots,size2DecoSlots,size3DecoSlots,SkillName1,SkillPoints1,SkillName2,SkillPoints2,SkillName3,SkillPoints3,SkillName4,SkillPoints4,SetId
-Kulu-Ya-Ku Greaves,16,Legs,,-3,,1,,,,,Stun Resistance,1,Critical Eye,1,,,,,
-Kulu-Ya-Ku Coil,16,Waist,,-3,,1,,,,,Stamina Thief,1,,,,,,,
-Kamura Head Scarf S,30,Head,2,0,0,0,0,1,0,0,Divine Blessing,1,Resuscitate,1,,,,,Kamura
-Kaura Garb S,30,Chest,2,0,0,0,0,1,0,0,Wirebug Whisperer,2,Wall Runner,1,Critical Eye,1,,,Kamura
-Kamura Braces S,30,Hands,2,0,0,0,0,2,0,0,Critical Eye,2,Heroics,1,,,,,Kamura
-Kamura Obi S,30,Waist,2,0,0,0,0,1,1,0,Wirebug Whisperer,1,Critical Eye,1,,,,,Kamura
-Kamura Leggings S,30,Legs,2,0,0,0,0,1,0,0,Wall Runner,2,Resuscitate,1,,,,,Kamura
-Leather Headgear S,30,Head,0,0,0,0,0,1,1,0,Geologist,1,Hunger Resistance,1,,,,,Leather
-Leather Vest S,30,Chest,0,0,0,0,0,2,0,0,Botanist,1,,,,,,,Leather
-Leather Gloves S,30,Hands,0,0,0,0,0,1,1,0,Geologist,1,Special Ammo Boost,1,,,,,Leather
-Leather Belt S,30,Waist,0,0,0,0,0,1,0,0,Recovery Up,1,Hunger Resistance,2,,,,,Leather
-Leather Pants S,30,Legs,0,0,0,0,0,2,0,0,Geologist,1,,,,,,,Leather
+﻿Name,Armor Points,Fire Res,Water Res,Thunder Res,Ice Res,Dragon Res,Equip Type,Size Deco Slot 1,Size Deco Slot 2,Size Deco Slot 3,Skill Name 1,Skill Points 1,Skill Name 2,Skill Points 2,Skill Name 3,Skill Points 3,Skill Name 4,Skill Points 4,Set ID
+Kamura Head Scarf S,30,2,,,,,Head,1,,,Divine Blessing,1,Resuscitate,1,,,,,Kamura S
+Kaura Garb S,30,2,,,,,Chest,1,,,Wirebug Whisperer,2,Wall Runner,1,Critical Eye,1,,,Kamura S
+Kamura Braces S,30,2,,,,,Hands,2,,,Critical Eye,2,Heroics,1,,,,,Kamura S
+Kamura Obi S,30,2,,,,,Waist,1,1,,Wirebug Whisperer,1,Critical Eye,1,,,,,Kamura S
+Kamura Leggings S,30,2,,,,,Legs,1,,,Wall Runner,2,Resuscitate,1,,,,,Kamura S
+Leather Headgear S,30,,,,,,Head,1,1,,Geologist,1,Hunger Resistance,1,,,,,Leather S
+Leather Vest S,30,,,,,,Chest,2,,,Botanist,1,,,,,,,Leather S
+Leather Gloves S,30,,,,,,Hands,1,1,,Geologist,1,Special Ammo Boost,1,,,,,Leather S
+Leather Belt S,30,,,,,,Waist,1,,,Recovery Up,1,Hunger Resistance,2,,,,,Leather S
+Leather Pants S,30,,,,,,Legs,2,,,Geologist,1,,,,,,, Leather S
+Chainmail Headgear S,32,,,1,,,Head,2,,,Botanist,1,Defense Boost,1,,,,,Chainmail S
+Chainmail Vest S,32,,,1,,,Chest,1,,,Defense ,1,Flinch Free,2,,,,,Chainmail S
+Chainmail Gloves S,32,,,1,,,Hands,1,1,,Botanist,1,Defense Boost,2,,,,,Chainmail S
+Chainmail Belt S,32,,,1,,,Waist,1,1,,Botanist,1,Guard,1,,,,,Chainmail S
+Chainmail Pants S,32,,,1,,,Legs,1,1,,Botanist,1,Stamina Surge ,1,,,,,Chainmail S
+Hunter's Helm S,32,,,,,,Head,2,,,Item Prolonger,1,,,,,,,Hunter S
+Hunter's Mail S,32,,,,,,Chest,1,,,Attack Boost,1,Handicraft ,1,,,,,Hunter S
+Hunter's Vamprace S,32,,,,,,Hands,2,,,Quick Sheath,1,,,,,,,Hunter S
+Hunter's Coil S,32,,,,,,Waist,1,1,,Stun Resistance,2,,,,,,,Hunter S
+Hunter's Greaves S,32,,,,,,Legs,2,,,Stun Resistance,1,Attack Boost,2,,,,,Hunter S
+Alloy Helm S,32,-1,,-1,-1,,Head,1,,,Water Attack,1,Protective Polish,1,,,,,Alloy S
+Alloy Mail S,32,-1,,-1,-1,,Chest,2,,,Speed Sharpening,2,,,,,,,Alloy S
+Alloy Vambraces S,32,-1,,-1,-1,,Hands,1,,,Water Attack,1,Critical Eye,2,,,,,Alloy S
+Alloy Coil S,32,-1,,-1,-1,,Waist,1,1,,Water Attack,2,Critical Eye,1,,,,,Alloy S
+Alloy Greaves S,32,-1,,-1,-1,,Legs,2,,,Speed Sharpening,1,Critical Eye,1,,,,,Alloy S
+Bone Helm S,32,,,,-1,,Head,1,,,Stamina Thief,1,Partbreaker,1,,,,,Bone S
+Bone Mail S,32,,,,-1,,Chest,1,,,Stamina Thief,1,Marathon Runner,1,,,,,Bone S
+Bone Vambraces S,32,,,,-1,,Hands,1,1,,Muck Resistance,1,Stamina ,1,,,,,Bone S
+Bone Coil S,32,,,,-1,,Waist,2,1,,Focus,1,,,,,,,Bone S
+Bone Greaves S,32,,,,-1,,Legs,2,,,Muck Resistance,2,Focus,1,,,,,Bone S
+Spio Vertex S,32,3,-1,-1,-1,3,Head,2,,,Poison Attack,2,,,,,,,Spio S
+Spio Thorax S,32,3,-1,-1,-1,3,Chest,2,,,Latent Power,1,,,,,,,Spio S
+Spio Brachia S,32,3,-1,-1,-1,3,Hands,1,1,,Latent Power,1,Poison Resistance,1,,,,,Spio S
+Spio Elytra S,32,3,-1,-1,-1,3,Waist,,,,Weakness Exploit,2,,,,,,,Spio S
+Spio Cura S,32,3,-1,-1,-1,3,Legs,1,,,Latent Power,1,Poison Resistance,1,Mind's Eye,1,,,Spio S
+Bnahabra Hat S,34,-2,,,,2,Head,2,,,Poison Attack,1,Recoil Down,2,,,,,Bnahabra S
+Bnahabra Suit S,34,-2,,,,2,Chest,1,1,,Paralysis Attack,1,Evade Window,1,,,,,Bnahabra S
+Bnahabra Gloves S,34,-2,,,,2,Hands,1,,,Poison Attack,2,Evade Window,1,,,,,Bnahabra S
+Bnahabra Coil S,34,-2,,,,2,Waist,1,1,,Paralysis Attack,1,Evade Window,1,,,,,Bnahabra S
+Bnahabra Boots S,34,-2,,,,2,Legs,2,2,,Paralysis Attack,1,Recoil Down,1,,,,,Bnahabra S
+Izuchi Helm S,36,2,-1,-2,,,Head,1,1,,Critical Eye,1,,,,,,,Izuchi S
+Izuchi Mail S,36,2,-1,-2,,,Chest,1,,,Critical Eye,2,Recovery Speed,1,,,,,Izuchi S
+Izuchi Braces S,36,2,-1,-2,,,Hands,1,1,,Constitution,2,,,,,,,Izuchi S
+Izuchi Coil S,36,2,-1,-2,,,Waist,1,1,,Critical Eye,2,,,,,,,Izuchi S
+Izuchi Greaves S,36,2,-1,-2,,,Legs,1,1,,Recovery Speed,1,Constitution,1,,,,,Izuchi S
+Baggi Helm S,36,-4,-1,-1,2,1,Head,2,1,,Ice Attack,2,,,,,,,Baggi S
+Baggi Mail S,36,-4,-1,-1,2,1,Chest,1,,,Attack Boost,1,Ice Attack,1,,,,,Baggi S
+Baggi Vabraces S,36,-4,-1,-1,2,1,Hands,1,1,,Sleep Resistance,2,Ice Attack,1,,,,,Baggi S
+Baggi Coil S,36,-4,-1,-1,2,1,Waist,1,,,Attack Boost,2,Sleep Resistance,1,,,,,Baggi S
+Baggi Greaves S,36,-4,-1,-1,2,1,Legs,2,1,,Attack Boost,1,,,,,,,Baggi S
+Kulu-Ya-Ku Helm S,38,,-3,,1,,Head,1,1,,Maximum Might,1,,,,,,,Kulu S
+Kulu-Ya-Ku Mail S,38,,-3,,1,,Chest,2,,,Slugger,2,Horn Maestro,1,,,,,Kulu S
+Kulu-Ya-Ku Bracers S,38,,-3,,1,,Hands,2,,,Slugger,1,Stamina Thief,2,,,,,Kulu S
+Kulu-Ya-Ku Coil S,38,,-3,,1,,Waist,1,1,,Stamina Thief,1,Maximum Might,1,,,,,Kulu S
+Kulu-Ya-Ku Greaves S,38,,-3,,1,,Legs,1,,,Stun Resistance,1,Critical Eye,2,,,,,Kulu S
+Wroggi Helm S,38,2,-2,1,-4,,Head,1,,,Rapid Fire Up,1,Evade Extender ,1,,,,,Wroggi S
+Wroggi Mail S,38,2,-2,1,-4,,Chest,1,,,Rapid Fire Up,1,Poison Attack,1,,,,,Wroggi S
+Wroggi Vambraces S,38,2,-2,1,-4,,Hands,3,,,Ammo Up,1,,,,,,,Wroggi S
+Wroggi Coil S,38,2,-2,1,-4,,Waist,1,,,Ammo Up,1,Poison Attack,2,,,,,Wroggi S
+Wroggi Greaves S,38,2,-2,1,-4,,Legs,1,1,,Ammo Up,1,Evade Extender,1,,,,,Wroggi S
+Arzuros Helm S,36,-2,,-2,,,Head,1,1,,Fortify,1,Defense Boost,1,,,,,Arzuros S
+Arzuros Mail S,36,-2,,-2,,,Chest,2,,,Counterstrike,1,,,,,,,Arzuros S
+Arzuros Vambraces S,36,-2,,-2,,,Hands,1,,,Counterstrike,1,Defense Boost,2,,,,,Arzuros S
+Arzuros Coil S,36,-2,,-2,,,Waist,1,1,,Counterstrike,1,Defense Boost,1,,,,,Arzuros S
+Arzuros Greaves S,36,-2,,-2,,,Legs,3,2,1,,,,,,,,,Arzuros S
+Lagombi Helm S,36,-3,1,,3,,Head,3,,,Critical Eye,1,Ice Attack,2,,,,,Lagombi S
+Lagombi Mail S,36,-3,1,,3,,Chest,1,1,,Affinity Sliding,1,Constitution,1,,,,,Lagombi S
+Lagombi Vambraces S,36,-3,1,,3,,Hands,2,1,,Critical Eye,2,Ice Attack,1,,,,,Lagombi S
+Lagombi Coil S,36,-3,1,,3,,Waist,2,,,Constitution,2,,,,,,,Lagombi S
+Lagombi Greaves S,36,-3,1,,3,,Legs,1,1,,Jump Master,1,Critical Eye,1,,,,,Lagombi S

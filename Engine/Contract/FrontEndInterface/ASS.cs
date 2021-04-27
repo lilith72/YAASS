@@ -21,6 +21,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
 
         public ASS()
         {
+            Console.WriteLine("Initializing");
             this.inventoryProvider = new CsvInventoryProvider();
             this.searchWorker = new SearchWorker();
             this.solutionSorter = new SolutionSorter();
