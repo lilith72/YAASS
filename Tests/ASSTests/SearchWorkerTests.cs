@@ -240,7 +240,7 @@ namespace ASSTests
                                 armorPoints: 0,
                                 decoSlots: makeDecoSlotList(slotSizesPerArmor[1], slotSizesPerArmor[2], slotSizesPerArmor[3], slotSizesPerArmor[4]),
                                 slot: slot,
-                                new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
+                                skills: new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
                         }
                     }
                 }

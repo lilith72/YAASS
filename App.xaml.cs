@@ -13,5 +13,13 @@ namespace JustinsASS
     /// </summary>
     public partial class App : Application
     {
+        private void DisplayUnhandledException(
+            object sender,
+            System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show($"Unhandled exception occurred: {e.Exception.InnerException.Message}"
+                + Environment.NewLine + $"stack trace: {e.Exception.InnerException.StackTrace}",
+                "Exception Occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
     }
 }

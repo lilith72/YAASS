@@ -21,63 +21,49 @@ namespace JustinsASS.Engine.DataReader
             foreach (Dictionary<string, string> entry in this.GetCsvRows(SkillContributorFilePath))
             {
                 List<SkillValue> skillValues = GetSkillValuesFromCsvEntry(entry);
-                ArmorSlot slot = (ArmorSlot) Enum.Parse(typeof(ArmorSlot), entry["slotType"], ignoreCase: true);
-                string itemId = entry["ItemUniqueName"];
-                string setId = entry["SetId"];
+                ArmorSlot slot = (ArmorSlot) Enum.Parse(typeof(ArmorSlot), entry["Equip Type"], ignoreCase: true);
+                string itemId = entry["Name"];
+                string setId = entry["Set ID"];
                 if (seenArmorNames.Contains(itemId))
                 {
                     throw new Exception($"Found duplicate itemId in skillContributors: {itemId}");
                 }
                 seenArmorNames.Add(itemId);
-                if (slot == ArmorSlot.Deco)
+                // TODO broken: decos will be read on separate page
+                /*if (slot == ArmorSlot.Deco)
                 {
                     int slotSize = int.Parse(entry["decoSlotSizeIfDeco"]);
                     results.Add(new Decoration(itemId, slotSize, skillValues));
-                }
-                else
-                {
-                    // Any empty field will default to 0
-                    int.TryParse(entry["armorPoints"], out int armorPoints);
-                    int.TryParse(entry["size1DecoSlots"], out int slotsSize1);
-                    int.TryParse(entry["size2DecoSlots"], out int slotsSize2);
-                    int.TryParse(entry["size3DecoSlots"], out int slotsSize3);
-                    int slotsSize4 = 0;
-                    int.TryParse(entry["FireResist"], out int fireRes);
-                    int.TryParse(entry["IceResist"], out int iceRes);
-                    int.TryParse(entry["WaterResist"], out int waterRes);
-                    int.TryParse(entry["ThunderResist"], out int thunderRes);
-                    int.TryParse(entry["DragonResist"], out int dragonRes);
-                    //int.TryParse(entry["MinRank"], out int minRank);
-                    List<int> decoSlots = new List<int>();
-                    for (int i = 0; i < slotsSize1; i++)
-                    {
-                        decoSlots.Add(1);
-                    }
-                    for (int i = 0; i < slotsSize2; i++)
-                    {
-                        decoSlots.Add(2);
-                    }
-                    for (int i = 0; i < slotsSize3; i++)
-                    {
-                        decoSlots.Add(3);
-                    }
-                    for (int i = 0; i < slotsSize4; i++)
-                    {
-                        decoSlots.Add(4);
-                    }
-                    results.Add(new SkillContributor(
-                        id: itemId,
-                        armorPoints: armorPoints,
-                        decoSlots,
-                        slot: slot,
-                        skills: skillValues,
-                        setId: string.IsNullOrWhiteSpace(setId) ? null : setId,
-                        fireRes: fireRes,
-                        iceRes: iceRes,
-                        waterRes: waterRes,
-                        thunderRes: thunderRes,
-                        dragonRes: dragonRes));
-                }
+                }*/
+                // Any empty field will default to 0
+                int.TryParse(entry["Armor Points"], out int armorPoints);
+                int.TryParse(entry["Size Deco Slot 1"], out int slotsSize1);
+                int.TryParse(entry["Size Deco Slot 2"], out int slotsSize2);
+                int.TryParse(entry["Size Deco Slot 3"], out int slotsSize3);
+                //int slotsSize4 = 0;
+                int.TryParse(entry["Fire Res"], out int fireRes);
+                int.TryParse(entry["Ice Res"], out int iceRes);
+                int.TryParse(entry["Water Res"], out int waterRes);
+                int.TryParse(entry["Thunder Res"], out int thunderRes);
+                int.TryParse(entry["Dragon Res"], out int dragonRes);
+                //int.TryParse(entry["MinRank"], out int minRank);
+                List<int> decoSlots = new List<int>();
+                if (!string.IsNullOrEmpty(entry["Size Deco Slot 1"])) decoSlots.Add(slotsSize1);
+                if (!string.IsNullOrEmpty(entry["Size Deco Slot 2"])) decoSlots.Add(slotsSize2);
+                if (!string.IsNullOrEmpty(entry["Size Deco Slot 3"])) decoSlots.Add(slotsSize3);
+
+                results.Add(new SkillContributor(
+                    id: itemId,
+                    armorPoints: armorPoints,
+                    decoSlots,
+                    slot: slot,
+                    skills: skillValues,
+                    setId: string.IsNullOrWhiteSpace(setId) ? null : setId,
+                    fireRes: fireRes,
+                    iceRes: iceRes,
+                    waterRes: waterRes,
+                    thunderRes: thunderRes,
+                    dragonRes: dragonRes));
             }
             return results;
         }
@@ -88,12 +74,12 @@ namespace JustinsASS.Engine.DataReader
             Dictionary<string, int> result = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             foreach (Dictionary<string, string> entry in this.GetCsvRows(SkillMetadataFilePath))
             {
-                string skillName = entry["SkillName"];
+                string skillName = entry["Skill Name"];
                 if (result.ContainsKey(skillName) || string.IsNullOrWhiteSpace(skillName))
                 {
                     throw new Exception($"Duplicate or empty key in skill metadata: {result}");
                 }
-                int maxLevel = int.Parse(entry["MaxLevel"]);
+                int maxLevel = int.Parse(entry["Max Level"]);
                 result[skillName] = maxLevel;
             }
             return result;
@@ -105,8 +91,8 @@ namespace JustinsASS.Engine.DataReader
             // lazy implementation; Assume they're named SkillNameX and SkillPointsX respectively
             for (int i = 1; i < 8; i++)
             {
-                string skillNameKey = $"SkillName{i}";
-                string skillPointsKey = $"SkillPoints{i}";
+                string skillNameKey = $"Skill Name {i}";
+                string skillPointsKey = $"Skill Points {i}";
                 if (csvEntry.ContainsKey(skillNameKey) && !string.IsNullOrWhiteSpace(csvEntry[skillNameKey]))
                 {
                     results.Add(new SkillValue(csvEntry[skillNameKey], int.Parse(csvEntry[skillPointsKey])));
@@ -118,11 +104,8 @@ namespace JustinsASS.Engine.DataReader
         private IEnumerable<Dictionary<string, string>> GetCsvRows(string filePath)
         {
             string[] csvFileLines = File.ReadAllLines(filePath);
-            if (!csvFileLines[0].StartsWith("#Fields:"))
-            {
-                throw new Exception("input CSV file was malformed; expected first line to define schema in the form of #Fields:field1,field2,...");
-            }
-            string[] keys = csvFileLines[0].Remove(0, "#Fields:".Length).Split(new[] { "," }, StringSplitOptions.None);
+            // Assume that first line defines schema
+            string[] keys = csvFileLines[0].Split(new[] { "," }, StringSplitOptions.None);
             for (int i = 1; i < csvFileLines.Length; i++)
             {
                 string line = csvFileLines[i];
