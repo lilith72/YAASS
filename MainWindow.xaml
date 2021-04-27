@@ -81,7 +81,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    
+
                 </Grid>
             </StackPanel>
         </StackPanel>
@@ -91,7 +91,7 @@
                 <Label Content="Results" />
             </StackPanel>
             <Separator />
-            <ListView Name="lvSearchResults">
+            <ListView Name="lvSearchResults" Height="610" ScrollViewer.CanContentScroll="False">
             </ListView>
         </StackPanel>
     </StackPanel>
