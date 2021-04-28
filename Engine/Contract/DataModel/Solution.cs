@@ -10,11 +10,13 @@ namespace JustinsASS.Engine.Contract.DataModel
     public class Solution
     {
         public List<SkillContributor> Contributors { get; private set; }
+        private Dictionary<string, int> SetIdTally { get; set; }
 
         public List<int> OpenDecoSlots { get; private set; }
         public Solution()
         {
             this.Contributors = new List<SkillContributor>();
+            this.SetIdTally = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
             // Initialize all the slots as empty
             // If there end up being different slots game, abstract this constructor to a factory.
@@ -38,6 +40,10 @@ namespace JustinsASS.Engine.Contract.DataModel
             result.Contributors.AddRange(this.Contributors);
             result.OpenDecoSlots = new List<int>();
             result.OpenDecoSlots.AddRange(this.OpenDecoSlots);
+            foreach (string setId in this.SetIdTally.Keys)
+            {
+                result.SetIdTally[setId] = this.SetIdTally[setId];
+            }
             return result;
         }
 
@@ -66,6 +72,7 @@ namespace JustinsASS.Engine.Contract.DataModel
             else
             {
                 this.Contributors.Add(piece);
+                this.IncrementSetIdTally(piece.SetId);
                 foreach (int slot in piece.ProvidedDecoSlots)
                 {
                     this.OpenDecoSlots.Add(slot);
@@ -73,7 +80,6 @@ namespace JustinsASS.Engine.Contract.DataModel
                 this.Contributors.Remove(this.Contributors.Find(contributor => (contributor is VacantSlot) && contributor.Slot == piece.Slot));
             }
         }
-
 
         public bool CanFitNewPiece(SkillContributor candidate)
         {
@@ -151,27 +157,27 @@ namespace JustinsASS.Engine.Contract.DataModel
 
         public int GetTotalFireResistance()
         {
-            return this.Contributors.Sum(contr => contr.FireRes);
+            return this.Contributors.Sum(contr => contr.FireRes) + GetSetBonusResistance();
         }
 
         public int GetTotalIceResistance()
         {
-            return this.Contributors.Sum(contr => contr.IceRes);
+            return this.Contributors.Sum(contr => contr.IceRes) + GetSetBonusResistance();
         }
 
         public int GetTotalWaterResistance()
         {
-            return this.Contributors.Sum(contr => contr.WaterRes);
+            return this.Contributors.Sum(contr => contr.WaterRes) + GetSetBonusResistance();
         }
 
         public int GetTotalThunderResistance()
         {
-            return this.Contributors.Sum(contr => contr.ThunderRes);
+            return this.Contributors.Sum(contr => contr.ThunderRes) + GetSetBonusResistance();
         }
 
         public int GetTotalDragonResistance()
         {
-            return this.Contributors.Sum(contr => contr.DragonRes);
+            return this.Contributors.Sum(contr => contr.DragonRes) + GetSetBonusResistance();
         }
 
         public int GetTotalArmorPoints()
@@ -200,6 +206,32 @@ namespace JustinsASS.Engine.Contract.DataModel
                 }
             }
             return skillsToTotals.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList();
+        }
+
+        private int GetSetBonusResistance()
+        {
+            if (this.SetIdTally.Values.Contains(3))
+            {
+                return 1;
+            }
+            if (this.SetIdTally.Values.Contains(4))
+            {
+                return 2;
+            }
+            if (this.SetIdTally.Values.Contains(5))
+            {
+                return 3;
+            }
+            return 0;
+        }
+
+        private void IncrementSetIdTally(string setId)
+        {
+            if (!this.SetIdTally.ContainsKey(setId))
+            {
+                SetIdTally.Add(setId, 0);
+            }
+            SetIdTally[setId]++;
         }
     }
 }
