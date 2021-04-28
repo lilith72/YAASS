@@ -37,6 +37,11 @@ namespace JustinsASS.Engine.Contract.Interfaces
         /// <returns></returns>
         IList<SkillContributor> GetAllSkillContributors();
 
+        /// <summary>
+        /// Returns skill contributor looked up by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         SkillContributor GetSkillContributorById(string id);
 
         /// <summary>

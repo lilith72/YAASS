@@ -12,6 +12,8 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
 {
     public class ASS : IASS
     {
+        public static ASS Instance;
+
         private readonly IInventoryProvider inventoryProvider;
         private readonly ISearchWorker searchWorker;
         private readonly ISolutionSorter solutionSorter;
@@ -21,7 +23,11 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
 
         public ASS()
         {
-            Console.WriteLine("Initializing");
+            if (ASS.Instance != null)
+            {
+                throw new Exception("ASS does not support duplicate instance construction and should be used as a singleton.");
+            }
+            ASS.Instance = this;
             this.inventoryProvider = new CsvInventoryProvider();
             this.searchWorker = new SearchWorker();
             this.solutionSorter = new SolutionSorter();
@@ -82,7 +88,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         public void PersistCustomInventoryAddition(
             SkillContributor talismanToAdd)
         {
-
+            throw new NotImplementedException();
         }
 
         /// <summary>

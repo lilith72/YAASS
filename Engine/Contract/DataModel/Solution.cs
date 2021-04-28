@@ -1,4 +1,5 @@
-﻿using JustinsASS.Engine.Search;
+﻿using JustinsASS.Engine.Contract.FrontEndInterface;
+using JustinsASS.Engine.Search;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -205,7 +206,15 @@ namespace JustinsASS.Engine.Contract.DataModel
                     skillsToTotals[skillValue.SkillId] += skillValue.Points;
                 }
             }
-            return skillsToTotals.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList();
+            return skillsToTotals.Select(kvp =>
+                {
+                    ASS.Instance.GetSkillNamesToMaxLevelMapping().TryGetValue(kvp.Key, out int maxLevel);
+                    if (maxLevel == 0)
+                    {
+                        maxLevel = int.MaxValue;
+                    }
+                    return new SkillValue(kvp.Key, Math.Min(kvp.Value, maxLevel));
+                }).ToList();
         }
 
         private int GetSetBonusResistance()

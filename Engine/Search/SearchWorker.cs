@@ -50,6 +50,10 @@ namespace JustinsASS.Engine.Search
 
             foreach (SkillContributor chosenItem in helpfulInventory.AllContributors)
             {
+                if (chosenItem.SkillContributorId.Equals("TEST"))
+                {
+                    int a = 4;
+                }
                 // Check that the chosen item fits on the set
                 if (!partialSolution.CanFitNewPiece(chosenItem))
                 {
