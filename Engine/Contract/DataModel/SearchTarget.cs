@@ -26,7 +26,8 @@ namespace JustinsASS.Engine.Contract.DataModel
         /// <returns></returns>
         public bool SkillContributorHelpsTarget(SkillContributor contributor, Solution partialSolution)
         {
-            if (!partialSolution.CanFitNewPiece(contributor))
+            if (!partialSolution.CanFitNewPiece(contributor)
+                && !(partialSolution.Contributors.Any(contr => contr is VacantSlot) && contributor is Decoration)) // Don't discard decos we could potentially fit later
             {
                 return false;
             }
