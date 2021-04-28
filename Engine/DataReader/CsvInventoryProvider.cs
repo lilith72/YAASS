@@ -13,6 +13,9 @@ namespace JustinsASS.Engine.DataReader
     {
         private const string SkillContributorFilePath = "./AppData/SkillContributors/skillContributors.csv";
         private const string SkillMetadataFilePath = "./AppData/SkillMetadata/skillMetadata.csv";
+        // Decos could be combined into skill contributors file but this makes data entry easier
+        // plus it helps keep data organized
+        private const string DecorationsFilePath = "./AppData/Decorations/decorations.csv";
 
         public List<SkillContributor> GetSkillContributors()
         {
@@ -65,6 +68,22 @@ namespace JustinsASS.Engine.DataReader
                     thunderRes: thunderRes,
                     dragonRes: dragonRes));
             }
+
+            foreach (Dictionary<string, string> entry in this.GetCsvRows(DecorationsFilePath))
+            {
+                List<SkillValue> skillValues = GetSkillValuesFromCsvEntry(entry);
+                string itemId = entry["Name"];
+                if (seenArmorNames.Contains(itemId))
+                {
+                    throw new Exception($"Found duplicate itemId in skillContributors: {itemId}");
+                }
+                seenArmorNames.Add(itemId);
+
+                int slotSize = int.Parse(entry["Slot Size"]);
+
+                results.Add(new Decoration(itemId, slotSize, GetSkillValuesFromCsvEntry(entry)));
+            }
+
             return results;
         }
 
@@ -118,7 +137,7 @@ namespace JustinsASS.Engine.DataReader
                 string[] values = line.Split(new[] { "," }, StringSplitOptions.None);
                 for (int j = 0; j < values.Length; j++)
                 {
-                    lineResults[keys[j]] = values[j];
+                    lineResults[keys[j]] = values[j].Trim();
                 }
                 yield return lineResults;
             }

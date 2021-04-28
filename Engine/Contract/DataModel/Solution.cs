@@ -61,6 +61,7 @@ namespace JustinsASS.Engine.Contract.DataModel
                     }
                 }
                 this.OpenDecoSlots.Remove(deco.SlotSize);
+                this.Contributors.Add(deco);
             }
             else
             {

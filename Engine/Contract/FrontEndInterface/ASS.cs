@@ -78,5 +78,58 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         {
             return solutionSorter.ReturnSortedSolutions(unorderedSolutions, sortConditions);
         }
+
+        public void PersistCustomInventoryAddition(
+            SkillContributor talismanToAdd)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idToRemove"></param>
+        /// <returns></returns>
+        public bool TryPersistCustomInventoryDeletion(
+            string idToRemove)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s">The solution to pin</param>
+        public void PersistPinnedSolution(
+            Solution s)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void FetchAllPinnedSolutions()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s">The solution to be returned.</param>
+        /// <returns>true if unpin was successful, false if there was an error.</returns>
+        public bool TryUnpinSolution(
+            Solution s,
+            out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SkillContributor GetSkillContributorById(string id)
+        {
+
+            throw new NotImplementedException();
+        }
     }
 }

@@ -69,3 +69,77 @@ Lagombi Mail S,36,-3,1,,3,,Chest,1,1,,Affinity Sliding,1,Constitution,1,,,,,Lago
 Lagombi Vambraces S,36,-3,1,,3,,Hands,2,1,,Critical Eye,2,Ice Attack,1,,,,,Lagombi S
 Lagombi Coil S,36,-3,1,,3,,Waist,2,,,Constitution,2,,,,,,,Lagombi S
 Lagombi Greaves S,36,-3,1,,3,,Legs,1,1,,Jump Master,1,Critical Eye,1,,,,,Lagombi S
+Aknosom Helm S,38,3,-3,-1,,,Head,2,,,Quick Sheath,1,Fire Attack ,1,,,,,Aknosom S
+Aknosom Mail S,38,3,-3,-1,,,Chest,1,,,Quick Sheath,1,Peak Performance,1,,,,,Aknosom S
+Aknosom Braces S,38,3,-3,-1,,,Hands,1,1,,Peak Performance,1,Fire Attack ,1,,,,,Aknosom S
+Aknosom Coil S,38,3,-3,-1,,,Waist,3,1,,Quick Sheath,1,,,,,,,Aknosom S
+Aknosom Greaves S,38,3,-3,-1,,,Legs,1,,,Peak Performance,1,Fire Attack ,2,,,,,Aknosom S
+Khezu Helm S,38,-4,1,4,2,1,Head,1,,,Focus,1,Recovery Up,1,,,,,Khezu S
+Khezu Mail S,38,-4,1,4,2,1,Chest,1,1,,Wall Runner,1,Recovery Up,1,,,,,Khezu S
+Khezu Vambraces S,38,-4,1,4,2,1,Hands,1,1,,Wall Runner,1,Recovery Speed,1,Thunder Attack,2,,,Khezu S
+Khezu Coil S,38,-4,1,4,2,1,Waist,1,1,,Focus,1,Slugger,1,,,,,Khezu S
+Khezu Greaves S,38,-4,1,4,2,1,Legs,1,1,,Focus,1,Slugger,1,Recovery Speed,1,,,Khezu S
+Tetranadon Helm S,40,-1,4,-2,1,,Head,1,,,Normal/Rapid Up,1,Speed Eating,1,,,,,Tetranadon S
+Tetranadon Mail S,40,-1,4,-2,1,,Chest,1,,,Normal/Rapid Up,1,Evade Extender,1,,,,,Tetranadon S
+Tetranadon Bracers S,40,-1,4,-2,1,,Hands,1,1,,Heroics,1,Special Ammo Boost,1,,,,,Tetranadon S
+Tetranadon Coil S,40,-1,4,-2,1,,Waist,2,,,Heroics,2,,,,,,,Tetranadon S
+Tetranadon Greaves S,40,-1,4,-2,1,,Legs,1,,,Normal/Rapid Up,1,Hunger Resistance,1,,,,,Tetranadon S
+Ingot Helm S,40,-1,-1,1,,,Head,3,1,,Windproof,1,,,,,,,Ingot S
+Ingot Mail S,40,-1,-1,1,,,Chest,2,1,,Windproof,2,,,,,,,Ingot S
+Ingot Vambraces S,40,-1,-1,1,,,Hands,1,,,Thunder Attack,3,,,,,,,Ingot S
+Ingot Coil S,40,-1,-1,1,,,Waist,2,,,Power Prolonger,2,,,,,,,Ingot S
+Ingot Greaves S,40,-1,-1,1,,,Legs,1,,,Attack Boost,2,Critical Eye,2,,,,,Ingot S
+Chaos Archbun,40,2,-2,,,,Head,1,1,,Mushroomancer,1,,,,,,,Chaos S
+Chaos Archplate,40,2,-2,,,,Chest,,,,Mushroomancer,2,,,,,,,Chaos S
+Edel Vizor S,40,-1,3,-1,,,Head,2,2,,Poison Resistance,2,,,,,,,Edel S
+Edel Ribplate S,40,-1,3,-1,,,Chest,1,1,,Recovery Up ,2,,,,,,,Edel S
+Edel Creeper S,40,-1,3,-1,,,Hands,,,,Capture Master,1,,,,,,,Edel S
+Edel Folia S,40,-1,3,-1,,,Waist,2,,,Recovery Up ,1,,,,,,,Edel S
+Edel Roots S,40,-1,3,-1,,,Legs,3,1,,Poison Resistance,1,,,,,,,Edel S
+Slagtoth Hood S,42,-2,2,,-1,1,Head,3,,,Free Meal,1,Diversion,1,,,,,Slagtoth S
+Slagtoth Cloak S,42,-2,2,,-1,1,Chest,2,1,,Free Meal,2,,,,,,,Slagtoth S
+Rhenoplos Helm S,42,2,,,-2,,Head,1,,,Pierce Up ,2,Stun Resistance,1,,,,,Rhenoplos S
+Rhenoplos Mail S,42,2,,,-2,,Chest,2,1,,Artillery,1,Stun Resistance,2,,,,,Rhenoplos S
+Rhenoplos Bracers S,42,2,,,-2,,Hands,2,1,,Artillery,2,,,,,,,Rhenoplos S
+Rhenoplos Coil S,42,2,,,-2,,Waist,3,1,,Tremor Resistance,2,,,,,,,Rhenoplos S
+Rhenoplos Greaves S,42,2,,,-2,,Legs,1,1,,Pierce Up ,1,Tremor Resistance,1,,,,,Rhenoplos S
+Bullfango Mask S,36,,4,-2,,,Head,1,,,Bludgeoner,2,,,,,,,Bullfango Mask S
+Droth Mail S,42,-2,4,-1,,,Chest,2,1,,Water Attack,2,,,,,,,Droth S
+Droth Coil S,42,-2,4,-1,,,Waist,3,1,,Diversion,1,,,,,,,Droth S
+Droth Greaves S,42,-2,4,-1,,,Legs,2,,,Water Attack,3,,,,,,,Droth S
+Jaggi Gauntlets S,42,,,,1,,Hands,1,1,,Attack Boost,2,,,,,,,Jaggi S
+Jaggi Shinguards S,42,,,,1,,Legs,2,1,,Master Mounter,1,,,,,,,Jaggi S
+Jaggi Mask S,36,,,,,,Head,2,,,Affinity Sliding,1,,,,,,,Jaggi Mask S
+Volvidon Helm S,50,2,-3,,-1,1,Head,1,1,,Paralysis Attack,2,Bludgeoner,1,,,,,Volividon S
+Volividon Mail S,50,2,-3,,-1,1,Chest,2,,,Rapid Morph,1,Jump Master,1,,,,,Volividon S
+Volividon Vambraces S,50,2,-3,,-1,1,Hands,1,1,1,Evade Extender,1,Paralysis Attack,1,,,,,Volividon S
+Volvidon Coil S,50,2,-3,,-1,1,Waist,1,1,,Rapid Morph,1,Bludgeoner,1,,,,,Volividon S
+Volvidon Greaves S,50,2,-3,,-1,1,Legs,1,1,,Rapid Morph,1,Evade Extender ,2,,,,,Volividon S
+Ludroth Helm S,48,-3,4,-1,,,Head,1,1,,Marathon Runner,1,Peak Performance,1,,,,,Ludroth S
+Ludroth Mail S,48,-3,4,-1,,,Chest,2,,,Stamina Surge,2,,,,,,,Ludroth S
+Ludroth Bracers S,48,-3,4,-1,,,Hands,2,1,1,Marathon Runner,1,,,,,,,Ludroth S
+Ludroth Coil S,48,-3,4,-1,,,Waist,1,,,Marathon Runner,1,Peak Performance,2,,,,,Ludroth S
+Ludroth Greaves S,48,-3,4,-1,,,Legs,3,,,Power Prolonger,2,,,,,,,Ludroth S
+Barroth Helm S,50,-3,-1,3,-1,,Head,2,1,,Attack Boost,1,Defense Boost,1,Offensive Guard,1,,,Barroth S
+Barroth Mail S,50,-3,-1,3,-1,,Chest,2,,,Attack Boost,1,Defense Boost,2,,,,,Barroth S
+Barroth Vambraces S,50,-3,-1,3,-1,,Hands,1,1,,Attack Boost,2,Affinity Sliding,1,,,,,Barroth S
+Barroth Coil S,50,-3,-1,3,-1,,Waist,1,,,Guard ,2,Defense Boost,1,,,,,Barroth S
+Barroth Greaves S,50,-3,-1,3,-1,,Legs,2,1,,Guard ,1,Defense Boost,1,Offensive Guard,1,,,Barroth S
+Bishaten Helm S,52,-2,2,2,-4,2,Head,1,,,Item Prolonger,1,Wide-Range,1,Stun Resistance,1,,,Bishaten S
+Bishaten Mail S,52,-2,2,2,-4,2,Chest,3,,,Wide-Range,1,,,,,,,Bishaten S
+Bishaten Vambraces S,52,-2,2,2,-4,2,Hands,3,,,Item Prolonger,1,Stun Resistance,1,,,,,Bishaten S
+Bishaten Coil S,52,-2,2,2,-4,2,Waist,1,1,,Item Prolonger,1,Maximum Might,1,,,,,Bishaten S
+Bishaten Greaves S,52,-2,2,2,-4,2,Legs,2,1,1,Maximum Might,1,,,,,,,Bishaten S
+Pukei-Pukei Helm S,50,,3,-3,,1,Head,2,,,Special Ammo Boost,1,Spare Shot,1,,,,,Pukei S
+Pukei-Pukei Mail S,50,,3,-3,,1,Chest,1,,,Special Ammo Boost,1,Constitution,2,,,,,Pukei S
+Pukei-Pukei Braces S,50,,3,-3,,1,Hands,2,,,Spare Shot,1,Aim Booster,1,,,,,Pukei S
+Pukei-Pukei Coil S,50,,3,-3,,1,Waist,2,1,,Spare Shot,1,Poison Attack,2,,,,,Pukei S
+Pukei-Pukei Greaves S,50,,3,-3,,1,Legs,1,1,1,Constitution,1,Aim Booster,1,,,,,Pukei S
+Jyuratodus Helm,48,-1,2,-3,,,Head,2,1,,Offensive Guard,1,Evade Extender,1,,,,,Jyura
+Jyuratodus Mail,48,-1,2,-3,,,Chest,1,1,1,Power Prolonger,2,Evade Extender,1,,,,,Jyura
+Jyuratodus Vambraces,48,-1,2,-3,,,Hands,3,2,1,,,,,,,,,Jyura
+Jyuratodus Coil,48,-1,2,-3,,,Waist,1,1,,Guard Up,1,Power Prolonger,1,Offensive Guard,1,,,Jyura
+Jyuratodus Greaves ,48,-1,2,-3,,,Legs,2,1,1,Guard Up,2,,,,,,,Jyura
+Basarios Helm S,52,,-2,1,1,-3,Head,2,1,,Load Shells,1,Defense Boost,2,,,,,Basarios S
+Basarios Mail S,52,,-2,1,1,-3,Chest,1,1,,Guard,1,Load Shells,1,,,,,Basarios S
+Basarios Vambraces S,52,,-2,1,1,-3,Hands,1,1,,Guard,2,Speed Sharpening,1,,,,,Basarios S

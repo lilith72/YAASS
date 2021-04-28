@@ -37,6 +37,8 @@ namespace JustinsASS.Engine.Contract.Interfaces
         /// <returns></returns>
         IList<SkillContributor> GetAllSkillContributors();
 
+        SkillContributor GetSkillContributorById(string id);
+
         /// <summary>
         /// Returns all "Skill Contributor" (armor/deco/charm) ids. These can be shown to user for purpose of filtering out armors / charms they don't have, etc.
         /// </summary>
@@ -57,5 +59,37 @@ namespace JustinsASS.Engine.Contract.Interfaces
         /// Forces application to reread the data from the files.
         /// </summary>
         void RefreshDataFromFiles();
+
+        void PersistCustomInventoryAddition(
+            SkillContributor talismanToAdd);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idToRemove"></param>
+        /// <returns></returns>
+        bool TryPersistCustomInventoryDeletion(
+            string idToRemove);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s">The solution to pin</param>
+        void PersistPinnedSolution(
+            Solution s);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        void FetchAllPinnedSolutions();
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s">The solution to be returned.</param>
+        /// <returns>true if unpin was successful, false if there was an error.</returns>
+        bool TryUnpinSolution(
+            Solution s,
+            out string errorMessage);
     }
 }
