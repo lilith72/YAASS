@@ -59,7 +59,7 @@ namespace JustinsASS.Engine.Contract.DataModel
 
             if (piece is Decoration deco)
             {
-                int selectedSlotSize = deco.SlotSize;
+                int selectedSlotSize = int.MaxValue;
                 for (int i = 0; i < this.OpenDecoSlots.Count(); i++)
                 {
                     if (OpenDecoSlots[i] >= deco.SlotSize && OpenDecoSlots[i] < selectedSlotSize)
@@ -67,7 +67,11 @@ namespace JustinsASS.Engine.Contract.DataModel
                         selectedSlotSize = OpenDecoSlots[i];
                     }
                 }
-                this.OpenDecoSlots.Remove(deco.SlotSize);
+                if (selectedSlotSize == int.MaxValue)
+                {
+                    throw new Exception("Unexpected argument: Tried to add decoration to solution that doesn't fit it.");
+                }
+                this.OpenDecoSlots.Remove(selectedSlotSize);
                 this.Contributors.Add(deco);
             }
             else
@@ -133,7 +137,7 @@ namespace JustinsASS.Engine.Contract.DataModel
                     $"=============",
                     $"Head:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Head)}",
                     $"Chest:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Chest)}",
-                    $"Arm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Hands)}",
+                    $"Arm:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Arms)}",
                     $"Waist:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Waist)}",
                     $"Feet:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Legs)}",
                     $"Talisman:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Talisman)}",

@@ -79,8 +79,8 @@ namespace JustinsASS.Engine.Search
                 case SolutionSortCondition.TotalEmptyArmorSlots:
                     return Comparer<Solution>.Create((s1, s2) =>
                     {
-                        return s1.Contributors.Count(contributor => contributor is VacantSlot)
-                            - s2.Contributors.Count(contributor => contributor is VacantSlot);
+                        return s2.Contributors.Count(contributor => contributor is VacantSlot)
+                            - s1.Contributors.Count(contributor => contributor is VacantSlot);
                     });
                 default:
                     throw new NotImplementedException($"Unsupported SolutionSortCondition {condition}");

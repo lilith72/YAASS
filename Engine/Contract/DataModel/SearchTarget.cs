@@ -58,7 +58,7 @@ namespace JustinsASS.Engine.Contract.DataModel
             return true;
         }
 
-        private Dictionary<string, int> GetRemainingSkillPointsGivenSolution(Solution solution)
+        public Dictionary<string, int> GetRemainingSkillPointsGivenSolution(Solution solution)
         {
             Dictionary<string, int> remainingSkillPoints = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             foreach (SkillValue desiredSkill in this.DesiredSkills)
