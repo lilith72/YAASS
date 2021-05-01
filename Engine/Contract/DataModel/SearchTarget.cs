@@ -60,6 +60,7 @@ namespace JustinsASS.Engine.Contract.DataModel
 
         public Dictionary<string, int> GetRemainingSkillPointsGivenSolution(Solution solution)
         {
+            // TODO: precalculate and cache this, needs a refactor into solution though
             Dictionary<string, int> remainingSkillPoints = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             foreach (SkillValue desiredSkill in this.DesiredSkills)
             {

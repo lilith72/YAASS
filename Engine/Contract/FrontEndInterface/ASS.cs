@@ -32,6 +32,8 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
             this.searchWorker = new SearchWorker();
             this.solutionSorter = new SolutionSorter();
             this.RefreshDataFromFiles();
+            /*
+             * justins debug search
             GetSolutionsForSearch(new Dictionary<string, int>()
             {
                 { "Guard", 5 },
@@ -39,11 +41,11 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                 { "Artillery", 3 },
                 { "Load Shells", 2 },
                 { "Diversion", 1 },
-                //{ "Defense Boost", 3 },
+                { "Defense Boost", 3 },
                 { "Hunger Resistance", 2 },
                 { "Speed Sharpening", 1 },
                 { "Flinch Free", 1 },
-            });
+            });*/
         }
 
         public void RefreshDataFromFiles()
