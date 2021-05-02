@@ -194,7 +194,7 @@ namespace ASSTests
                 setId: "mockSetId",
                 armorPoints: armorPoints,
                 decoSlots: new List<int>() { countDecoSlots },
-                slot: ArmorSlot.Hands,
+                slot: ArmorSlot.Arms,
                 skills: new List<SkillValue>() { 
                     new SkillValue("Skill" + Guid.NewGuid().ToString(), numSkillPoints) },
                 fireRes: fireRes,
