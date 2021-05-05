@@ -18,7 +18,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         private readonly IInventoryProvider inventoryProvider;
         private readonly ISearchWorker searchWorker;
         private readonly ISolutionSorter solutionSorter;
-        private readonly PersistedStorageHelper persistedStorageHelper;
+        private readonly IPersistedStorageHelper persistedStorageHelper;
 
         private List<SkillContributor> allInventoryFromFile;
         private Dictionary<string, int> skillNameToMaxValue;
