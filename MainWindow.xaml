@@ -14,13 +14,8 @@
     <StackPanel Background="Gray" Orientation="Horizontal">
         <StackPanel Name="spSearch" Orientation="Vertical" Width="400" Height="Auto" Margin="10" >
             <StackPanel Orientation="Vertical" Background="White">
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Hunter Rank" />
-                    <TextBox Name="txtBoxHunterRank" Text="5" VerticalAlignment="Center" Width="30" TextAlignment="Right"/>
-                    <Label Name="testLabel" Content="{Binding Path=TestString}"/>
-                    <CheckBox Name="cbUseTalismans" Content="Use My Talismans" VerticalAlignment="Center" 
-                              Margin="20,0,0,0" />
-                </StackPanel>
+                <CheckBox Name="cbUseWeaponSlot" Content="Use Weapon Slots" VerticalAlignment="Center" Margin="20,0,0,0" />
+                <CheckBox Name="cbUseTalismans" Content="Use My Talismans" VerticalAlignment="Center" Margin="20,0,0,0" />
                 <Button Name="btnSearch" Content="Search" Click="SearchForSolutions" Width="100" Margin="10" />
             </StackPanel>
             <TabControl>
@@ -95,7 +90,13 @@
                         </Grid>
                     </StackPanel>
                 </TabItem>
-                <TabItem Name="tabMyTalismans" Header=" My Talismans" Visibility="{Binding IsChecked, ElementName=cbUseTalismans, Converter={StaticResource btvConverter}}">
+                <TabItem Name="tabMyWeaponSlots" Header="My Weapon Slots" Visibility="{Binding IsChecked, ElementName=cbUseWeaponSlot, Converter={StaticResource btvConverter}}">
+                    <StackPanel Orientation="Vertical">
+                        <Label Content="Decoration Slots" HorizontalAlignment="Center" />
+                        <StackPanel Orientation="Vertical" Name="spWeaponSlots" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Name="tabMyTalismans" Header="My Talismans" Visibility="{Binding IsChecked, ElementName=cbUseTalismans, Converter={StaticResource btvConverter}}">
                     <StackPanel Orientation="Vertical">
                         <Button Name="btnAddTalisman" Content="Add New Talisman" Click="OnClick_AddNewTalisman" />
                         <Label Name="lblTestAddTalisman"/>

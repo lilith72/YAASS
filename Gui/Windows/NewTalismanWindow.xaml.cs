@@ -2,6 +2,7 @@
 using JustinsASS.Engine.Contract.FrontEndInterface;
 using JustinsASS.Gui.Controls;
 using JustinsASS.Gui.DataModel;
+using JustinsASS.Gui;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,8 @@ namespace JustinsASS.Gui.Windows
     /// </summary>
     public partial class NewTalismanWindow : Window
     {
-        readonly static int SLOT_SIZE_MAX = 3;
-        readonly static int MAX_SLOTS = 3;
-
         private IDictionary<string, int> mSkills = new Dictionary<string, int>();
-        int[] mDecoSlots = new int[MAX_SLOTS];
+        int[] mDecoSlots = new int[Helper.MAX_SLOTS];
         ASS mAss;
 
         public SkillContributor Result { set; get; }
@@ -38,13 +36,13 @@ namespace JustinsASS.Gui.Windows
             InitializeComponent();
             mAss = ass;
             cbAddSkill.ItemsSource = mAss.GetSkillNamesToMaxLevelMapping().Keys;
-            for (int i = 0; i < SLOT_SIZE_MAX; i++)
+            for (int i = 0; i < Helper.MAX_SLOT_SIZE; i++)
             {
                 Label newLabel = new Label();
                 newLabel.Content = "Size " + (i + 1) + " Slots";
                 UpDownControl newUdc = new UpDownControl();
                 newUdc.Min = 0;
-                newUdc.Max = MAX_SLOTS;
+                newUdc.Max = Helper.MAX_SLOTS;
                 newUdc.Value = 0;
                 newUdc.Tag = i.ToString();
                 newUdc.ValueChanged += OnChange_SlotValue;
@@ -119,14 +117,7 @@ namespace JustinsASS.Gui.Windows
 
         private void OnClick_AddTalisman(object sender, RoutedEventArgs e)
         {
-            IList<int> decoSlots = new List<int>();
-            for (int i = 0; i < mDecoSlots.Length; i++)
-            {
-                for (int j = 0; j < mDecoSlots[i]; j++)
-                {
-                    decoSlots.Add(i + 1);
-                }
-            }
+            IList<int> decoSlots = Helper.DecorationArrayToList(mDecoSlots);
             IList<SkillValue> skillList = mSkills.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList(); ;
             SkillContributor newTalisman = new SkillContributor(tbTalismanName.Text, 0, decoSlots, ArmorSlot.Talisman, skillList);
             this.Result = newTalisman;

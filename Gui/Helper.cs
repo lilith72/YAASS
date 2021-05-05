@@ -11,6 +11,10 @@ namespace JustinsASS.Gui
 {
     public class Helper
     {
+        public static readonly int MAX_SLOT_SIZE = 3;
+        public static readonly int MAX_WEAPON_SLOTS = 3;
+        public static readonly int MAX_SLOTS = 3;
+
         public static Dictionary<string, SkillLvlMax> GetSkillsWithMax(IList<SkillValue> skills, ASS ass)
         {
             Dictionary<string, SkillLvlMax> skillsWithMax = new Dictionary<string, SkillLvlMax>();
@@ -32,6 +36,19 @@ namespace JustinsASS.Gui
             }
 
             return skillsWithMax;
+        }
+
+        public static IList<int> DecorationArrayToList(int[] inDecos)
+        {
+            IList<int> outDecos = new List<int>();
+            for (int i = 0; i < inDecos.Length; i++)
+            {
+                for (int j = 0; j < inDecos[i]; j++)
+                {
+                    outDecos.Add(i + 1);
+                }
+            }
+            return outDecos;
         }
     }
 }

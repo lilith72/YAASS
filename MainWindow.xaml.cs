@@ -36,6 +36,7 @@ namespace JustinsASS
         IList<SolutionData> mSearchResults = new List<SolutionData>();
         IDictionary<string, int> mSkills = new Dictionary<string, int>();
         IList<string> mSorts = new List<string>();
+        int[] mWeaponSlots= new int[Helper.MAX_SLOTS];
         ASS mAss = new ASS();
 
         public MainWindow()
@@ -43,13 +44,29 @@ namespace JustinsASS
             InitializeComponent();
             cbAddSkill.ItemsSource = mAss.GetSkillNamesToMaxLevelMapping().Keys;
             cbAddSort.ItemsSource = smAllSorts;
+
+            for (int i = 0; i < Helper.MAX_SLOT_SIZE; i++)
+            {
+                Label newLabel = new Label();
+                newLabel.Content = "Size " + (i + 1) + " Slots";
+                UpDownControl newUdc = new UpDownControl();
+                newUdc.Min = 0;
+                newUdc.Max = Helper.MAX_SLOTS;
+                newUdc.Value = 0;
+                newUdc.Tag = i.ToString();
+                newUdc.ValueChanged += OnChange_WeaponSlotValue;
+
+                spWeaponSlots.Children.Add(newLabel);
+                spWeaponSlots.Children.Add(newUdc);
+            }
         }
 
         private void SearchForSolutions(object sender, RoutedEventArgs e)
         {
             // Prevent search spam while working
             btnSearch.IsEnabled = false;
-            IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkills);
+            IList<int> decoSlots = Helper.DecorationArrayToList(mWeaponSlots);
+            IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkills, decoSlots);
             if (mSorts.Count > 0)
             {
                 searchSolutions = mAss.SortSolutionsByGivenConditions(searchSolutions, mSorts.Select(x => (SolutionSortCondition)Enum.Parse(typeof(SolutionSortCondition), x)).ToList());
@@ -147,6 +164,13 @@ namespace JustinsASS
             var upcSkill = (UpDownControl)sender;
             string skillID = upcSkill.Tag.ToString();
             mSkills[skillID] = upcSkill.Value;
+        }
+        private void OnChange_WeaponSlotValue(object sender, RoutedEventArgs e)
+        {
+            var upcSlot = (UpDownControl)sender;
+            int slotNum = Int32.Parse(upcSlot.Tag.ToString());
+
+            mWeaponSlots[slotNum] = upcSlot.Value;
         }
 
         private void UpdateSkills()
