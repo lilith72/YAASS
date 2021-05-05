@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="JustinsASS.Gui.Controls.UpDownControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JustinsASS.Gui.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="200">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button Grid.Column="0" Width="30" Height="30" Click="OnClick_Down">-</Button>
+        <ProgressBar Name="pbValueBar" Grid.Column="1" Minimum="0" Maximum="100" />
+        <TextBlock Name="tbValue" Grid.Column="1" Width="30" Height="30" Background="white" Text="0" TextAlignment="Center" VerticalAlignment="Center"/>
+        <Button Grid.Column="2" Width="30" Height="30" Click="OnClick_Up">+</Button>
+    </Grid>
+</UserControl>

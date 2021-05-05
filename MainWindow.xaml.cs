@@ -18,6 +18,12 @@ using System.Runtime.CompilerServices;
 using JustinsASS.Engine.Contract.FrontEndInterface;
 using JustinsASS.Engine.Contract.DataModel;
 using JustinsASS.Engine.Contract.Interfaces;
+using System.Text.RegularExpressions;
+using System.Globalization;
+using JustinsASS.Gui.Windows;
+using JustinsASS.Gui.DataModel;
+using JustinsASS.Gui;
+using JustinsASS.Gui.Controls;
 
 namespace JustinsASS
 {
@@ -27,10 +33,11 @@ namespace JustinsASS
     public partial class MainWindow : Window
     {
         readonly IList<string> smAllSorts = Enum.GetNames(typeof(SolutionSortCondition)).Where(s => !s.Equals("none", StringComparison.OrdinalIgnoreCase)).ToList();
-        IList<Solution> mSearchResults = new List<Solution>();
+        IList<SolutionData> mSearchResults = new List<SolutionData>();
         IDictionary<string, int> mSkills = new Dictionary<string, int>();
         IList<string> mSorts = new List<string>();
         ASS mAss = new ASS();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,16 +47,23 @@ namespace JustinsASS
 
         private void SearchForSolutions(object sender, RoutedEventArgs e)
         {
-            mSearchResults = mAss.GetSolutionsForSearch(mSkills);
+            // Prevent search spam while working
+            btnSearch.IsEnabled = false;
+            IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkills);
             if (mSorts.Count > 0)
             {
-                lvSearchResults.ItemsSource = mAss.SortSolutionsByGivenConditions(mSearchResults, mSorts.Select(x => (SolutionSortCondition)Enum.Parse(typeof(SolutionSortCondition), x)).ToList());
+                searchSolutions = mAss.SortSolutionsByGivenConditions(searchSolutions, mSorts.Select(x => (SolutionSortCondition)Enum.Parse(typeof(SolutionSortCondition), x)).ToList());
             }
-            else
+            mSearchResults.Clear();
+            foreach (Solution solution in searchSolutions)
             {
-                lvSearchResults.ItemsSource = mSearchResults;
+                mSearchResults.Add(new SolutionData(solution, mAss));
             }
+            lvSearchResults.ItemsSource = null;
+            lvSearchResults.ItemsSource = mSearchResults;
             lblNumResults.Content = mSearchResults.Count;
+            // Re-enable search
+            btnSearch.IsEnabled = true;
         }
 
         private void OnClick_AddSkill(object sender, RoutedEventArgs e)
@@ -73,14 +87,7 @@ namespace JustinsASS
             mSkills.Remove(skill);
             UpdateSkills();
         }
-        private void OnClick_IncreaseSkill(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            string skill = button.Tag.ToString();
 
-            mSkills[skill] = mSkills[skill] >= mAss.GetSkillNamesToMaxLevelMapping()[skill] ? mAss.GetSkillNamesToMaxLevelMapping()[skill] : mSkills[skill] + 1;
-            UpdateSkills();
-        }
         private void OnClick_AddSort(object sender, RoutedEventArgs e)
         {
             if (cbAddSort.SelectedItem != null)
@@ -114,7 +121,7 @@ namespace JustinsASS
             mSorts.Insert(newIndex, sort);
             UpdateSorts();
         }
-        
+
         private void OnClick_MoveSortDown(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
@@ -126,25 +133,70 @@ namespace JustinsASS
             mSorts.Insert(newIndex, sort);
             UpdateSorts();
         }
-
-        private void OnClick_DecreaseSkill(object sender, RoutedEventArgs e)
+        private void OnClick_AddNewTalisman(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            string skill = button.Tag.ToString();
-
-            mSkills[skill] = mSkills[skill] <= 1 ? 1 : mSkills[skill] - 1;
-            UpdateSkills();
+            NewTalismanWindow dialog = new NewTalismanWindow(mAss);
+            if (dialog.ShowDialog().Value)
+            {
+                SkillContributor newTalisman = dialog.Result;
+                lblTestAddTalisman.Content = newTalisman.ToString();
+            }
+        }
+        private void OnChange_SkillValue(object sender, RoutedEventArgs e)
+        {
+            var upcSkill = (UpDownControl)sender;
+            string skillID = upcSkill.Tag.ToString();
+            mSkills[skillID] = upcSkill.Value;
         }
 
         private void UpdateSkills()
         {
+            IList<SkillValue> skillList = new List<SkillValue>();
             lvSkillList.ItemsSource = null;
-            lvSkillList.ItemsSource = mSkills.OrderBy(key => key.Key);
+            foreach(KeyValuePair<string, int> skill in mSkills.OrderBy(key => key.Key))
+            {
+                skillList.Add(new SkillValue(skill.Key, skill.Value));
+            }
+            IDictionary<string, SkillLvlMax> skills = Helper.GetSkillsWithMax(skillList, mAss);
+            lvSkillList.ItemsSource = null;
+            lvSkillList.ItemsSource = skills;
         }
         private void UpdateSorts()
         {
             lvSortList.ItemsSource = null;
             lvSortList.ItemsSource = mSorts;
+        }
+
+        public class SolutionData
+        {
+            public IList<String> ContributorIds { get; private set; }
+            public IDictionary<string, SkillLvlMax> Skills { get; private set; }
+            public int ArmorPoints { get; private set; }
+            public int FireRes { get; private set; }
+            public int WaterRes { get; private set; }
+            public int IceRes { get; private set; }
+            public int ThunderRes { get; private set; }
+            public int DragonRes { get; private set; }
+
+            public SolutionData(Solution solution, ASS ass)
+            {
+                Regex vacantPattern = new Regex(@"vacant.*slot");
+                this.ContributorIds = new List<string>();
+                this.ArmorPoints = solution.GetTotalArmorPoints();
+                this.FireRes = solution.GetTotalFireResistance();
+                this.WaterRes = solution.GetTotalWaterResistance();
+                this.IceRes = solution.GetTotalIceResistance();
+                this.ThunderRes = solution.GetTotalThunderResistance();
+                this.DragonRes = solution.GetTotalDragonResistance();
+                Skills = Helper.GetSkillsWithMax(solution.GetSkillValues(), ass);
+                foreach (SkillContributor contributor in solution.Contributors)
+                {
+                    if (!vacantPattern.IsMatch(contributor.SkillContributorId.ToLower()))
+                    {
+                        ContributorIds.Add(contributor.SkillContributorId);
+                    }
+                }
+            }
         }
     }
 }
