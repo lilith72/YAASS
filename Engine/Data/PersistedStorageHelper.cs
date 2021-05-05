@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using JustinsASS.Engine.Contract.DataModel;
 using Newtonsoft.Json;
 using System.IO;
+using JustinsASS.Engine.Contract.Interfaces;
 
 namespace JustinsASS.Engine.Data
 {
-    public class PersistedStorageHelper
+    public class PersistedStorageHelper : IPersistedStorageHelper
     {
         private const string UserDataFolderPath = "./AppData/UserData/";
         private const string TalismansFileName = "Talismans.json";
