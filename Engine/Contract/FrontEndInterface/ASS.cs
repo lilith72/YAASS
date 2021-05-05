@@ -44,7 +44,9 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                 new List<SkillValue>() { new SkillValue("Guard", 3) },
                 setId: "someTestTalismanSetId");
 
-            this.persistedStorageHelper.TryAddTalisman(contr);
+            //this.persistedStorageHelper.TryAddTalisman(contr);
+            Console.WriteLine($"First talisman retrieved from file out of {this.persistedStorageHelper.GetCustomTalismans().Count()}:" +
+                $" {this.persistedStorageHelper.GetCustomTalismans().First().Value.ToString()}");
 
             /*
              * justins debug search

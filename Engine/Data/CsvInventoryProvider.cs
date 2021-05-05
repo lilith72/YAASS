@@ -56,11 +56,11 @@ namespace JustinsASS.Engine.DataReader
                 if (!string.IsNullOrEmpty(entry["Size Deco Slot 3"])) decoSlots.Add(slotsSize3);
 
                 results.Add(new SkillContributor(
-                    id: itemId,
+                    skillContributorId: itemId,
                     armorPoints: armorPoints,
                     decoSlots,
                     slot: slot,
-                    skills: skillValues,
+                    providedSkillValues: skillValues,
                     setId: string.IsNullOrWhiteSpace(setId) ? null : setId,
                     fireRes: fireRes,
                     iceRes: iceRes,

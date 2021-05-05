@@ -238,12 +238,12 @@ namespace ASSTests
                         for (int j = 1; j <= maxSkillValues; j++)
                         {
                             availableContributors.Add(new SkillContributor(
-                                id: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
+                                skillContributorId: $"mockSkillContributorId_{skillIds[i]}_slot{slot}",
                                 setId: "mockSetId",
                                 armorPoints: 0,
-                                decoSlots: makeDecoSlotList(slotSizesPerArmor[1], slotSizesPerArmor[2], slotSizesPerArmor[3], slotSizesPerArmor[4]),
+                                providedDecoSlots: makeDecoSlotList(slotSizesPerArmor[1], slotSizesPerArmor[2], slotSizesPerArmor[3], slotSizesPerArmor[4]),
                                 slot: slot,
-                                skills: new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
+                                providedSkillValues: new List<SkillValue>() { new SkillValue(skillIds[i], j) }));
                         }
                     }
                 }

@@ -11,14 +11,18 @@ namespace JustinsASS.Engine.Data
 {
     public class PersistedStorageHelper
     {
-        private const string TalismansFileName = "./UserData/Talismans.json";
+        private const string UserDataFolderPath = "./AppData/UserData/";
+        private const string TalismansFileName = "Talismans.json";
 
         // talisman id -> talisman
-        private Dictionary<string, SkillContributor> customTalismans;
+        private readonly Dictionary<string, SkillContributor> customTalismans;
 
         public PersistedStorageHelper()
         {
-            this.customTalismans = new Dictionary<string, SkillContributor>();
+            if (!TryFetchObjectFromFile($"{UserDataFolderPath}{TalismansFileName}", out customTalismans))
+            {
+                this.customTalismans = new Dictionary<string, SkillContributor>();
+            }
         }
 
         public bool TryAddTalisman(
@@ -26,7 +30,7 @@ namespace JustinsASS.Engine.Data
         {
             // TODO check for conflicts against pinned sets
             customTalismans.Add(sc.SkillContributorId, sc);
-            TryPersistObjectToFile(this.customTalismans, TalismansFileName);
+            TryPersistObjectToFile(this.customTalismans, UserDataFolderPath, TalismansFileName);
             return false;
         }
 
@@ -37,13 +41,19 @@ namespace JustinsASS.Engine.Data
 
         public static bool TryPersistObjectToFile<T>(
             T data,
+            string parentDirectory,
             string fileName)
         {
             try
             {
+                if (!Directory.Exists(parentDirectory))
+                {
+                    Directory.CreateDirectory(parentDirectory);
+                }
                 string serializedData = JsonConvert.SerializeObject(data);
                 Console.WriteLine($"Serialized json object: {serializedData}");
-                File.WriteAllText(fileName, serializedData);
+                File.WriteAllText($"{parentDirectory}{fileName}", serializedData);
+                Console.WriteLine($"Finished persisting data.");
                 return true;
             }
             catch (Exception e)
@@ -53,11 +63,22 @@ namespace JustinsASS.Engine.Data
             }
         }
 
-        public static T TryFetchObjectFromFile<T>(
-            T data,
-            string fileName)
+        public static bool TryFetchObjectFromFile<T>(
+            string fileFullPath,
+            out T result)
         {
-            throw new NotImplementedException();
+            try
+            {
+                string data = File.ReadAllText(fileFullPath);
+                result = JsonConvert.DeserializeObject<T>(data);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception occurred while trying to read data. {e}");
+                result = default;
+                return false;
+            }
         }
     }
 }

@@ -1,1 +1,0 @@
-﻿This folder contains user data such as talismans and pinned sets. If the app is not running you can safely backup the contents of this folder or replace it with backed up content.
