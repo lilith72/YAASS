@@ -65,7 +65,7 @@ namespace JustinsASS
         {
             // Prevent search spam while working
             btnSearch.IsEnabled = false;
-            IList<int> decoSlots = Helper.DecorationArrayToList(mWeaponSlots);
+            IList<int> decoSlots = (bool)cbUseWeaponSlot.IsChecked ? Helper.DecorationArrayToList(mWeaponSlots) : null;
             IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkills, decoSlots);
             if (mSorts.Count > 0)
             {
