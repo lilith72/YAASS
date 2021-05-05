@@ -61,6 +61,7 @@
       <DependentUpon>UpDownControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Gui\DataModel\SkillLvlMax.cs" />
+    <Compile Include="Gui\DataModel\SolutionData.cs" />
     <Compile Include="Gui\Helper.cs" />
     <Compile Include="Gui\Windows\NewTalismanWindow.xaml.cs">
       <DependentUpon>NewTalismanWindow.xaml</DependentUpon>
