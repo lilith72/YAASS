@@ -26,7 +26,8 @@ namespace JustinsASS.Engine.Contract.DataModel
         /// <returns></returns>
         public bool SkillContributorHelpsTarget(SkillContributor contributor, Solution partialSolution)
         {
-            if (!partialSolution.CanFitNewPiece(contributor))
+            if (!partialSolution.CanFitNewPiece(contributor)
+                && !(partialSolution.Contributors.Any(contr => contr is VacantSlot) && contributor is Decoration)) // Don't discard decos we could potentially fit later
             {
                 return false;
             }
@@ -57,8 +58,9 @@ namespace JustinsASS.Engine.Contract.DataModel
             return true;
         }
 
-        private Dictionary<string, int> GetRemainingSkillPointsGivenSolution(Solution solution)
+        public Dictionary<string, int> GetRemainingSkillPointsGivenSolution(Solution solution)
         {
+            // TODO: precalculate and cache this, needs a refactor into solution though
             Dictionary<string, int> remainingSkillPoints = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             foreach (SkillValue desiredSkill in this.DesiredSkills)
             {

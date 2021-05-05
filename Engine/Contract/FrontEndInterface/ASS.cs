@@ -12,6 +12,8 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
 {
     public class ASS : IASS
     {
+        public static ASS Instance;
+
         private readonly IInventoryProvider inventoryProvider;
         private readonly ISearchWorker searchWorker;
         private readonly ISolutionSorter solutionSorter;
@@ -21,11 +23,29 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
 
         public ASS()
         {
-            Console.WriteLine("Initializing");
+            if (ASS.Instance != null)
+            {
+                throw new Exception("ASS does not support duplicate instance construction and should be used as a singleton.");
+            }
+            ASS.Instance = this;
             this.inventoryProvider = new CsvInventoryProvider();
             this.searchWorker = new SearchWorker();
             this.solutionSorter = new SolutionSorter();
             this.RefreshDataFromFiles();
+            /*
+             * justins debug search
+            GetSolutionsForSearch(new Dictionary<string, int>()
+            {
+                { "Guard", 5 },
+                { "Guard Up", 3 },
+                { "Artillery", 3 },
+                { "Load Shells", 2 },
+                { "Diversion", 1 },
+                { "Defense Boost", 3 },
+                { "Hunger Resistance", 2 },
+                { "Speed Sharpening", 1 },
+                { "Flinch Free", 1 },
+            });*/
         }
 
         public void RefreshDataFromFiles()
@@ -77,6 +97,59 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
             IList<SolutionSortCondition> sortConditions)
         {
             return solutionSorter.ReturnSortedSolutions(unorderedSolutions, sortConditions);
+        }
+
+        public void PersistCustomInventoryAddition(
+            SkillContributor talismanToAdd)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idToRemove"></param>
+        /// <returns></returns>
+        public bool TryPersistCustomInventoryDeletion(
+            string idToRemove)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s">The solution to pin</param>
+        public void PersistPinnedSolution(
+            Solution s)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void FetchAllPinnedSolutions()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="s">The solution to be returned.</param>
+        /// <returns>true if unpin was successful, false if there was an error.</returns>
+        public bool TryUnpinSolution(
+            Solution s,
+            out string errorMessage)
+        {
+            throw new NotImplementedException();
+        }
+
+        public SkillContributor GetSkillContributorById(string id)
+        {
+
+            throw new NotImplementedException();
         }
     }
 }

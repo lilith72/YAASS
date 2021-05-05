@@ -1,71 +1,328 @@
 ﻿Name,Armor Points,Fire Res,Water Res,Thunder Res,Ice Res,Dragon Res,Equip Type,Size Deco Slot 1,Size Deco Slot 2,Size Deco Slot 3,Skill Name 1,Skill Points 1,Skill Name 2,Skill Points 2,Skill Name 3,Skill Points 3,Skill Name 4,Skill Points 4,Set ID
 Kamura Head Scarf S,30,2,,,,,Head,1,,,Divine Blessing,1,Resuscitate,1,,,,,Kamura S
 Kaura Garb S,30,2,,,,,Chest,1,,,Wirebug Whisperer,2,Wall Runner,1,Critical Eye,1,,,Kamura S
-Kamura Braces S,30,2,,,,,Hands,2,,,Critical Eye,2,Heroics,1,,,,,Kamura S
+Kamura Braces S,30,2,,,,,Arms,2,,,Critical Eye,2,Heroics,1,,,,,Kamura S
 Kamura Obi S,30,2,,,,,Waist,1,1,,Wirebug Whisperer,1,Critical Eye,1,,,,,Kamura S
 Kamura Leggings S,30,2,,,,,Legs,1,,,Wall Runner,2,Resuscitate,1,,,,,Kamura S
 Leather Headgear S,30,,,,,,Head,1,1,,Geologist,1,Hunger Resistance,1,,,,,Leather S
 Leather Vest S,30,,,,,,Chest,2,,,Botanist,1,,,,,,,Leather S
-Leather Gloves S,30,,,,,,Hands,1,1,,Geologist,1,Special Ammo Boost,1,,,,,Leather S
+Leather Gloves S,30,,,,,,Arms,1,1,,Geologist,1,Special Ammo Boost,1,,,,,Leather S
 Leather Belt S,30,,,,,,Waist,1,,,Recovery Up,1,Hunger Resistance,2,,,,,Leather S
 Leather Pants S,30,,,,,,Legs,2,,,Geologist,1,,,,,,, Leather S
 Chainmail Headgear S,32,,,1,,,Head,2,,,Botanist,1,Defense Boost,1,,,,,Chainmail S
 Chainmail Vest S,32,,,1,,,Chest,1,,,Defense ,1,Flinch Free,2,,,,,Chainmail S
-Chainmail Gloves S,32,,,1,,,Hands,1,1,,Botanist,1,Defense Boost,2,,,,,Chainmail S
+Chainmail Gloves S,32,,,1,,,Arms,1,1,,Botanist,1,Defense Boost,2,,,,,Chainmail S
 Chainmail Belt S,32,,,1,,,Waist,1,1,,Botanist,1,Guard,1,,,,,Chainmail S
 Chainmail Pants S,32,,,1,,,Legs,1,1,,Botanist,1,Stamina Surge ,1,,,,,Chainmail S
 Hunter's Helm S,32,,,,,,Head,2,,,Item Prolonger,1,,,,,,,Hunter S
 Hunter's Mail S,32,,,,,,Chest,1,,,Attack Boost,1,Handicraft ,1,,,,,Hunter S
-Hunter's Vamprace S,32,,,,,,Hands,2,,,Quick Sheath,1,,,,,,,Hunter S
+Hunter's Vamprace S,32,,,,,,Arms,2,,,Quick Sheath,1,,,,,,,Hunter S
 Hunter's Coil S,32,,,,,,Waist,1,1,,Stun Resistance,2,,,,,,,Hunter S
 Hunter's Greaves S,32,,,,,,Legs,2,,,Stun Resistance,1,Attack Boost,2,,,,,Hunter S
 Alloy Helm S,32,-1,,-1,-1,,Head,1,,,Water Attack,1,Protective Polish,1,,,,,Alloy S
 Alloy Mail S,32,-1,,-1,-1,,Chest,2,,,Speed Sharpening,2,,,,,,,Alloy S
-Alloy Vambraces S,32,-1,,-1,-1,,Hands,1,,,Water Attack,1,Critical Eye,2,,,,,Alloy S
+Alloy Vambraces S,32,-1,,-1,-1,,Arms,1,,,Water Attack,1,Critical Eye,2,,,,,Alloy S
 Alloy Coil S,32,-1,,-1,-1,,Waist,1,1,,Water Attack,2,Critical Eye,1,,,,,Alloy S
 Alloy Greaves S,32,-1,,-1,-1,,Legs,2,,,Speed Sharpening,1,Critical Eye,1,,,,,Alloy S
 Bone Helm S,32,,,,-1,,Head,1,,,Stamina Thief,1,Partbreaker,1,,,,,Bone S
 Bone Mail S,32,,,,-1,,Chest,1,,,Stamina Thief,1,Marathon Runner,1,,,,,Bone S
-Bone Vambraces S,32,,,,-1,,Hands,1,1,,Muck Resistance,1,Stamina ,1,,,,,Bone S
+Bone Vambraces S,32,,,,-1,,Arms,1,1,,Muck Resistance,1,Stamina ,1,,,,,Bone S
 Bone Coil S,32,,,,-1,,Waist,2,1,,Focus,1,,,,,,,Bone S
 Bone Greaves S,32,,,,-1,,Legs,2,,,Muck Resistance,2,Focus,1,,,,,Bone S
 Spio Vertex S,32,3,-1,-1,-1,3,Head,2,,,Poison Attack,2,,,,,,,Spio S
 Spio Thorax S,32,3,-1,-1,-1,3,Chest,2,,,Latent Power,1,,,,,,,Spio S
-Spio Brachia S,32,3,-1,-1,-1,3,Hands,1,1,,Latent Power,1,Poison Resistance,1,,,,,Spio S
+Spio Brachia S,32,3,-1,-1,-1,3,Arms,1,1,,Latent Power,1,Poison Resistance,1,,,,,Spio S
 Spio Elytra S,32,3,-1,-1,-1,3,Waist,,,,Weakness Exploit,2,,,,,,,Spio S
 Spio Cura S,32,3,-1,-1,-1,3,Legs,1,,,Latent Power,1,Poison Resistance,1,Mind's Eye,1,,,Spio S
 Bnahabra Hat S,34,-2,,,,2,Head,2,,,Poison Attack,1,Recoil Down,2,,,,,Bnahabra S
 Bnahabra Suit S,34,-2,,,,2,Chest,1,1,,Paralysis Attack,1,Evade Window,1,,,,,Bnahabra S
-Bnahabra Gloves S,34,-2,,,,2,Hands,1,,,Poison Attack,2,Evade Window,1,,,,,Bnahabra S
+Bnahabra Gloves S,34,-2,,,,2,Arms,1,,,Poison Attack,2,Evade Window,1,,,,,Bnahabra S
 Bnahabra Coil S,34,-2,,,,2,Waist,1,1,,Paralysis Attack,1,Evade Window,1,,,,,Bnahabra S
 Bnahabra Boots S,34,-2,,,,2,Legs,2,2,,Paralysis Attack,1,Recoil Down,1,,,,,Bnahabra S
 Izuchi Helm S,36,2,-1,-2,,,Head,1,1,,Critical Eye,1,,,,,,,Izuchi S
 Izuchi Mail S,36,2,-1,-2,,,Chest,1,,,Critical Eye,2,Recovery Speed,1,,,,,Izuchi S
-Izuchi Braces S,36,2,-1,-2,,,Hands,1,1,,Constitution,2,,,,,,,Izuchi S
+Izuchi Braces S,36,2,-1,-2,,,Arms,1,1,,Constitution,2,,,,,,,Izuchi S
 Izuchi Coil S,36,2,-1,-2,,,Waist,1,1,,Critical Eye,2,,,,,,,Izuchi S
 Izuchi Greaves S,36,2,-1,-2,,,Legs,1,1,,Recovery Speed,1,Constitution,1,,,,,Izuchi S
 Baggi Helm S,36,-4,-1,-1,2,1,Head,2,1,,Ice Attack,2,,,,,,,Baggi S
 Baggi Mail S,36,-4,-1,-1,2,1,Chest,1,,,Attack Boost,1,Ice Attack,1,,,,,Baggi S
-Baggi Vabraces S,36,-4,-1,-1,2,1,Hands,1,1,,Sleep Resistance,2,Ice Attack,1,,,,,Baggi S
+Baggi Vabraces S,36,-4,-1,-1,2,1,Arms,1,1,,Sleep Resistance,2,Ice Attack,1,,,,,Baggi S
 Baggi Coil S,36,-4,-1,-1,2,1,Waist,1,,,Attack Boost,2,Sleep Resistance,1,,,,,Baggi S
 Baggi Greaves S,36,-4,-1,-1,2,1,Legs,2,1,,Attack Boost,1,,,,,,,Baggi S
 Kulu-Ya-Ku Helm S,38,,-3,,1,,Head,1,1,,Maximum Might,1,,,,,,,Kulu S
 Kulu-Ya-Ku Mail S,38,,-3,,1,,Chest,2,,,Slugger,2,Horn Maestro,1,,,,,Kulu S
-Kulu-Ya-Ku Bracers S,38,,-3,,1,,Hands,2,,,Slugger,1,Stamina Thief,2,,,,,Kulu S
+Kulu-Ya-Ku Bracers S,38,,-3,,1,,Arms,2,,,Slugger,1,Stamina Thief,2,,,,,Kulu S
 Kulu-Ya-Ku Coil S,38,,-3,,1,,Waist,1,1,,Stamina Thief,1,Maximum Might,1,,,,,Kulu S
 Kulu-Ya-Ku Greaves S,38,,-3,,1,,Legs,1,,,Stun Resistance,1,Critical Eye,2,,,,,Kulu S
 Wroggi Helm S,38,2,-2,1,-4,,Head,1,,,Rapid Fire Up,1,Evade Extender ,1,,,,,Wroggi S
 Wroggi Mail S,38,2,-2,1,-4,,Chest,1,,,Rapid Fire Up,1,Poison Attack,1,,,,,Wroggi S
-Wroggi Vambraces S,38,2,-2,1,-4,,Hands,3,,,Ammo Up,1,,,,,,,Wroggi S
+Wroggi Vambraces S,38,2,-2,1,-4,,Arms,3,,,Ammo Up,1,,,,,,,Wroggi S
 Wroggi Coil S,38,2,-2,1,-4,,Waist,1,,,Ammo Up,1,Poison Attack,2,,,,,Wroggi S
 Wroggi Greaves S,38,2,-2,1,-4,,Legs,1,1,,Ammo Up,1,Evade Extender,1,,,,,Wroggi S
 Arzuros Helm S,36,-2,,-2,,,Head,1,1,,Fortify,1,Defense Boost,1,,,,,Arzuros S
 Arzuros Mail S,36,-2,,-2,,,Chest,2,,,Counterstrike,1,,,,,,,Arzuros S
-Arzuros Vambraces S,36,-2,,-2,,,Hands,1,,,Counterstrike,1,Defense Boost,2,,,,,Arzuros S
+Arzuros Vambraces S,36,-2,,-2,,,Arms,1,,,Counterstrike,1,Defense Boost,2,,,,,Arzuros S
 Arzuros Coil S,36,-2,,-2,,,Waist,1,1,,Counterstrike,1,Defense Boost,1,,,,,Arzuros S
 Arzuros Greaves S,36,-2,,-2,,,Legs,3,2,1,,,,,,,,,Arzuros S
 Lagombi Helm S,36,-3,1,,3,,Head,3,,,Critical Eye,1,Ice Attack,2,,,,,Lagombi S
 Lagombi Mail S,36,-3,1,,3,,Chest,1,1,,Affinity Sliding,1,Constitution,1,,,,,Lagombi S
-Lagombi Vambraces S,36,-3,1,,3,,Hands,2,1,,Critical Eye,2,Ice Attack,1,,,,,Lagombi S
+Lagombi Vambraces S,36,-3,1,,3,,Arms,2,1,,Critical Eye,2,Ice Attack,1,,,,,Lagombi S
 Lagombi Coil S,36,-3,1,,3,,Waist,2,,,Constitution,2,,,,,,,Lagombi S
 Lagombi Greaves S,36,-3,1,,3,,Legs,1,1,,Jump Master,1,Critical Eye,1,,,,,Lagombi S
+Aknosom Helm S,38,3,-3,-1,,,Head,2,,,Quick Sheath,1,Fire Attack ,1,,,,,Aknosom S
+Aknosom Mail S,38,3,-3,-1,,,Chest,1,,,Quick Sheath,1,Peak Performance,1,,,,,Aknosom S
+Aknosom Braces S,38,3,-3,-1,,,Arms,1,1,,Peak Performance,1,Fire Attack ,1,,,,,Aknosom S
+Aknosom Coil S,38,3,-3,-1,,,Waist,3,1,,Quick Sheath,1,,,,,,,Aknosom S
+Aknosom Greaves S,38,3,-3,-1,,,Legs,1,,,Peak Performance,1,Fire Attack ,2,,,,,Aknosom S
+Khezu Helm S,38,-4,1,4,2,1,Head,1,,,Focus,1,Recovery Up,1,,,,,Khezu S
+Khezu Mail S,38,-4,1,4,2,1,Chest,1,1,,Wall Runner,1,Recovery Up,1,,,,,Khezu S
+Khezu Vambraces S,38,-4,1,4,2,1,Arms,1,1,,Wall Runner,1,Recovery Speed,1,Thunder Attack,2,,,Khezu S
+Khezu Coil S,38,-4,1,4,2,1,Waist,1,1,,Focus,1,Slugger,1,,,,,Khezu S
+Khezu Greaves S,38,-4,1,4,2,1,Legs,1,1,,Focus,1,Slugger,1,Recovery Speed,1,,,Khezu S
+Tetranadon Helm S,40,-1,4,-2,1,,Head,1,,,Normal/Rapid Up,1,Speed Eating,1,,,,,Tetranadon S
+Tetranadon Mail S,40,-1,4,-2,1,,Chest,1,,,Normal/Rapid Up,1,Evade Extender,1,,,,,Tetranadon S
+Tetranadon Bracers S,40,-1,4,-2,1,,Arms,1,1,,Heroics,1,Special Ammo Boost,1,,,,,Tetranadon S
+Tetranadon Coil S,40,-1,4,-2,1,,Waist,2,,,Heroics,2,,,,,,,Tetranadon S
+Tetranadon Greaves S,40,-1,4,-2,1,,Legs,1,,,Normal/Rapid Up,1,Hunger Resistance,1,,,,,Tetranadon S
+Ingot Helm S,40,-1,-1,1,,,Head,3,1,,Windproof,1,,,,,,,Ingot S
+Ingot Mail S,40,-1,-1,1,,,Chest,2,1,,Windproof,2,,,,,,,Ingot S
+Ingot Vambraces S,40,-1,-1,1,,,Arms,1,,,Thunder Attack,3,,,,,,,Ingot S
+Ingot Coil S,40,-1,-1,1,,,Waist,2,,,Power Prolonger,2,,,,,,,Ingot S
+Ingot Greaves S,40,-1,-1,1,,,Legs,1,,,Attack Boost,2,Critical Eye,2,,,,,Ingot S
+Chaos Archbun,40,2,-2,,,,Head,1,1,,Mushroomancer,1,,,,,,,Chaos S
+Chaos Archplate,40,2,-2,,,,Chest,,,,Mushroomancer,2,,,,,,,Chaos S
+Edel Vizor S,40,-1,3,-1,,,Head,2,2,,Poison Resistance,2,,,,,,,Edel S
+Edel Ribplate S,40,-1,3,-1,,,Chest,1,1,,Recovery Up ,2,,,,,,,Edel S
+Edel Creeper S,40,-1,3,-1,,,Arms,,,,Capture Master,1,,,,,,,Edel S
+Edel Folia S,40,-1,3,-1,,,Waist,2,,,Recovery Up ,1,,,,,,,Edel S
+Edel Roots S,40,-1,3,-1,,,Legs,3,1,,Poison Resistance,1,,,,,,,Edel S
+Slagtoth Hood S,42,-2,2,,-1,1,Head,3,,,Free Meal,1,Diversion,1,,,,,Slagtoth S
+Slagtoth Cloak S,42,-2,2,,-1,1,Chest,2,1,,Free Meal,2,,,,,,,Slagtoth S
+Rhenoplos Helm S,42,2,,,-2,,Head,1,,,Pierce Up ,2,Stun Resistance,1,,,,,Rhenoplos S
+Rhenoplos Mail S,42,2,,,-2,,Chest,2,1,,Artillery,1,Stun Resistance,2,,,,,Rhenoplos S
+Rhenoplos Bracers S,42,2,,,-2,,Arms,2,1,,Artillery,2,,,,,,,Rhenoplos S
+Rhenoplos Coil S,42,2,,,-2,,Waist,3,1,,Tremor Resistance,2,,,,,,,Rhenoplos S
+Rhenoplos Greaves S,42,2,,,-2,,Legs,1,1,,Pierce Up ,1,Tremor Resistance,1,,,,,Rhenoplos S
+Bullfango Mask S,36,,4,-2,,,Head,1,,,Bludgeoner,2,,,,,,,Bullfango Mask S
+Droth Mail S,42,-2,4,-1,,,Chest,2,1,,Water Attack,2,,,,,,,Droth S
+Droth Coil S,42,-2,4,-1,,,Waist,3,1,,Diversion,1,,,,,,,Droth S
+Droth Greaves S,42,-2,4,-1,,,Legs,2,,,Water Attack,3,,,,,,,Droth S
+Jaggi Gauntlets S,42,,,,1,,Arms,1,1,,Attack Boost,2,,,,,,,Jaggi S
+Jaggi Shinguards S,42,,,,1,,Legs,2,1,,Master Mounter,1,,,,,,,Jaggi S
+Jaggi Mask S,36,,,,,,Head,2,,,Affinity Sliding,1,,,,,,,Jaggi Mask S
+Volvidon Helm S,50,2,-3,,-1,1,Head,1,1,,Paralysis Attack,2,Bludgeoner,1,,,,,Volividon S
+Volividon Mail S,50,2,-3,,-1,1,Chest,2,,,Rapid Morph,1,Jump Master,1,,,,,Volividon S
+Volividon Vambraces S,50,2,-3,,-1,1,Arms,1,1,1,Evade Extender,1,Paralysis Attack,1,,,,,Volividon S
+Volvidon Coil S,50,2,-3,,-1,1,Waist,1,1,,Rapid Morph,1,Bludgeoner,1,,,,,Volividon S
+Volvidon Greaves S,50,2,-3,,-1,1,Legs,1,1,,Rapid Morph,1,Evade Extender ,2,,,,,Volividon S
+Ludroth Helm S,48,-3,4,-1,,,Head,1,1,,Marathon Runner,1,Peak Performance,1,,,,,Ludroth S
+Ludroth Mail S,48,-3,4,-1,,,Chest,2,,,Stamina Surge,2,,,,,,,Ludroth S
+Ludroth Bracers S,48,-3,4,-1,,,Arms,2,1,1,Marathon Runner,1,,,,,,,Ludroth S
+Ludroth Coil S,48,-3,4,-1,,,Waist,1,,,Marathon Runner,1,Peak Performance,2,,,,,Ludroth S
+Ludroth Greaves S,48,-3,4,-1,,,Legs,3,,,Power Prolonger,2,,,,,,,Ludroth S
+Barroth Helm S,50,-3,-1,3,-1,,Head,2,1,,Attack Boost,1,Defense Boost,1,Offensive Guard,1,,,Barroth S
+Barroth Mail S,50,-3,-1,3,-1,,Chest,2,,,Attack Boost,1,Defense Boost,2,,,,,Barroth S
+Barroth Vambraces S,50,-3,-1,3,-1,,Arms,1,1,,Attack Boost,2,Affinity Sliding,1,,,,,Barroth S
+Barroth Coil S,50,-3,-1,3,-1,,Waist,1,,,Guard ,2,Defense Boost,1,,,,,Barroth S
+Barroth Greaves S,50,-3,-1,3,-1,,Legs,2,1,,Guard ,1,Defense Boost,1,Offensive Guard,1,,,Barroth S
+Bishaten Helm S,52,-2,2,2,-4,2,Head,1,,,Item Prolonger,1,Wide-Range,1,Stun Resistance,1,,,Bishaten S
+Bishaten Mail S,52,-2,2,2,-4,2,Chest,3,,,Wide-Range,1,,,,,,,Bishaten S
+Bishaten Vambraces S,52,-2,2,2,-4,2,Arms,3,,,Item Prolonger,1,Stun Resistance,1,,,,,Bishaten S
+Bishaten Coil S,52,-2,2,2,-4,2,Waist,1,1,,Item Prolonger,1,Maximum Might,1,,,,,Bishaten S
+Bishaten Greaves S,52,-2,2,2,-4,2,Legs,2,1,1,Maximum Might,1,,,,,,,Bishaten S
+Pukei-Pukei Helm S,50,,3,-3,,1,Head,2,,,Special Ammo Boost,1,Spare Shot,1,,,,,Pukei S
+Pukei-Pukei Mail S,50,,3,-3,,1,Chest,1,,,Special Ammo Boost,1,Constitution,2,,,,,Pukei S
+Pukei-Pukei Braces S,50,,3,-3,,1,Arms,2,,,Spare Shot,1,Aim Booster,1,,,,,Pukei S
+Pukei-Pukei Coil S,50,,3,-3,,1,Waist,2,1,,Spare Shot,1,Poison Attack,2,,,,,Pukei S
+Pukei-Pukei Greaves S,50,,3,-3,,1,Legs,1,1,1,Constitution,1,Aim Booster,1,,,,,Pukei S
+Jyuratodus Helm,48,-1,2,-3,,,Head,2,1,,Offensive Guard,1,Evade Extender,1,,,,,Jyura
+Jyuratodus Mail,48,-1,2,-3,,,Chest,1,1,1,Power Prolonger,2,Evade Extender,1,,,,,Jyura
+Jyuratodus Vambraces,48,-1,2,-3,,,Arms,3,2,1,,,,,,,,,Jyura
+Jyuratodus Coil,48,-1,2,-3,,,Waist,1,1,,Guard Up,1,Power Prolonger,1,Offensive Guard,1,,,Jyura
+Jyuratodus Greaves ,48,-1,2,-3,,,Legs,2,1,1,Guard Up,2,,,,,,,Jyura
+Basarios Helm S,52,,-2,1,1,-3,Head,2,1,,Load Shells,1,Defense Boost,2,,,,,Basarios S
+Basarios Mail S,52,,-2,1,1,-3,Chest,1,1,,Guard,1,Load Shells,1,,,,,Basarios S
+Basarios Vambraces S,52,,-2,1,1,-3,Arms,1,1,,Guard,2,Speed Sharpening,1,,,,,Basarios S
+Basarios Coil S,52,,-2,1,1,-3,Waist,2,,,Speed Sharpening,2,Defense Boost,2,,,,,Basarios S
+Basarios Greaves S,52,,-2,1,1,-3,Legs,3,,,Load Shells,1,Defense Boost,1,,,,,Basarios S
+Rathian Helm S,52,3,,-2,,-3,Head,2,1,,Blight Resistance,1,,,,,,,Rathian S
+Rathian Mail S,52,3,,-2,,-3,Chest,3,1,1,Recovery Up,1,Botanist,1,,,,,Rathian S
+Rathian Braces S,52,3,,-2,,-3,Arms,1,1,,Blight Resistance,1,Wide-Range,1,,,,,Rathian S
+Rathian Coil S,52,3,,-2,,-3,Waist,2,,,Recovery Up,2,Wide-Range,1,,,,,Rathian S
+Rathian Greaves S,52,3,,-2,,3,Legs,2,,,Blight Resistance,1,Free Meal,1,,,,,Rathian S
+Skull Visage S,50,-3,-3,-3,-3,4,Head,3,2,,Fortify,1,,,,,,,Skull S
+Chrome Metal Coil,46,-2,-2,-2,-2,-2,Waist,3,2,1,,,,,,,,,Chrome Metal
+Chrome Metal Boots,46,-2,-2,-2,-2,-2,Legs,3,,,Flinch Free,2,,,,,,,Chrome Metal
+Dober Helm,52,-2,,,,4,Head,1,1,,Dragon Attack,1,Attack Boost,1,Heroics,1,,,Dober
+Dober Mail,52,-2,,,,4,Chest,1,,,Dragon Attack,1,Focus,1,Power Prolonger,1,Heroics,1,Dober
+Dober Vambraces,52,-2,,,,4,Arms,2,1,1,Dragon Attack,1,Power Prolonger,1,,,,,Dober
+Dober Coil,52,-2,,,,4,Waist,2,,,Dragon Attack,1,Attack Boost,2,,,,,Dober
+Dober Greaves,52,-2,,,,4,Legs,2,,,Dragon Attack,1,Focus,1,Heroics,1,,,Dober
+S. Studded Hat S,52,,2,1,-1,,Head,2,1,,Ballistics,2,,,,,,,Shell-Studded S
+Shell-Studded Vest S,52,,2,1,-1,,Chest,1,1,,Normal/Rapid Up,1,Pierce Up,1,,,,,Shell-Studded S
+S. Studded Gloves S,52,,2,1,-1,,Arms,1,1,,Spread Up,1,Normal/Rapid Up,1,,,,,Shell-Studded S
+S. Studded Sash S,52,,2,1,-1,,Waist,3,1,,Ballistics,1,,,,,,,Shell-Studded S
+Shelled Sandals S,52,,2,1,-1,,Legs,1,1,,Spread Up,1,Pierce Up,1,,,,,Shell-Studded S
+Melohoa Hat S,52,,1,3,,,Head,2,2,,Paralysis Resistance,2,,,,,,,Melahoa S
+Melahoa Jacket S,52,,1,3,,,Chest,1,1,,Botanist,2,Recovery Up ,1,,,,,Melahoa S
+Melahoa Branch S,52,,1,3,,,Arms,1,1,,Paralysis Resistance,1,Botanist,1,Recovery Up,1,,,Melahoa S
+Melahoa Foils S,52,,1,3,,,Waist,2,,,Botanist,1,Recovery Speed,1,,,,,Melahoa S
+Melahoa Roots S,52,,1,3,,,Legs,1,1,,Recovery,1,Recovery Speed,2,,,,,Melahoa S
+Death Stench Brain S,52,3,1,1,-1,,Head,2,,,Protective Polish,1,,,,,,,Death Stench S
+D. Stench Muscle S,52,3,1,1,-1,,Chest,2,,,Fortify,1,Rapid Morph,1,,,,,Death Stench S
+Death Stench Grips S,52,3,1,1,-1,,Arms,1,,,Maximum Might,2,,,,,,,Death Stench S
+D. Stench Bowels S,52,3,1,1,-1,,Waist,1,1,,Protective Polish,1,Maximum Might,1,,,,,Death Stench S
+Death Stench Heel S,52,3,1,1,-1,,Legs,1,1,,Protective Polish,1,Rapid Morph,1,,,,,Death Stench S
+Mosgharl Vizor S,52,-3,1,,3,,Head,2,2,,Blast Resistance,2,,,,,,,Mosgharl S
+Mosgharl Ribplate S,52,-3,1,,3,,Chest,2,,,Reload Speed,2,,,,,,,Mosgharl S
+Mosgharl Creeper S,52,-3,1,,3,,Arms,2,1,1,Blast Resistance,1,Flinch Free,1,,,,,Mosgharl S
+Mosgharl Folia S,52,-3,1,,3,,Waist,1,,,Fire Attack,3,,,,,,,Mosgharl S
+Mosgharl Roots S,52,-3,1,,3,,Legs,2,1,,Recoil Down,2,,,,,,,Mosgharl S
+Vaik Helm S,52,,3,-2,-1,,Head,2,1,,Ammo Up,2,,,,,,,Vaik S
+Vaik Mail S,52,,3,-2,-1,,Chest,3,2,1,,,,,,,,,Vaik S
+Vaik Braces S,52,,3,-2,-1,,Arms,1,1,,Normal/Rapid Up,2,,,,,,,Vaik S
+Vaik Coil S,52,,3,-2,-1,,Waist,2,,,Normal/Rapid Up,1,,,,,,,Vaik S
+Vaik Greaves S,52,,3,-2,-1,,Legs,3,1,,Ammo Up,1,,,,,,,Vaik S
+Makluva Hood S,52,1,2,-2,,,Head,2,2,,Sleep Resistance,2,,,,,,,Makluva S
+Makluva Cover S,52,1,2,-2,,,Chest,1,,,Water Attack,3,,,,,,,Makluva S
+Makluva Sleeves S,52,1,2,-2,,,Arms,2,,,Bubbly Dance,1,Leap of Faith,1,,,,,Makluva S
+Makluva Coil S,52,1,2,-2,,,Waist,3,,,Sleep Resistance,1,,,,,,,Makluva S
+Makluva Pants S,52,1,2,-2,,,Legs,1,1,,Bubbly Dance,1,Speed Eating,1,,,,,Makluva S
+Medium's Hair-tie S,52,3,,,,,Head,1,,,Speed Eating ,1,Free Meal,1,Good Luck,1,,,Medium S
+Medium's Robe S,52,3,,,,,Chest,1,1,,Wide-Range,1,Good Luck,1,,,,,Medium S
+Medium's Prayer S,52,3,,,,,Arms,3,,,Wide-Range,1,,,,,,,Medium S
+Medium's Obi S,52,3,,,,,Waist,2,,,Speed Eating ,1,Free Meal,1,,,,,Medium S
+Medium's Hakama S,52,3,,,,,Legs,1,,,Wide-Range,1,Free Meal,1,Good Luck,1,,,Medium S
+Channeler's Hair-tie S,52,3,,,,,Head,1,,,Razor Sharp,2,Spare Shot,1,Wirebug Whisperer,1,,,Channeler S
+Channeler's Robe S,52,3,,,,,Chest,1,,,Razor Sharp,1,Spare Shot,1,Evade Window,1,Agitator,1,Channeler S
+Channeler's Hope S,52,3,,,,,Arms,2,,,Evade Window ,1,Wirebug Whisperer,1,,,,,Channeler S
+Channeler's Obi S,52,3,,,,,Waist,1,,,Agitator ,2,Wirebug Whisperer,1,,,,,Channeler S
+Channeler's Hakama S,52,3,,,,,Legs,1,1,,Evade Window ,1,Agitator,1,,,,,Channeler S
+Uroktor Torso S,52,4,-2,,-1,,Chest,2,,,Fire Attack,3,,,,,,,Uroktor S
+Uroktor Coil S,52,4,-2,,-1,,Waist,2,1,,Fire Attack,2,,,,,,,Uroktor S
+Remobra Headgear S,52,1,1,1,1,3,Head,2,,,Windproof,2,,,,,,,Remobra S
+Remobra Suit S,52,1,1,1,1,3,Chest,1,1,,Critical Boost,1,,,,,,,Remobra S
+Remobra Gloves S,52,1,1,1,1,3,Arms,2,,,Critical Element ,1,Windproof,1,,,,,Remobra S
+Remobra Belt S,52,1,1,1,1,3,Waist,1,1,,Critical Element ,2,,,,,,,Remobra S
+Remobra Feet S,52,1,1,1,1,3,Legs,1,1,,Weakness Exploit,1,,,,,,,Remobra S
+Somnacanth Helm S,58,-1,2,-3,,1,Head,2,1,,Sleep Attack,1,,,,,,,Somnacanth S
+Somnacanth Mail S,58,-1,2,-3,,1,Chest,1,1,,Sleep Attack,1,Item Prolonger,1,,,,,Somnacanth S
+Somnacanth Bracers S,58,-1,2,-3,,1,Arms,2,,,Bombardier ,2,Divine Blessing,1,,,,,Somnacanth S
+Somnacanth Coil S,58,-1,2,-3,,1,Waist,3,,,Sleep Attack,1,Bombardier,1,,,,,Somnacanth S
+Somnacanth Greaves S,58,-1,2,-3,,1,Legs,1,1,,Divine Blessing ,2,,,,,,,Somnacanth S
+Barioth Helm S,58,-3,,-1,3,,Head,1,,,Critical Draw,2,,,,,,,Barioth S
+Barioth Mail S,58,-3,,-1,3,,Chest,2,1,1,Quick Sheath,1,Maximum Might ,1,,,,,Barioth S
+Barioth Vambraces S,58,-3,,-1,3,,Arms,2,,,Quick Sheath,1,Maximum Might ,1,Critical Eye,1,,,Barioth S
+Barioth Coil S,58,-3,,-1,3,,Waist,1,,,Critical Draw,1,Critical Eye,2,,,,,Barioth S
+Barioth Greaves S,58,-3,,-1,3,,Legs,3,1,,Quick Sheath,1,,,,,,,Barioth S
+Kadachi Helm S,58,,-3,3,,,Head,1,1,,Jump Master,1,Constitution,1,Critical Eye,1,,,Kadachi S
+Tobi-Kadachi Mail S,58,,-3,3,,,Chest,3,,,Mind's Eye,1,Critical Eye,1,,,,,Kadachi S
+Kadachi Bracers S,58,,-3,3,,,Arms,2,,,Constitution,3,,,,,,,Kadachi S
+Tobi-Kadachi Coil S,58,,-3,3,,,Waist,1,1,,Mind's Eye,2,,,,,,,Kadachi S
+Kadachi Greaves S,58,,-3,3,,,Legs,2,1,,Constitution,1,Critical Eye,2,,,,,Kadachi S
+Anjanath Helm S,60,3,-3,-1,-1,,head,2,,,Focus,1,Slugger,1,,,,,Anja S
+Anjanath Mail S,60,3,-3,-1,-1,,Chest,1,1,,Focus,2,Marathon Runner,1,,,,,Anja S
+Anjanath Vambraces S,60,3,-3,-1,-1,,Arms,1,,,Slugger,2,Attack Boost,2,,,,,Anja S
+Anjanath Coil S,60,3,-3,-1,-1,,Waist,2,1,1,Attack Boost,2,,,,,,,Anja S
+Anjanath Greaves S,60,3,-3,-1,-1,,Legs,2,,,Marathon Runner,2,,,,,,,Anja S
+Nargacuga Helm S,60,-2,1,-3,1,1,head,3,,,Evade Window ,1,,,,,,,Nargacuga S
+Nargacuga Mail S,60,-2,1,-3,1,1,Chest,1,1,,Evade Window ,1,Critical Eye,2,,,,,Nargacuga S
+Nargacuga Bracers S,60,-2,1,-3,1,1,Arms,1,1,,Evade Window ,1,Evade Extender,1,,,,,Nargacuga S
+Nargacuga Coil S,60,-2,1,-3,1,1,Waist,2,,,Evade Extender ,2,Critical Eye,1,,,,,Nargacuga S
+Nargacuga Greaves S,60,-2,1,-3,1,1,Legs,1,,,Evade Window ,2,Critical Eye,1,,,,,Nargacuga S
+Mizutsune Helm S,60,,2,-3,1,-1,Head,2,1,,Resuscitate,1,,,,,,,Mizutsune S
+Mizustune Mail S,60,,2,-3,1,-1,Chest,1,,,Bubbly Dance,1,Resuscitate,1,,,,,Mizutsune S
+Mizustune Bracers S,60,,2,-3,1,-1,Arms,2,,,Resuscitate,1,Free Meal,1,,,,,Mizutsune S
+Mizustune Coil S,60,,2,-3,1,-1,Waist,2,1,,Bubbly Dance,1,Free Meal,1,,,,,Mizutsune S
+Mizustune Greaves S,60,,2,-3,1,-1,Legs,3,1,1,Bubbly Dance,1,,,,,,,Mizutsune S
+Rathalos Helm S,62,3,1,-2,1,-3,Head,1,1,,Attack Boost,1,Partbreaker,1,,,,,Rathalos S
+Rathalos Mail S,62,3,1,-2,1,-3,Chest,1,,,Attack Boost,1,Partbreaker,1,Windproof,1,,,Rathalos S
+Rathalos Bracers S,62,3,1,-2,1,-3,Arms,2,,,Attack Boost,1,,,,,,,Rathalos S
+Rathalos Coil S,62,3,1,-2,1,-3,Waist,2,,,Attack Boost,2,Windproof,1,,,,,Rathalos S
+Rathalos Greaves S,62,3,1,-2,1,-3,Legs,1,1,,Attack Boost,1,Partbreaker,1,,,,,Rathalos S
+Zinogre Helm S,62,,-1,4,-4,1,Head,1,,,Latent Power ,1,Weakness Exploit,1,,,,,Zinogre S
+Zinogre Mail S,62,,-1,4,-4,1,Chest,1,,,Latent Power ,1,Weakness Exploit,1,,,,,Zinogre S
+Zinogre Bracers S,62,,-1,4,-4,1,Arms,2,,,Latent Power ,1,Constitution ,1,,,,,Zinogre S
+Zinogre Coil S,62,,-1,4,-4,1,Waist,3,1,,Latent Power ,1,,,,,,,Zinogre S
+Zinogre Greaves S,62,,-1,4,-4,1,Legs,1,,,Latent Power ,1,Constitution ,1,,,,,Zinogre S
+Rhopessa Vertex S,62,-2,,3,-2,2,Head,1,,,Critical Element ,2,,,,,,,Rhopessa S
+Rhopessa Thorax S,62,-2,,3,-2,2,Chest,1,,,Critical Element ,1,Critical Eye,2,Dragon Attack,1,,,Rhopessa S
+Rhopessa Brachia S,62,-2,,3,-2,2,Arms,3,,,Evade Window ,1,,,,,,,Rhopessa S
+Rhopessa Elytra S,62,-2,,3,-2,2,Waist,1,,,Dragon Attack ,3,,,,,,,Rhopessa S
+Rhopessa Crura S,62,-2,,3,-2,2,Legs,1,1,,Critical Eye,2,Dragon Attack,1,,,,,Rhopessa S
+Jelly Hat S,62,1,3,,2,,Head,3,,,Partbreaker,1,Divine Blessing,1,,,,,Jelly S
+Jelly Vest S,62,1,3,,2,,Chest,2,1,,Blast Attack,2,,,,,,,Jelly S
+Jelly Gloves S,62,1,3,,2,,Arms,1,1,,Divine Blessing ,2,,,,,,,Jelly S
+Jelly Coil S,62,1,3,,2,,Waist,2,1,,Partbreaker,2,,,,,,,Jelly S
+Jelly Boots S,62,1,3,,2,,Legs,3,1,,Blast Attack,1,,,,,,,Jelly S
+Gargwa Mask S,54,-3,-2,-2,1,,Head,,,,Leap of Faith,1,Good Luck,1,,,,,Gargwa Mask S
+Sinister Helm S,64,3,-3,-2,1,1,Head,2,,,Resentment,1,Handicraft,1,Flinch Free,1,,,Sinister S
+Sinister Garb S,64,3,-3,-2,1,1,Chest,2,,,Hellfire Cloak,1,Resentment,1,,,,,Sinister S
+Sinister Gauntlets S,64,3,-3,-2,1,1,Arms,2,,,Hellfire Cloak,1,Handicraft,2,,,,,Sinister S
+Sinister Tassets S,64,3,-3,-2,1,1,Waist,3,,,Hellfire Cloak,1,,,,,,,Sinister S
+Sinister Greaves S,64,3,-3,-2,1,1,Legs,1,1,,Hellfire Cloak,1,Resentment ,1,Flinch Free,1,,,Sinister S
+Goss Harag Helm S,64,-4,1,-1,4,,Head,1,1,,Critical Draw,1,Agitator,1,,,,,Goss Harag S
+Goss Harag Mail S,64,-4,1,-1,4,,Chest,2,1,,Critical Draw ,1,Resentment ,1,,,,,Goss Harag S
+Goss Harag Braces S,64,-4,1,-1,4,,Arms,2,,,Critical Draw,1,Punishing Draw,1,,,,,Goss Harag S
+Goss Harag Coil S,64,-4,1,-1,4,,Waist,2,1,,Punishing Draw,1,Resentment ,1,,,,,Goss Harag S
+Goss Harag Greaves S,64,-4,1,-1,4,,Legs,1,,,Punishing Draw,1,Agitator,3,,,,,Goss Harag S
+Almudron Helm S,64,-4,3,3,-2,-2,Head,2,2,,Rapid Morph,2,,,,,,,Almudron S
+Almudron Mail S,64,-4,3,3,-2,-2,Chest,1,,,Razor Sharp,2,Power Prolonger,1,,,,,Almudron S
+Almudron Vambraces S,64,-4,3,3,-2,-2,Arms,1,1,,Rapid Morph,1,Evade Window,2,,,,,Almudron S
+Almudron Coil S,64,-4,3,3,-2,-2,Waist,2,1,,Evade Window ,1,Power Prolonger,1,,,,,Almudron S
+Almudron Greaves S,64,-4,3,3,-2,-2,Legs,3,1,,Razor Sharp,1,,,,,,,Almudron S
+Tigrex Helm S,64,2,,-3,,-2,Head,2,1,,Earplugs,1,Speed Eating,1,,,,,Tigrex S
+Tigrex Mail S,64,2,,-3,,-2,Chest,1,1,,Earplugs,2,Bludgeoner,1,,,,,Tigrex S
+Tigrex Braces S,64,2,,-3,,-2,Arms,3,,,Bludgeoner,2,Mind's Eye,1,,,,,Tigrex S
+Tigrex Coil S,64,2,,-3,,-2,Waist,2,1,,Earplugs,2,,,,,,,Tigrex S
+Tigrex Greaves S,64,2,,-3,,-2,Legs,1,,,Speed Eating ,2,Mind's Eye ,1,,,,,Tigrex S
+Diablos Helm S,64,3,-1,-1,-3,-1,Head,2,,,Guard,1,Stamina Surge,1,,,,,Diablos S
+Diablos Mail S,64,3,-1,-1,-3,-1,Chest,1,,,Guard,1,Offensive Guard,1,,,,,Diablos S
+Diablos Vambraces S,64,3,-1,-1,-3,-1,Arms,2,1,,Offensive Guard,1,,,,,,,Diablos S
+Diablos Coil S,64,3,-1,-1,-3,-1,Waist,1,1,,Guard,1,Stamina Surge,1,,,,,Diablos S
+Diablos Greaves S,64,3,-1,-1,-3,-1,Legs,2,,,Guard ,1,Offensive Guard,1,,,,,Diablos S
+Rakna Helm,66,4,-2,-1,-3,1,Head,1,1,,Spread Up,1,Reload Speed,1,,,,,Rakna-Kadaki
+Rakna Mail,66,4,-2,-1,-3,1,Chest,2,1,,Spread Up,1,Reload Speed,1,,,,,Rakna-Kadaki
+Rakna Armguards,66,4,-2,-1,-3,1,Arms,2,,,Constitution,2,Stamina Surge,1,,,,,Rakna-Kadaki
+Rakna Coil,66,4,-2,-1,-3,1,Waist,2,2,,Spread Up,1,,,,,,,Rakna-Kadaki
+Rakna Greaves ,66,4,-2,-1,-3,1,Legs,1,,,Constitution,2,Stamina Surge,2,,,,,Rakna-Kadaki
+Golden Headdress,70,2,1,3,-5,2,Head,2,1,,Heroics,2,Maximum Might,1,,,,,Golden
+Golden Haori,70,2,1,3,-5,2,Chest,2,,,Heroics,1,Maximum Might,1,Latent Power,1,,,Golden
+Golden Kote,70,2,1,3,-5,2,Arms,3,1,,Heroics,1,Latent Power,1,,,,,Golden
+Golden Obi,70,2,1,3,-5,2,Waist,1,,,Heroics,1,Critical Boost,1,Maximum Might,1,,,Golden
+Golden Hakama,70,2,1,3,-5,2,Legs,1,1,,Critical Boost,2,Latent Power,1,,,,,Golden
+Damascus,68,-1,2,-3,1,-1,Head,,,,Tremor Resistance,2,Earplugs,2,,,,,Damascus
+Damascus Mail,68,-1,2,-3,1,-1,Chest,1,1,,Tremor Resistance,1,Handicraft,1,,,,,Damascus
+Damascus Vambraces,68,-1,2,-3,1,-1,Arms,2,1,,Earplugs,1,,,,,,,Damascus
+Damascus Coil,68,-1,2,-3,1,-1,Waist,1,,,Earplugs,1,Handicraft,1,,,,,Damascus
+Damascus Greaves,68,-1,2,-3,1,-1,Legs,1,,,Handicraft,2,,,,,,,Damascus
+Kushala Glare,74,-1,2,-2,3,-3,Head,1,,,Handicraft,2,Normal/Rapid Up,2,,,,,Kushala
+Kushala Cista,74,-1,2,-2,3,-3,Chest,2,,,Kushala Blessing,1,Recovery Speed,1,Diversion,1,,,Kushala
+Kushala Grip,74,-1,2,-2,3,-3,Arms,1,,,Kushala Blessing,1,Recovery Speed,1,Agitator,2,,,Kushala
+Kushala Cocoon,74,-1,2,-2,3,-3,Waist,1,,,Kushala Blessing,1,Recovery Speed,1,Handicraft,1,Pierce Up,1,Kushala
+Kushala Crus,74,-1,2,-2,3,-3,Legs,1,,,Kushala Blessing,1,Handicraft,1,Pierce Up,1,,,Kushala
+Mizuha Cap,74,-5,1,,3,-3,Head,1,,,Mind's Eye,2,Ballistics,2,Evade Window,2,,,Mizuha
+Mizuha Guards,74,-5,1,,3,-3,Chest,1,,,Chameleos Blessing,1,Poison Attack,1,Mind's Eye,1,Ballistics,1,Mizuha
+Mizuha Sleeves,74,-5,1,,3,-3,Arms,1,,,Chameleos Blessing,1,Poison Attack,1,Evade Window,1,,,Mizuha
+Mizuha Sash,74,-5,1,,3,-3,Waist,1,,,Chameleos Blessing,1,Poison Attack,1,Peak Performance,2,,,Mizuha
+Mizuha Gaiters,74,-5,1,,3,-3,Legs,2,,,Chameleos Blessing,1,Evade Window,1,,,,,Mizuha
+Kaiser Crown,74,4,-4,1,-1,-3,Head,1,,,Critical Eye,3,Critical Boost,1,,,,,Kaiser
+Kaiser Mail,74,4,-4,1,-1,-3,Chest,1,,,Teostra Blessing,1,Critical Eye,1,Master's Touch,1,,,Kaiser
+Kaiser Vambraces,74,4,-4,1,-1,-3,Arms,2,,,Teostra Blessing,1,Critical Eye,1,Critical Boost,1,,,Kaiser
+Kaiser Coil,74,4,-4,1,-1,-3,Waist,3,,,Teostra Blessing,1,Critical Eye,1,,,,,Kaiser
+Kaiser Greaves,74,4,-4,1,-1,-3,Legs,1,,,Teostra Blessing,1,Master's Touch,1,,,,,Kaiser
+Bazelgeuse Helm,72,3,1,-4,-2,-2,Head,2,,,Artillery,1,Guard,1,,,,,Bazel
+Bazelgeuse Mail,72,3,1,-4,-2,-2,Chest,1,1,,Guard Up,2,Agitator,2,,,,,Bazel
+Bazelgeuse Braces ,72,3,1,-4,-2,-2,Arms,2,2,,Load Shells,1,Guard Up,1,,,,,Bazel
+Bazelgeuse Coil,72,3,1,-4,-2,-2,Waist,2,2,,Load Shells,1,Guard,1,,,,,Bazel
+Bazelgeuse Greaves ,72,3,1,-4,-2,-2,Legs,3,,,Artillery,2,Guard,1,,,,,Bazel
+Ibushi's Helm,66,-1,,,,-2,Head,,,,Wind Alignment,1,Focus,1,Evade Extender,1,,,Ibushi
+Ibushi Breastplate,66,-1,,,,-2,Chest,,,,Wind Alignment,1,Guard,1,Flinch Free,1,,,Ibushi
+Ibushi's Pauldrons,66,-1,,,,-2,Arms,,,,Wind Alignment,1,Constitution,1,Stamina Surge,1,,,Ibushi
+Ibushi's Fauld,66,-1,,,,-2,Waist,,,,Wind Alignment,1,Power Prolonger,1,Evade Window,1,,,Ibushi
+Foot of Ibushi,66,-1,,,,-2,Legs,,,,Wind Alignment,1,Slugger,1,Guard Up,1,,,Ibushi
+Narwa's Helm,76,2,1,4,-3,-4,Head,,,,Thunder Alignment,1,Rapid Morph,1,Offensive Guard,1,,,Narwa
+Narwa Breastplate,76,2,1,4,-3,-4,Chest,,,,Thunder Alignment,1,Constitution,1,Critical Draw,1,,,Narwa
+Narwa's Paildrons,76,2,1,4,-3,-4,Arms,,,,Thunder Alignment,1,Guard,1,Partbreaker,1,,,Narwa
+Narwa's Fauld,76,2,1,4,-3,-4,Waist,,,,Thunder Alignment,1,Guard,1,Artillery,1,,,Narwa
+Foot of Narwa,76,2,1,4,-3,-4,Legs,,,,Thunder Alignment,1,Evade Window,1,Marathon Runner,1,,,Narwa
