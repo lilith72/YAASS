@@ -45,8 +45,8 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                 setId: "someTestTalismanSetId");
 
             //this.persistedStorageHelper.TryAddTalisman(contr);
-            Console.WriteLine($"First talisman retrieved from file out of {this.persistedStorageHelper.GetCustomTalismans().Count()}:" +
-                $" {this.persistedStorageHelper.GetCustomTalismans().First().Value.ToString()}");
+            //Console.WriteLine($"First talisman retrieved from file out of {this.persistedStorageHelper.GetCustomTalismans().Count()}:" +
+            //    $" {this.persistedStorageHelper.GetCustomTalismans().First().Value.ToString()}");
 
             /*
              * justins debug search
