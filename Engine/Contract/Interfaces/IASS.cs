@@ -68,6 +68,8 @@ namespace JustinsASS.Engine.Contract.Interfaces
         void PersistCustomInventoryAddition(
             SkillContributor talismanToAdd);
 
+        Dictionary<string, SkillContributor> GetAllCustomTalismans();
+
         /// <summary>
         /// 
         /// </summary>

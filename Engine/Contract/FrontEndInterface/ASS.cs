@@ -1,5 +1,6 @@
 ﻿using JustinsASS.Engine.Contract.DataModel;
 using JustinsASS.Engine.Contract.Interfaces;
+using JustinsASS.Engine.Data;
 using JustinsASS.Engine.DataReader;
 using JustinsASS.Engine.Search;
 using System;
@@ -17,6 +18,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         private readonly IInventoryProvider inventoryProvider;
         private readonly ISearchWorker searchWorker;
         private readonly ISolutionSorter solutionSorter;
+        private readonly PersistedStorageHelper persistedStorageHelper;
 
         private List<SkillContributor> allInventoryFromFile;
         private Dictionary<string, int> skillNameToMaxValue;
@@ -31,7 +33,9 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
             this.inventoryProvider = new CsvInventoryProvider();
             this.searchWorker = new SearchWorker();
             this.solutionSorter = new SolutionSorter();
+            this.persistedStorageHelper = new PersistedStorageHelper();
             this.RefreshDataFromFiles();
+
             /*
              * justins debug search
             GetSolutionsForSearch(new Dictionary<string, int>()
@@ -102,7 +106,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         public void PersistCustomInventoryAddition(
             SkillContributor talismanToAdd)
         {
-            throw new NotImplementedException();
+            this.persistedStorageHelper.TryAddTalisman(talismanToAdd);
         }
 
         /// <summary>
@@ -113,7 +117,12 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         public bool TryPersistCustomInventoryDeletion(
             string idToRemove)
         {
-            throw new NotImplementedException();
+            return this.persistedStorageHelper.TryRemoveTalisman(idToRemove);
+        }
+
+        public Dictionary<string, SkillContributor> GetAllCustomTalismans()
+        {
+            return this.persistedStorageHelper.GetCustomTalismans();
         }
 
         /// <summary>

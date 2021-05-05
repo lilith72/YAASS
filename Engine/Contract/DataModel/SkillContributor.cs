@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,13 @@ namespace JustinsASS.Engine.Contract.DataModel
 {
     public class SkillContributor
     {
+        [JsonConstructor]
         public SkillContributor(
-            string id,
+            string skillContributorId,
             int armorPoints,
-            IList<int> decoSlots,
+            IList<int> providedDecoSlots,
             ArmorSlot slot,
-            IList<SkillValue> skills,
+            IList<SkillValue> providedSkillValues,
             string setId = null,
             int fireRes = 0,
             int iceRes = 0,
@@ -22,12 +24,12 @@ namespace JustinsASS.Engine.Contract.DataModel
             int dragonRes = 0,
             int minRank = 0)
         {
-            this.SkillContributorId = id;
+            this.SkillContributorId = skillContributorId;
             this.SetId = setId;
             this.ArmorPoints = armorPoints;
-            this.ProvidedDecoSlots = decoSlots;
+            this.ProvidedDecoSlots = providedDecoSlots;
             this.Slot = slot;
-            this.ProvidedSkillValues = skills;
+            this.ProvidedSkillValues = providedSkillValues;
             this.FireRes = fireRes;
             this.IceRes = iceRes;
             this.WaterRes = waterRes;
