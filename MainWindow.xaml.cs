@@ -18,6 +18,12 @@ using System.Runtime.CompilerServices;
 using JustinsASS.Engine.Contract.FrontEndInterface;
 using JustinsASS.Engine.Contract.DataModel;
 using JustinsASS.Engine.Contract.Interfaces;
+using System.Text.RegularExpressions;
+using System.Globalization;
+using JustinsASS.Gui.Windows;
+using JustinsASS.Gui.DataModel;
+using JustinsASS.Gui;
+using JustinsASS.Gui.Controls;
 
 namespace JustinsASS
 {
@@ -27,29 +33,54 @@ namespace JustinsASS
     public partial class MainWindow : Window
     {
         readonly IList<string> smAllSorts = Enum.GetNames(typeof(SolutionSortCondition)).Where(s => !s.Equals("none", StringComparison.OrdinalIgnoreCase)).ToList();
-        IList<Solution> mSearchResults = new List<Solution>();
+        IList<SolutionData> mSearchResults = new List<SolutionData>();
         IDictionary<string, int> mSkills = new Dictionary<string, int>();
         IList<string> mSorts = new List<string>();
+        int[] mWeaponSlots= new int[Helper.MAX_SLOTS];
         ASS mAss = new ASS();
+
         public MainWindow()
         {
             InitializeComponent();
             cbAddSkill.ItemsSource = mAss.GetSkillNamesToMaxLevelMapping().Keys;
             cbAddSort.ItemsSource = smAllSorts;
+
+            for (int i = 0; i < Helper.MAX_SLOT_SIZE; i++)
+            {
+                Label newLabel = new Label();
+                newLabel.Content = "Size " + (i + 1) + " Slots";
+                UpDownControl newUdc = new UpDownControl();
+                newUdc.Min = 0;
+                newUdc.Max = Helper.MAX_SLOTS;
+                newUdc.Value = 0;
+                newUdc.Tag = i.ToString();
+                newUdc.ValueChanged += OnChange_WeaponSlotValue;
+
+                spWeaponSlots.Children.Add(newLabel);
+                spWeaponSlots.Children.Add(newUdc);
+            }
         }
 
         private void SearchForSolutions(object sender, RoutedEventArgs e)
         {
-            mSearchResults = mAss.GetSolutionsForSearch(mSkills);
+            // Prevent search spam while working
+            btnSearch.IsEnabled = false;
+            IList<int> decoSlots = (bool)cbUseWeaponSlot.IsChecked ? Helper.DecorationArrayToList(mWeaponSlots) : null;
+            IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkills, decoSlots);
             if (mSorts.Count > 0)
             {
-                lvSearchResults.ItemsSource = mAss.SortSolutionsByGivenConditions(mSearchResults, mSorts.Select(x => (SolutionSortCondition)Enum.Parse(typeof(SolutionSortCondition), x)).ToList());
+                searchSolutions = mAss.SortSolutionsByGivenConditions(searchSolutions, mSorts.Select(x => (SolutionSortCondition)Enum.Parse(typeof(SolutionSortCondition), x)).ToList());
             }
-            else
+            mSearchResults.Clear();
+            foreach (Solution solution in searchSolutions)
             {
-                lvSearchResults.ItemsSource = mSearchResults;
+                mSearchResults.Add(new SolutionData(solution, mAss));
             }
+            lvSearchResults.ItemsSource = null;
+            lvSearchResults.ItemsSource = mSearchResults;
             lblNumResults.Content = mSearchResults.Count;
+            // Re-enable search
+            btnSearch.IsEnabled = true;
         }
 
         private void OnClick_AddSkill(object sender, RoutedEventArgs e)
@@ -73,14 +104,7 @@ namespace JustinsASS
             mSkills.Remove(skill);
             UpdateSkills();
         }
-        private void OnClick_IncreaseSkill(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            string skill = button.Tag.ToString();
 
-            mSkills[skill] = mSkills[skill] >= mAss.GetSkillNamesToMaxLevelMapping()[skill] ? mAss.GetSkillNamesToMaxLevelMapping()[skill] : mSkills[skill] + 1;
-            UpdateSkills();
-        }
         private void OnClick_AddSort(object sender, RoutedEventArgs e)
         {
             if (cbAddSort.SelectedItem != null)
@@ -114,7 +138,7 @@ namespace JustinsASS
             mSorts.Insert(newIndex, sort);
             UpdateSorts();
         }
-        
+
         private void OnClick_MoveSortDown(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
@@ -126,20 +150,40 @@ namespace JustinsASS
             mSorts.Insert(newIndex, sort);
             UpdateSorts();
         }
-
-        private void OnClick_DecreaseSkill(object sender, RoutedEventArgs e)
+        private void OnClick_AddNewTalisman(object sender, RoutedEventArgs e)
         {
-            var button = (Button)sender;
-            string skill = button.Tag.ToString();
+            NewTalismanWindow dialog = new NewTalismanWindow(mAss);
+            if (dialog.ShowDialog().Value)
+            {
+                SkillContributor newTalisman = dialog.Result;
+                lblTestAddTalisman.Content = newTalisman.ToString();
+            }
+        }
+        private void OnChange_SkillValue(object sender, RoutedEventArgs e)
+        {
+            var upcSkill = (UpDownControl)sender;
+            string skillID = upcSkill.Tag.ToString();
+            mSkills[skillID] = upcSkill.Value;
+        }
+        private void OnChange_WeaponSlotValue(object sender, RoutedEventArgs e)
+        {
+            var upcSlot = (UpDownControl)sender;
+            int slotNum = Int32.Parse(upcSlot.Tag.ToString());
 
-            mSkills[skill] = mSkills[skill] <= 1 ? 1 : mSkills[skill] - 1;
-            UpdateSkills();
+            mWeaponSlots[slotNum] = upcSlot.Value;
         }
 
         private void UpdateSkills()
         {
+            IList<SkillValue> skillList = new List<SkillValue>();
             lvSkillList.ItemsSource = null;
-            lvSkillList.ItemsSource = mSkills.OrderBy(key => key.Key);
+            foreach(KeyValuePair<string, int> skill in mSkills.OrderBy(key => key.Key))
+            {
+                skillList.Add(new SkillValue(skill.Key, skill.Value));
+            }
+            IDictionary<string, SkillLvlMax> skills = Helper.GetSkillsWithMax(skillList, mAss);
+            lvSkillList.ItemsSource = null;
+            lvSkillList.ItemsSource = skills;
         }
         private void UpdateSorts()
         {
