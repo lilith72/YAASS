@@ -36,18 +36,6 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
             this.persistedStorageHelper = new PersistedStorageHelper();
             this.RefreshDataFromFiles();
 
-            SkillContributor contr = new SkillContributor(
-                "testTalisman",
-                10,
-                new List<int>() { 1 },
-                ArmorSlot.Talisman,
-                new List<SkillValue>() { new SkillValue("Guard", 3) },
-                setId: "someTestTalismanSetId");
-
-            //this.persistedStorageHelper.TryAddTalisman(contr);
-            //Console.WriteLine($"First talisman retrieved from file out of {this.persistedStorageHelper.GetCustomTalismans().Count()}:" +
-            //    $" {this.persistedStorageHelper.GetCustomTalismans().First().Value.ToString()}");
-
             /*
              * justins debug search
             GetSolutionsForSearch(new Dictionary<string, int>()
@@ -118,7 +106,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         public void PersistCustomInventoryAddition(
             SkillContributor talismanToAdd)
         {
-            throw new NotImplementedException();
+            this.persistedStorageHelper.TryAddTalisman(talismanToAdd);
         }
 
         /// <summary>
@@ -129,7 +117,12 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         public bool TryPersistCustomInventoryDeletion(
             string idToRemove)
         {
-            throw new NotImplementedException();
+            return this.persistedStorageHelper.TryRemoveTalisman(idToRemove);
+        }
+
+        public Dictionary<string, SkillContributor> GetAllCustomTalismans()
+        {
+            return this.persistedStorageHelper.GetCustomTalismans();
         }
 
         /// <summary>

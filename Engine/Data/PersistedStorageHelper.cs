@@ -28,9 +28,23 @@ namespace JustinsASS.Engine.Data
         public bool TryAddTalisman(
             SkillContributor sc)
         {
-            // TODO check for conflicts against pinned sets
+            if (customTalismans.ContainsKey(sc.SkillContributorId))
+            {
+                return false;
+            }
             customTalismans.Add(sc.SkillContributorId, sc);
             TryPersistObjectToFile(this.customTalismans, UserDataFolderPath, TalismansFileName);
+            return false;
+        }
+
+        public bool TryRemoveTalisman(
+            string talismanId)
+        {
+            // TODO check for conflicts against pinned sets, when those exist
+            if (this.customTalismans.Remove(talismanId))
+            {
+                return TryPersistObjectToFile(this.customTalismans, UserDataFolderPath, TalismansFileName);
+            }
             return false;
         }
 
