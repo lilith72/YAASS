@@ -1,5 +1,6 @@
 ﻿using JustinsASS.Engine.Contract.DataModel;
 using JustinsASS.Engine.Contract.Interfaces;
+using JustinsASS.Engine.Data;
 using JustinsASS.Engine.DataReader;
 using JustinsASS.Engine.Search;
 using System;
@@ -17,6 +18,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         private readonly IInventoryProvider inventoryProvider;
         private readonly ISearchWorker searchWorker;
         private readonly ISolutionSorter solutionSorter;
+        private readonly PersistedStorageHelper persistedStorageHelper;
 
         private List<SkillContributor> allInventoryFromFile;
         private Dictionary<string, int> skillNameToMaxValue;
@@ -31,7 +33,21 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
             this.inventoryProvider = new CsvInventoryProvider();
             this.searchWorker = new SearchWorker();
             this.solutionSorter = new SolutionSorter();
+            this.persistedStorageHelper = new PersistedStorageHelper();
             this.RefreshDataFromFiles();
+
+            SkillContributor contr = new SkillContributor(
+                "testTalisman",
+                10,
+                new List<int>() { 1 },
+                ArmorSlot.Talisman,
+                new List<SkillValue>() { new SkillValue("Guard", 3) },
+                setId: "someTestTalismanSetId");
+
+            //this.persistedStorageHelper.TryAddTalisman(contr);
+            //Console.WriteLine($"First talisman retrieved from file out of {this.persistedStorageHelper.GetCustomTalismans().Count()}:" +
+            //    $" {this.persistedStorageHelper.GetCustomTalismans().First().Value.ToString()}");
+
             /*
              * justins debug search
             GetSolutionsForSearch(new Dictionary<string, int>()

@@ -37,6 +37,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -77,9 +80,11 @@
     <Compile Include="Engine\Contract\FrontEndInterface\ASS.cs" />
     <Compile Include="Engine\Contract\Interfaces\IASS.cs" />
     <Compile Include="Engine\Contract\Interfaces\IInventoryProvider.cs" />
+    <Compile Include="Engine\Contract\Interfaces\IPersistedStorageHelper.cs" />
     <Compile Include="Engine\Contract\Interfaces\ISearchWorker.cs" />
     <Compile Include="Engine\Contract\Interfaces\ISolutionSorter.cs" />
-    <Compile Include="Engine\DataReader\CsvInventoryProvider.cs" />
+    <Compile Include="Engine\Data\CsvInventoryProvider.cs" />
+    <Compile Include="Engine\Data\PersistedStorageHelper.cs" />
     <Compile Include="Engine\Search\SearchWorker.cs" />
     <Compile Include="Engine\Search\SolutionSorter.cs" />
     <Compile Include="Engine\Search\Utils.cs" />
@@ -115,6 +120,7 @@
     <None Include="AppData\SkillMetadata\skillMetadata.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -123,5 +129,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

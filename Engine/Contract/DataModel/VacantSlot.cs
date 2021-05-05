@@ -9,11 +9,11 @@ namespace JustinsASS.Engine.Contract.DataModel
     public class VacantSlot : SkillContributor
     {
         public VacantSlot(ArmorSlot slot) : base(
-            id: $"Vacant {slot} slot",
+            skillContributorId: $"Vacant {slot} slot",
             armorPoints: 0,
-            decoSlots: new List<int>(),
+            providedDecoSlots: new List<int>(),
             slot: slot,
-            skills: new List<SkillValue>())
+            providedSkillValues: new List<SkillValue>())
         {
             // Intentionally Empty
         }

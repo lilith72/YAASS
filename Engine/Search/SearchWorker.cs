@@ -219,9 +219,16 @@ namespace JustinsASS.Engine.Search
                 completedSolution = null;
                 return false;
             }
+
+            if (neededSkillCounts.Any(kvp => !SkillNameToProvidingDeco.ContainsKey(kvp.Key)))
+            {
+                completedSolution = null;
+                return false;
+            }
+            
             // Solution is worth trying to complete, so try it.
             completedSolution = partialSolution.Clone();
-            // order skills by the size of slot needed to get it
+            //order skills by the size of slot needed to get it
             foreach (KeyValuePair<string, int> neededSkillCount in 
                 neededSkillCounts.OrderByDescending(kvp => SkillNameToProvidingDeco[kvp.Key].SlotSize))
             {

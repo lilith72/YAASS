@@ -169,33 +169,33 @@ namespace ASSTests
             {
                 // Add occupied piece that doesn't do anything
                 result.AddNewPiece(new SkillContributor(
-                    id: "Armor" + Guid.NewGuid().ToString(),
+                    skillContributorId: "Armor" + Guid.NewGuid().ToString(),
                     setId: "mockSetId",
                     armorPoints: 0,
-                    decoSlots: new List<int>(),
+                    providedDecoSlots: new List<int>(),
                     slot: ArmorSlot.Head,
-                    skills: new List<SkillValue>()));
+                    providedSkillValues: new List<SkillValue>()));
             }
 
             if (countExtraPieces >= 2)
             {
                 // Add occupied piece that doesn't do anything
                 result.AddNewPiece(new SkillContributor(
-                    id: "Armor" + Guid.NewGuid().ToString(),
+                    skillContributorId: "Armor" + Guid.NewGuid().ToString(),
                     setId: "mockSetId",
                     armorPoints: 0,
-                    decoSlots: new List<int>(),
+                    providedDecoSlots: new List<int>(),
                     slot: ArmorSlot.Legs,
-                    skills: new List<SkillValue>()));
+                    providedSkillValues: new List<SkillValue>()));
             }
 
             result.AddNewPiece(new SkillContributor(
-                id: "Armor" + Guid.NewGuid().ToString(),
+                skillContributorId: "Armor" + Guid.NewGuid().ToString(),
                 setId: "mockSetId",
                 armorPoints: armorPoints,
-                decoSlots: new List<int>() { countDecoSlots },
+                providedDecoSlots: new List<int>() { countDecoSlots },
                 slot: ArmorSlot.Arms,
-                skills: new List<SkillValue>() { 
+                providedSkillValues: new List<SkillValue>() { 
                     new SkillValue("Skill" + Guid.NewGuid().ToString(), numSkillPoints) },
                 fireRes: fireRes,
                 iceRes: iceRes,

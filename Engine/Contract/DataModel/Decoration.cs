@@ -12,11 +12,11 @@ namespace JustinsASS.Engine.Contract.DataModel
             string id,
             int slotSize,
             IList<SkillValue> skillValues)
-                : base(id: id,
+                : base(skillContributorId: id,
                       armorPoints: 0,
-                      decoSlots: new List<int>(),
+                      providedDecoSlots: new List<int>(),
                       slot: ArmorSlot.Deco,
-                      skills: skillValues)
+                      providedSkillValues: skillValues)
         {
             this.SlotSize = slotSize;
         }
