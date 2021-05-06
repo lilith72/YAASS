@@ -85,7 +85,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                     $" {talismans.Where(t => t.Slot != ArmorSlot.Talisman).First().SkillContributorId}");
             }
             SearchTarget searchTarget = new SearchTarget(skillNameToDesiredLevel.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList());
-            Inventory targetInventory = new Inventory(new List<SkillContributor>(allInventoryFromFile));
+            Inventory targetInventory = new Inventory((new List<SkillContributor>(allInventoryFromFile)).Concat(talismans).ToList());
             if (inventoryFilters != null)
             {
                 foreach (Func<SkillContributor, bool> filter in inventoryFilters)

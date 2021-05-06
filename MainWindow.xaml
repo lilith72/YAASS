@@ -4,18 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:JustinsASS"
+        xmlns:styles="clr-namespace:JustinsASS.Gui"
         xmlns:controls="clr-namespace:JustinsASS.Gui.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1200">
+        Title="MainWindow" Height="700" Width="1300">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="btvConverter"/>
     </Window.Resources>
 
     <StackPanel Background="Gray" Orientation="Horizontal">
-        <StackPanel Name="spSearch" Orientation="Vertical" Width="400" Height="Auto" Margin="10" >
+        <StackPanel Name="spSearch" Orientation="Vertical" Width="500" Height="Auto" Margin="10" >
             <StackPanel Orientation="Vertical" Background="White">
                 <CheckBox Name="cbUseWeaponSlot" Content="Use Weapon Slots" VerticalAlignment="Center" Margin="20,0,0,0" />
-                <CheckBox Name="cbUseTalismans" Content="Use My Talismans" VerticalAlignment="Center" Margin="20,0,0,0" />
+                <CheckBox Name="cbUseTalismans" Content="Use My Talismans" VerticalAlignment="Center" Margin="20,0,0,0" Checked="OnCheck_UseTalismans" />
                 <Button Name="btnSearch" Content="Search" Click="SearchForSolutions" Width="100" Margin="10" />
             </StackPanel>
             <TabControl>
@@ -23,29 +24,31 @@
                     <StackPanel Background="White" Orientation="Vertical">
                         <Grid Height="610">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="250" />
+                                <ColumnDefinition Width="250" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="30" />
                                 <RowDefinition Height="30" />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
+
+                            <Label Content="Add Skill" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
                             <Label Content="Add Skill" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0"/>
                             <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-                                <ComboBox Name="cbAddSkill" Width="100" />
-                                <Button x:Name="btnAddSkill" Width="50" Content="+" Click="OnClick_AddSkill" />
+                                <ComboBox Name="cbAddSkill" Width="180" PreviewKeyDown="OnKeyDown_AddSkill" />
+                                <Button Content="+" Width="40" Click="OnClick_AddSkill"/>
                             </StackPanel>
-                            <ListView Name="lvSkillList" Grid.Column="0" Grid.Row="2" Height="450">
+                            <ListView Name="lvSkillList" Grid.Column="0" Grid.Row="2" Height="450" Width="250" Padding="0" HorizontalContentAlignment="Stretch">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="70">
+                                        <Grid Height="80">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="150"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="50"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
-                                                <RowDefinition/>
+                                                <RowDefinition Height="80" />
                                             </Grid.RowDefinitions>
 
                                             <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
@@ -53,7 +56,7 @@
                                                 <controls:UpDownControl Height="30" Min="1" Max="{Binding Path=Value.Max}" Value="{Binding Path=Value.Level}" Tag="{Binding Path=Key}" ValueChanged="OnChange_SkillValue" />
                                             </StackPanel>
 
-                                            <Button Content="-" Width="20" Height="20" Margin="10,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Tag="{Binding Path=Key}" Click="OnClick_RemoveSkill"/>
+                                            <Button Style="{StaticResource RemoveButtonStyle}" Grid.Column="1" Grid.Row="0" Tag="{Binding Path=Key}" Click="OnClick_RemoveSkill"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
@@ -61,17 +64,17 @@
 
                             <Label Content="Add Sort" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
                             <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                                <ComboBox Name="cbAddSort" Width="100" />
-                                <Button x:Name="btnAddSort" Width="50" Content="+" Click="OnClick_AddSort" />
+                                <ComboBox Name="cbAddSort" Width="180" PreviewKeyDown="OnKeyDown_AddSort" />
+                                <Button x:Name="btnAddSort" Width="40" Content="+" Click="OnClick_AddSort" />
                             </StackPanel>
-                            <ListView Name="lvSortList" Grid.Column="1" Grid.Row="2" Height="450">
+                            <ListView Name="lvSortList" Grid.Column="1" Grid.Row="2" Height="450" Width="250" HorizontalContentAlignment="Stretch">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="70">
+                                        <Grid Height="80">
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="120"/>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="20" />
+                                                <ColumnDefinition Width="50" />
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition />
@@ -79,10 +82,10 @@
 
                                             <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  Content="{Binding}" />
                                             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-                                                <Button Content="/\" Width="15" Height="15" Tag="{Binding}" Click="OnClick_MoveSortUp" />
-                                                <Button Content="\/" Width="15" Height="15" Tag="{Binding}" Click="OnClick_MoveSortDown" />
+                                                <Button Content="/\" Width="20" Height="20" Tag="{Binding}" Click="OnClick_MoveSortUp" />
+                                                <Button Content="\/" Width="20" Height="20" Tag="{Binding}" Click="OnClick_MoveSortDown" />
                                             </StackPanel>
-                                            <Button Grid.Row="0" Grid.Column="2" Content="-" Width="30" Height="30" Margin="10,10,0,10" VerticalAlignment="Center" Tag="{Binding}" Click="OnClick_RemoveSort" />
+                                            <Button Style="{StaticResource RemoveButtonStyle}" Grid.Row="0" Grid.Column="2" Tag="{Binding}" Click="OnClick_RemoveSort" />
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
@@ -99,7 +102,54 @@
                 <TabItem Name="tabMyTalismans" Header="My Talismans" Visibility="{Binding IsChecked, ElementName=cbUseTalismans, Converter={StaticResource btvConverter}}">
                     <StackPanel Orientation="Vertical">
                         <Button Name="btnAddTalisman" Content="Add New Talisman" Click="OnClick_AddNewTalisman" />
-                        <Label Name="lblTestAddTalisman"/>
+                        <ListView Name="lvTalismans" Height="450" Width="450" BorderThickness="0" >
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Border BorderThickness="2" BorderBrush="LightGray">
+                                            <StackPanel Orientation="Vertical">
+                                                <Label Content="{Binding Path=Name}" />
+                                                <Separator/>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Label Content="Slots: "/>
+                                                    <ItemsControl ItemsSource="{Binding Path=Slots}">
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <Label Content="{Binding}"/>
+                                                                </StackPanel>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel/>
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                    </ItemsControl>
+                                                </StackPanel>
+                                                <Separator/>
+                                                <ItemsControl ItemsSource="{Binding Path=Skills}" Height="70">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Label Content="{Binding Path=SkillId}" />
+                                                                <Label Content="{Binding Path=Points}" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel Width="430" />
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                </ItemsControl>
+                                                <Button Style="{StaticResource RemoveButtonStyle}" Tag="{Binding Path=Name}" Click="OnClick_RemoveTalisman"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackPanel>
                 </TabItem>
             </TabControl>
@@ -113,47 +163,70 @@
             <ListView Name="lvSearchResults" Height="610" ScrollViewer.CanContentScroll="False" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                            <ListView ItemsSource="{Binding Path=ContributorIds}"  ScrollViewer.CanContentScroll="False" Width="180" BorderThickness="0" />
-                            <Grid Width="180">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="Armor Points: " />
-                                <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=ArmorPoints}" />
-                                <Label Grid.Column="0" Grid.Row="1" Content="Fire Res: " />
-                                <Label Grid.Column="1" Grid.Row="1" Content="{Binding Path=FireRes}" />
-                                <Label Grid.Column="0" Grid.Row="2" Content="Water Res: " />
-                                <Label Grid.Column="1" Grid.Row="2" Content="{Binding Path=WaterRes}" />
-                                <Label Grid.Column="0" Grid.Row="3" Content="Ice Res: " />
-                                <Label Grid.Column="1" Grid.Row="3" Content="{Binding Path=IceRes}" />
-                                <Label Grid.Column="0" Grid.Row="4" Content="Thunder Res: " />
-                                <Label Grid.Column="1" Grid.Row="4" Content="{Binding Path=ThunderRes}" />
-                                <Label Grid.Column="0" Grid.Row="5" Content="Dragon Res: " />
-                                <Label Grid.Column="1" Grid.Row="5" Content="{Binding Path=DragonRes}" />
-                            </Grid>
-                            <ListView ItemsSource="{Binding Path=Skills}" ScrollViewer.CanContentScroll="False" Width="180" BorderThickness="0">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Width="120" Content="{Binding Path=Key, StringFormat=\{0\}: }"/>
-                                            <Label Content="{Binding Path=Value.Level}" Margin="0"/>
-                                            <Label Content="/" Margin="0"/>
-                                            <Label Content="{Binding Path=Value.Max}" Margin="0"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackPanel>
+                        <Grid>
+                            <Border BorderThickness="2" BorderBrush="LightGray">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                                        <ListView ItemsSource="{Binding Path=ContributorIds}"  ScrollViewer.CanContentScroll="False" Width="200" BorderThickness="0" />
+                                        <Grid Width="180">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Content="Armor Points: " />
+                                            <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=ArmorPoints}" />
+                                            <Label Grid.Column="0" Grid.Row="1" Content="Fire Res: " />
+                                            <Label Grid.Column="1" Grid.Row="1" Content="{Binding Path=FireRes}" />
+                                            <Label Grid.Column="0" Grid.Row="2" Content="Water Res: " />
+                                            <Label Grid.Column="1" Grid.Row="2" Content="{Binding Path=WaterRes}" />
+                                            <Label Grid.Column="0" Grid.Row="3" Content="Ice Res: " />
+                                            <Label Grid.Column="1" Grid.Row="3" Content="{Binding Path=IceRes}" />
+                                            <Label Grid.Column="0" Grid.Row="4" Content="Thunder Res: " />
+                                            <Label Grid.Column="1" Grid.Row="4" Content="{Binding Path=ThunderRes}" />
+                                            <Label Grid.Column="0" Grid.Row="5" Content="Dragon Res: " />
+                                            <Label Grid.Column="1" Grid.Row="5" Content="{Binding Path=DragonRes}" />
+                                        </Grid>
+                                        <ListView ItemsSource="{Binding Path=Skills}" ScrollViewer.CanContentScroll="False" Width="180" BorderThickness="0">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Width="120" Content="{Binding Path=Key, StringFormat=\{0\}: }"/>
+                                                        <Label Content="{Binding Path=Value.Level}" Margin="0"/>
+                                                        <Label Content="/" Margin="0"/>
+                                                        <Label Content="{Binding Path=Value.Max}" Margin="0"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Content="Spare Slots: "/>
+                                        <ItemsControl ItemsSource="{Binding Path=SpareSlots}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label Content="{Binding}"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

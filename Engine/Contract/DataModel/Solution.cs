@@ -131,9 +131,9 @@ namespace JustinsASS.Engine.Contract.DataModel
 
         public override string ToString()
         {
-            return 
+            return
                 string.Join(Environment.NewLine,
-                new[] { 
+                new[] {
                     $"=============",
                     $"Head:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Head)}",
                     $"Chest:\t{Contributors.Find(contr => contr.Slot == ArmorSlot.Chest)}",
@@ -240,11 +240,14 @@ namespace JustinsASS.Engine.Contract.DataModel
 
         private void IncrementSetIdTally(string setId)
         {
-            if (!this.SetIdTally.ContainsKey(setId))
+            if (setId != null)
             {
-                SetIdTally.Add(setId, 0);
+                if (!this.SetIdTally.ContainsKey(setId))
+                {
+                    SetIdTally.Add(setId, 0);
+                }
+                SetIdTally[setId]++;
             }
-            SetIdTally[setId]++;
         }
     }
 }

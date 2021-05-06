@@ -64,28 +64,20 @@ namespace JustinsASS.Gui.Windows
                 }
             }
         }
+        private void OnKeyDown_AddSkill(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                OnClick_AddSkill(null, null);
+            }
+        }
+
         private void OnClick_RemoveSkill(object sender, RoutedEventArgs e)
         {
             var button = (Button)sender;
             string skill = button.Tag.ToString();
 
             mSkills.Remove(skill);
-            UpdateSkills();
-        }
-        private void OnClick_IncreaseSkill(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            string skill = button.Tag.ToString();
-
-            mSkills[skill] = mSkills[skill] >= mAss.GetSkillNamesToMaxLevelMapping()[skill] ? mAss.GetSkillNamesToMaxLevelMapping()[skill] : mSkills[skill] + 1;
-            UpdateSkills();
-        }
-        private void OnClick_DecreaseSkill(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            string skill = button.Tag.ToString();
-
-            mSkills[skill] = mSkills[skill] <= 1 ? 1 : mSkills[skill] - 1;
             UpdateSkills();
         }
         private void OnChange_SkillValue(object sender, RoutedEventArgs e)

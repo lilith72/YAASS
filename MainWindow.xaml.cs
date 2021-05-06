@@ -65,8 +65,8 @@ namespace JustinsASS
         {
             // Prevent search spam while working
             btnSearch.IsEnabled = false;
-            IList<int> decoSlots = (bool)cbUseWeaponSlot.IsChecked ? Helper.DecorationArrayToList(mWeaponSlots) : null;
-            IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkills, decoSlots);
+            IList<int> weaponSlots = (bool)cbUseWeaponSlot.IsChecked ? Helper.DecorationArrayToList(mWeaponSlots) : null;
+            IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkills, weaponSlots, null, mAss.GetAllCustomTalismans().Select(kvp => kvp.Value).ToList());
             if (mSorts.Count > 0)
             {
                 searchSolutions = mAss.SortSolutionsByGivenConditions(searchSolutions, mSorts.Select(x => (SolutionSortCondition)Enum.Parse(typeof(SolutionSortCondition), x)).ToList());
@@ -95,6 +95,13 @@ namespace JustinsASS
                 }
             }
         }
+        private void OnKeyDown_AddSkill(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                OnClick_AddSkill(null, null);
+            }
+        }
 
         private void OnClick_RemoveSkill(object sender, RoutedEventArgs e)
         {
@@ -115,6 +122,13 @@ namespace JustinsASS
                     mSorts.Add(skill);
                     UpdateSorts();
                 }
+            }
+        }
+        private void OnKeyDown_AddSort(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                OnClick_AddSort(null, null);
             }
         }
 
@@ -156,9 +170,24 @@ namespace JustinsASS
             if (dialog.ShowDialog().Value)
             {
                 SkillContributor newTalisman = dialog.Result;
-                lblTestAddTalisman.Content = newTalisman.ToString();
+                mAss.PersistCustomInventoryAddition(newTalisman);
             }
+            UpdateTalismans();
         }
+
+        private void OnClick_RemoveTalisman(object sender, RoutedEventArgs e)
+        {
+            Button removeBtn = sender as Button;
+            string talismanId = removeBtn.Tag.ToString();
+            mAss.TryPersistCustomInventoryDeletion(talismanId);
+            UpdateTalismans();
+        }
+
+        private void OnCheck_UseTalismans(object sender, RoutedEventArgs e)
+        {
+            UpdateTalismans();
+        }
+
         private void OnChange_SkillValue(object sender, RoutedEventArgs e)
         {
             var upcSkill = (UpDownControl)sender;
@@ -185,6 +214,18 @@ namespace JustinsASS
             lvSkillList.ItemsSource = null;
             lvSkillList.ItemsSource = skills;
         }
+
+        private void UpdateTalismans()
+        {
+            //IDictionary<string, SkillContributor> talismans = mAss.GetAllCustomTalismans();
+            IList<TalismanData> talismans = new List<TalismanData>();
+            foreach(KeyValuePair<string, SkillContributor> talisman in mAss.GetAllCustomTalismans())
+            {
+                talismans.Add(new TalismanData(talisman.Key, talisman.Value));
+            }
+            lvTalismans.ItemsSource = talismans;
+        }
+
         private void UpdateSorts()
         {
             lvSortList.ItemsSource = null;
