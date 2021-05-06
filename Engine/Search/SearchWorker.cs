@@ -15,8 +15,8 @@ namespace JustinsASS.Engine.Search
         private bool enableSearchDecosOnlyAfterArmorExhausted = true;
         private bool enableStopAfterNSeconds = false;
         private int secondsToStopAt = 30;
-        private bool enableStopAfterNSolutions = false;
-        private int solutionsToStopAt = 1000;
+        private bool enableStopAfterNSolutions = true;
+        private int solutionsToStopAt = 100;
 
         // in practice this doesn't help much and causes search to skip many valid solutions. Best to leave it off.
         private bool enableGreedySkillSelectionHeuristic = false;
@@ -194,6 +194,10 @@ namespace JustinsASS.Engine.Search
 
                 // Recurse and check using this chosen item
                 resultSolutions.AddRange(SearchForSolutionsRecursive(helpfulInventory, target, newPartialSolution));
+                if (enableStopAfterNSolutions && solutionsCount >= solutionsToStopAt)
+                {
+                    return resultSolutions;
+                }
             }
             return resultSolutions;
         }
