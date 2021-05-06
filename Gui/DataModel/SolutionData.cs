@@ -13,6 +13,7 @@ namespace JustinsASS.Gui.DataModel
     {
         public IList<String> ContributorIds { get; private set; }
         public IDictionary<string, SkillLvlMax> Skills { get; private set; }
+        public IList<int> SpareSlots { get; private set; }
         public int ArmorPoints { get; private set; }
         public int FireRes { get; private set; }
         public int WaterRes { get; private set; }
@@ -30,6 +31,7 @@ namespace JustinsASS.Gui.DataModel
             this.IceRes = solution.GetTotalIceResistance();
             this.ThunderRes = solution.GetTotalThunderResistance();
             this.DragonRes = solution.GetTotalDragonResistance();
+            this.SpareSlots = solution.GetSpareSlots();
             Skills = Helper.GetSkillsWithMax(solution.GetSkillValues(), ass);
             foreach (SkillContributor contributor in solution.Contributors)
             {

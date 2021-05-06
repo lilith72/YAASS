@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Gui\DataModel\SkillLvlMax.cs" />
     <Compile Include="Gui\DataModel\SolutionData.cs" />
+    <Compile Include="Gui\DataModel\TalismanData.cs" />
     <Compile Include="Gui\Helper.cs" />
     <Compile Include="Gui\Windows\NewTalismanWindow.xaml.cs">
       <DependentUpon>NewTalismanWindow.xaml</DependentUpon>
@@ -73,6 +74,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Resource Include="Gui\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +151,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Gui\Media\RemoveButton.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\RemoveButton_Hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\PinButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\PinButton_Hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

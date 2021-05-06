@@ -28,7 +28,7 @@
             
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
                 <Label Content="Add Skill" />
-                <ComboBox Name="cbAddSkill" Width="150"/>
+                <ComboBox Name="cbAddSkill" Width="150" PreviewKeyDown="OnKeyDown_AddSkill"/>
                 <Button Name="btnAddSkill" Content="+" Width="20" Height="20" Margin="10,0,0,0" Click="OnClick_AddSkill"/>
             </StackPanel>
             
