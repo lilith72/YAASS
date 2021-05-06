@@ -213,7 +213,9 @@ namespace JustinsASS.Engine.Search
             SearchTarget target,
             out Solution completedSolution)
         {
-            Dictionary<string, int> neededSkillCounts = target.GetRemainingSkillPointsGivenSolution(partialSolution);
+            Dictionary<string, int> neededSkillCounts = target.GetRemainingSkillPointsGivenSolution(partialSolution)
+                .Where(kvp => kvp.Value != 0)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             if (!IsSolutionFeasiblyWithinDecoRange(neededSkillCounts, partialSolution.OpenDecoSlots))
             {
                 completedSolution = null;
