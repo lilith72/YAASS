@@ -81,7 +81,7 @@ namespace JustinsASS.Gui.Controls
             var button = (Button)sender;
             string skill = button.Tag.ToString();
 
-            if (cbAddSkill.SelectedItem != null)
+            if (mSkills.ContainsKey(skill))
             {
                 mSkills[skill].Level = 0;
             }

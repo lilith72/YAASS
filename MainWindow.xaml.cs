@@ -107,14 +107,6 @@ namespace JustinsASS
             UpdateTalismans();
         }
 
-        //private void OnChange_WeaponSlotValue(object sender, RoutedEventArgs e)
-        //{
-        //    var upcSlot = (UpDownControl)sender;
-        //    int slotNum = Int32.Parse(upcSlot.Tag.ToString());
-
-        //    mWeaponSlots[slotNum] = upcSlot.Value;
-        //}
-
         private void UpdateTalismans()
         {
             //IDictionary<string, SkillContributor> talismans = mAss.GetAllCustomTalismans();
