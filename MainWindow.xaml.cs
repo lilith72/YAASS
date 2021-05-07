@@ -37,7 +37,6 @@ namespace JustinsASS
         SkillSelector mSkillSelector;
         SortSelector mSortSelector;
         SlotSelector mWeaponSlotSelector;
-        //int[] mWeaponSlots= new int[Helper.MAX_SLOTS];
         ASS mAss = new ASS();
 
         public MainWindow()

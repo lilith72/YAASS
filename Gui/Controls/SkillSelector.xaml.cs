@@ -27,7 +27,7 @@ namespace JustinsASS.Gui.Controls
             get
             {
                 IDictionary<string, int> selectedSkills = new Dictionary<string, int>();
-                selectedSkills = mSkills.ToDictionary(x => x.Key, x => x.Value.Level);
+                selectedSkills = mSkills.Where(s => s.Value.Level > 0).ToDictionary(x => x.Key, x => x.Value.Level);
                 return selectedSkills;
             }
             private set {}
