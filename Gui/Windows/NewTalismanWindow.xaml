@@ -6,59 +6,24 @@
         xmlns:local="clr-namespace:JustinsASS.Gui.Windows"
         xmlns:controls="clr-namespace:JustinsASS.Gui.Controls"
         mc:Ignorable="d"
-        Title="NewTalismanWindow" Height="500" Width="500">
+        Title="NewTalismanWindow" Height="700" Width="600">
     <StackPanel Orientation="Vertical">
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="20">
             <Label Content=" Talisman Name: "/>
-            <TextBox Name="tbTalismanName" Width="100" />
+            <TextBox Name="tbTalismanName" Width="300" />
         </StackPanel>
-        
-        <Grid Height="400">
+
+        <Grid Name="gridChoosers" Width="520" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
                 <RowDefinition />
             </Grid.RowDefinitions>
-            
-            <Label Content="Skills" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
-            
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
-                <Label Content="Add Skill" />
-                <ComboBox Name="cbAddSkill" Width="150" PreviewKeyDown="OnKeyDown_AddSkill"/>
-                <Button Name="btnAddSkill" Content="+" Width="20" Height="20" Margin="10,0,0,0" Click="OnClick_AddSkill"/>
-            </StackPanel>
-            
-            <ListView Name="lvSkillList" Grid.Column="0" Grid.Row="2" Height="300" BorderThickness="0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="70">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Vertical">
-                                <Label Content="{Binding Path=Key}" />
-                                <controls:UpDownControl  Min="1" Max="{Binding Path=Value.Max}" Value="{Binding Path=Value.Level}" Tag="{Binding Path=Key}" ValueChanged="OnChange_SkillValue" />
-                            </StackPanel>
-
-                            <Button Content="-" Width="20" Height="20" Margin="10,10,0,10" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Tag="{Binding Path=Key}" Click="OnClick_RemoveSkill"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <Label Content="Decoration Slots" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" />
-            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Vertical" Name="spSlots" VerticalAlignment="Center"/>
         </Grid>
-        
-        <Button Name="btnAddTalisman" Content="Add Talisman" Width="100" Click="OnClick_AddTalisman" />
+
+        <Button Name="btnAddTalisman" Content="Add Talisman" Height="30"  Width="150" Click="OnClick_AddTalisman" Margin="20"/>
     </StackPanel>
 </Window>
