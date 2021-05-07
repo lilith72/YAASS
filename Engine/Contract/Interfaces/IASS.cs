@@ -38,13 +38,6 @@ namespace JustinsASS.Engine.Contract.Interfaces
         IList<SkillContributor> GetAllSkillContributors();
 
         /// <summary>
-        /// Returns skill contributor looked up by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        SkillContributor GetSkillContributorById(string id);
-
-        /// <summary>
         /// Returns all "Skill Contributor" (armor/deco/charm) ids. These can be shown to user for purpose of filtering out armors / charms they don't have, etc.
         /// </summary>
         /// <returns></returns>
@@ -82,13 +75,13 @@ namespace JustinsASS.Engine.Contract.Interfaces
         /// 
         /// </summary>
         /// <param name="s">The solution to pin</param>
-        void PersistPinnedSolution(
+        void PinSolution(
             Solution s);
 
         /// <summary>
         /// 
         /// </summary>
-        void FetchAllPinnedSolutions();
+        ISet<Solution> GetAllPinnedSolutions();
 
         /// <summary>
         /// 

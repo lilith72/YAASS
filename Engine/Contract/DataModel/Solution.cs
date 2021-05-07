@@ -1,5 +1,6 @@
 ﻿using JustinsASS.Engine.Contract.FrontEndInterface;
 using JustinsASS.Engine.Search;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace JustinsASS.Engine.Contract.DataModel
     public class Solution
     {
         public List<SkillContributor> Contributors { get; private set; }
-        private Dictionary<string, int> SetIdTally { get; set; }
+        public Dictionary<string, int> SetIdTally { get; set; }
 
         public List<int> OpenDecoSlots { get; private set; }
         public Solution()
@@ -31,6 +32,17 @@ namespace JustinsASS.Engine.Contract.DataModel
             }
 
             this.OpenDecoSlots = new List<int>();
+        }
+
+        [JsonConstructor]
+        public Solution(
+            List<SkillContributor> contributors,
+            List<int> openDecoSlots,
+            Dictionary<string, int> setIdTally)
+        {
+            this.Contributors = contributors;
+            this.OpenDecoSlots = openDecoSlots;
+            this.SetIdTally = setIdTally;
         }
 
         public Solution Clone()

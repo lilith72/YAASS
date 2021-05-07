@@ -14,6 +14,10 @@ namespace JustinsASS.Engine.Contract.Interfaces
 
         Dictionary<string, SkillContributor> GetCustomTalismans();
 
+        void PinSolution(Solution s);
 
+        ISet<Solution> FetchAllPinnedSolutions();
+
+        bool TryUnpinSolution(Solution s, out string errorMessage);
     }
 }

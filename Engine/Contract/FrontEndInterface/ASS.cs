@@ -37,8 +37,14 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
             this.RefreshDataFromFiles();
 
             /*
-             * justins debug search
-            GetSolutionsForSearch(new Dictionary<string, int>()
+            IEnumerable<Solution> alreadyPinnedSolutions = this.GetAllPinnedSolutions();
+            Console.WriteLine($"Loaded pinned solutions and got {alreadyPinnedSolutions.Count()}");
+            foreach(Solution s in alreadyPinnedSolutions)
+            {
+                Console.WriteLine($"pinned solution found: {s}");
+            }
+
+            IEnumerable<Solution> solutionsToPin = GetSolutionsForSearch(new Dictionary<string, int>()
             {
                 { "Guard", 5 },
                 { "Guard Up", 3 },
@@ -49,7 +55,11 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                 { "Hunger Resistance", 2 },
                 { "Speed Sharpening", 1 },
                 { "Flinch Free", 1 },
-            });*/
+            }).Take(3);
+            foreach(Solution s in solutionsToPin)
+            {
+                //this.PinSolution(s);
+            }*/
         }
 
         public void RefreshDataFromFiles()
@@ -85,7 +95,9 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                     $" {talismans.Where(t => t.Slot != ArmorSlot.Talisman).First().SkillContributorId}");
             }
             SearchTarget searchTarget = new SearchTarget(skillNameToDesiredLevel.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList());
-            Inventory targetInventory = new Inventory((new List<SkillContributor>(allInventoryFromFile)).Concat(talismans).ToList());
+            Inventory targetInventory = new Inventory(talismans == null ? 
+                allInventoryFromFile : 
+                allInventoryFromFile.Concat(talismans).ToList());
             if (inventoryFilters != null)
             {
                 foreach (Func<SkillContributor, bool> filter in inventoryFilters)
@@ -129,18 +141,18 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         /// 
         /// </summary>
         /// <param name="s">The solution to pin</param>
-        public void PersistPinnedSolution(
+        public void PinSolution(
             Solution s)
         {
-            throw new NotImplementedException();
+            this.persistedStorageHelper.PinSolution(s);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        public void FetchAllPinnedSolutions()
+        public ISet<Solution> GetAllPinnedSolutions()
         {
-            throw new NotImplementedException();
+            return this.persistedStorageHelper.FetchAllPinnedSolutions();
         }
 
         /// <summary>
@@ -148,17 +160,9 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         /// </summary>
         /// <param name="s">The solution to be returned.</param>
         /// <returns>true if unpin was successful, false if there was an error.</returns>
-        public bool TryUnpinSolution(
-            Solution s,
-            out string errorMessage)
+        public bool TryUnpinSolution(Solution s, out string errorMessage)
         {
-            throw new NotImplementedException();
-        }
-
-        public SkillContributor GetSkillContributorById(string id)
-        {
-
-            throw new NotImplementedException();
+            return this.persistedStorageHelper.TryUnpinSolution(s, out errorMessage);
         }
     }
 }
