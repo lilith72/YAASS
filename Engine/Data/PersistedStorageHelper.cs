@@ -14,15 +14,21 @@ namespace JustinsASS.Engine.Data
     {
         private const string UserDataFolderPath = "./AppData/UserData/";
         private const string TalismansFileName = "Talismans.json";
+        private const string PinnedSolutionsFileName = "PinnedSolutions.json";
 
         // talisman id -> talisman
         private readonly Dictionary<string, SkillContributor> customTalismans;
+        private readonly HashSet<Solution> pinnedSolutions;
 
         public PersistedStorageHelper()
         {
             if (!TryFetchObjectFromFile($"{UserDataFolderPath}{TalismansFileName}", out customTalismans))
             {
                 this.customTalismans = new Dictionary<string, SkillContributor>();
+            }
+            if (!TryFetchObjectFromFile($"{UserDataFolderPath}{PinnedSolutionsFileName}", out pinnedSolutions))
+            {
+                this.pinnedSolutions = new HashSet<Solution>();
             }
         }
 
@@ -92,6 +98,34 @@ namespace JustinsASS.Engine.Data
             {
                 Console.WriteLine($"Exception occurred while trying to read data. {e}");
                 result = default;
+                return false;
+            }
+        }
+
+        public void PinSolution(
+            Solution s)
+        {
+            this.pinnedSolutions.Add(s);
+            TryPersistObjectToFile(this.pinnedSolutions, UserDataFolderPath, PinnedSolutionsFileName);
+        }
+
+        public ISet<Solution> FetchAllPinnedSolutions()
+        {
+            return this.pinnedSolutions;
+        }
+
+        public bool TryUnpinSolution(Solution s, out string errorMessage)
+        {
+            try
+            {
+                this.pinnedSolutions.Remove(s);
+                TryPersistObjectToFile(this.pinnedSolutions, UserDataFolderPath, PinnedSolutionsFileName);
+                errorMessage = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                errorMessage = e.Message;
                 return false;
             }
         }
