@@ -107,13 +107,11 @@ namespace JustinsASS.Gui.Controls
 
         public void UpdateProgressBar()
         {
-
             if (this.Max != 0)
                 pbValueBar.Value = this.Value * 100 / this.Max;
 
             tbValue.Text = this.Value.ToString();
         }
-
 
         private void OnClick_Down(object sender, RoutedEventArgs e)
         {

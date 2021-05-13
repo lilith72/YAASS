@@ -33,12 +33,14 @@ namespace JustinsASS
     /// </summary>
     public partial class MainWindow : Window
     {
-        IList<SolutionData> mSearchResults = new List<SolutionData>();
         SkillSelector mSkillSelector;
         SortSelector mSortSelector;
         SlotSelector mWeaponSlotSelector;
-        //int[] mWeaponSlots= new int[Helper.MAX_SLOTS];
         ASS mAss = new ASS();
+
+        IList<Solution> mSearchResults;
+        SolutionList mSolutionList;
+        SolutionList mPinnedSolutionList;
 
         public MainWindow()
         {
@@ -47,10 +49,23 @@ namespace JustinsASS
             spSearchConditions.Children.Add(mSkillSelector);
 
             mSortSelector = new SortSelector();
+            mSortSelector.OnChange += OnChange_Sort;
             spSearchConditions.Children.Add(mSortSelector);
 
             mWeaponSlotSelector = new SlotSelector(Helper.MAX_SLOT_SIZE, Helper.MAX_WEAPON_SLOTS, "Weapon Decoration Slots");
             spWeaponSlots.Children.Add(mWeaponSlotSelector);
+
+            mSolutionList = new SolutionList(false, true);
+            mSolutionList.Height = 600;
+            mSolutionList.SolutionPinned += PinSolution;
+            spResults.Children.Add(mSolutionList);
+
+            mPinnedSolutionList = new SolutionList(true, false);
+            mPinnedSolutionList.Height = 450;
+            mPinnedSolutionList.SolutionRemoved += RemovePinnedSolution;
+            gridPinnedSolutions.Children.Add(mPinnedSolutionList);
+
+            UpdatedPinned();
         }
 
         private void SearchForSolutions(object sender, RoutedEventArgs e)
@@ -60,27 +75,33 @@ namespace JustinsASS
             IList<int> weaponSlots = (bool)cbUseWeaponSlot.IsChecked ? Helper.DecorationArrayToList(mWeaponSlotSelector.SelectedSlots) : null;
 
             // Do search
-            IList<Solution> searchSolutions = mAss.GetSolutionsForSearch(mSkillSelector.SelectedSkills, weaponSlots, null, mAss.GetAllCustomTalismans().Select(kvp => kvp.Value).ToList());
+            IList<SkillContributor> talismans = (bool)cbUseTalismans.IsChecked ? mAss.GetAllCustomTalismans().Select(kvp => kvp.Value).ToList() : null;
+            mSearchResults = mAss.GetSolutionsForSearch(mSkillSelector.SelectedSkills, weaponSlots, null, mAss.GetAllCustomTalismans().Select(kvp => kvp.Value).ToList());
 
+            // Show on Gui
+            UpdateSolutions();
+
+            // Re-enable search
+            btnSearch.IsEnabled = true;
+        }
+
+        private void UpdateSolutions()
+        {
             // Sort Search
             if (mSortSelector.SelectedSorts.Count > 0)
             {
-                searchSolutions = mAss.SortSolutionsByGivenConditions(searchSolutions, mSortSelector.SelectedSorts);
+                mSearchResults = mAss.SortSolutionsByGivenConditions(mSearchResults, mSortSelector.SelectedSorts);
             }
 
-            // Add to Gui data model and present
-            mSearchResults.Clear();
-            foreach (Solution solution in searchSolutions)
-            {
-                mSearchResults.Add(new SolutionData(solution, mAss));
-            }
+            // Update Gui
+            mSolutionList.Clear();
+            mSolutionList.Add(mSearchResults);
+
             Stopwatch stopwatch = Stopwatch.StartNew();
-            lvSearchResults.ItemsSource = null;
-            lvSearchResults.ItemsSource = mSearchResults;
-            lblNumResults.Content = mSearchResults.Count;
+            lblNumResults.Content = mSolutionList.Count;
+            mSolutionList.UpdateList();
+
             Console.WriteLine(stopwatch.ElapsedMilliseconds);
-            // Re-enable search
-            btnSearch.IsEnabled = true;
         }
 
         private void OnClick_AddNewTalisman(object sender, RoutedEventArgs e)
@@ -107,15 +128,40 @@ namespace JustinsASS
             UpdateTalismans();
         }
 
+        private void OnChange_Sort(object sender, RoutedEventArgs e)
+        {
+            UpdateSolutions();
+        }
+
         private void UpdateTalismans()
         {
-            //IDictionary<string, SkillContributor> talismans = mAss.GetAllCustomTalismans();
             IList<TalismanData> talismans = new List<TalismanData>();
-            foreach(KeyValuePair<string, SkillContributor> talisman in mAss.GetAllCustomTalismans())
+            foreach (KeyValuePair<string, SkillContributor> talisman in mAss.GetAllCustomTalismans())
             {
                 talismans.Add(new TalismanData(talisman.Key, talisman.Value));
             }
             lvTalismans.ItemsSource = talismans;
+        }
+
+        private void UpdatedPinned()
+        {
+            mPinnedSolutionList.Clear();
+            mPinnedSolutionList.Add(mAss.GetAllPinnedSolutions().ToList());
+            mPinnedSolutionList.UpdateList();
+            tabPinnedSolutions.Visibility = 0 < mPinnedSolutionList.Count ? Visibility.Visible : Visibility.Hidden;
+        }
+
+        private void PinSolution(object sender, RoutedEventArgs e)
+        {
+            int index = (int)(e.OriginalSource as Button).Tag;
+            mAss.PinSolution(mSolutionList.Solutions[index].GetAsEngineSolution());
+            UpdatedPinned();
+        }
+        private void RemovePinnedSolution(object sender, RoutedEventArgs e)
+        {
+            int index = (int)(e.OriginalSource as Button).Tag;
+            mAss.TryUnpinSolution(mPinnedSolutionList.Solutions[index].GetAsEngineSolution(), out string errorMessage);
+            UpdatedPinned();
         }
     }
 }

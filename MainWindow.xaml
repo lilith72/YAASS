@@ -80,7 +80,7 @@
                     </StackPanel>
                 </TabItem>
                 <TabItem Name="tabPinnedSolutions" Header="Pinned Sets" Visibility="Hidden">
-                    <ListView Name="lvPinnedSolutions"  Style="{StaticResource SolutionList}" ScrollViewer.CanContentScroll="False"/>
+                    <Grid Name="gridPinnedSolutions"/>
                 </TabItem>
             </TabControl>
         </StackPanel>
@@ -90,7 +90,6 @@
                 <Label Content="Results" />
             </StackPanel>
             <Separator />
-            <ListView Name="lvSearchResults" Style="{StaticResource SolutionList}" Height="610" ScrollViewer.CanContentScroll="False" />
         </StackPanel>
     </StackPanel>
 </Window>

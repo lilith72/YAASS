@@ -66,6 +66,9 @@
     <Compile Include="Gui\Controls\SlotSelector.xaml.cs">
       <DependentUpon>SlotSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gui\Controls\SolutionList.xaml.cs">
+      <DependentUpon>SolutionList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Controls\SortSelector.xaml.cs">
       <DependentUpon>SortSelector.xaml</DependentUpon>
     </Compile>
@@ -86,6 +89,10 @@
     <Page Include="Gui\Controls\SlotSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Gui\Controls\SolutionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Gui\Controls\SortSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
