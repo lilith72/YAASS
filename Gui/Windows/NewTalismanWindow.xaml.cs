@@ -50,7 +50,7 @@ namespace JustinsASS.Gui.Windows
         private void OnClick_AddTalisman(object sender, RoutedEventArgs e)
         {
             IList<int> decoSlots = Helper.DecorationArrayToList(mSlotSelector.SelectedSlots);
-            IList<SkillValue> skillList = mSkillSelector.SelectedSkills.Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList(); ;
+            IList<SkillValue> skillList = mSkillSelector.SelectedSkills.Where(s => s.Value > 0).Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList(); ;
             SkillContributor newTalisman = new SkillContributor(tbTalismanName.Text, 0, decoSlots, ArmorSlot.Talisman, skillList);
             this.Result = newTalisman;
             this.DialogResult = true;

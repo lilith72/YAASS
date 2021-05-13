@@ -84,7 +84,7 @@
             </TabControl>
             <Button Name="btnSearch" Content="Search" Click="SearchForSolutions" Width="200" Height="40" Margin="10" VerticalAlignment="Bottom" VerticalContentAlignment="Center" />
         </StackPanel>
-        <StackPanel Name="spResults" Orientation="Vertical" Width="770" Margin="0, 10, 10, 10" Background="White">
+        <StackPanel Name="spResults" Orientation="Vertical" Width="750" Margin="0, 10, 10, 10" Background="White">
             <StackPanel Orientation="Horizontal">
                 <Label Name="lblNumResults" Content="0"/>
                 <Label Content="Results" />

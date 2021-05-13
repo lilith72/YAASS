@@ -76,7 +76,7 @@ namespace JustinsASS
 
             // Do search
             IList<SkillContributor> talismans = (bool)cbUseTalismans.IsChecked ? mAss.GetAllCustomTalismans().Select(kvp => kvp.Value).ToList() : null;
-            mSearchResults = mAss.GetSolutionsForSearch(mSkillSelector.SelectedSkills, weaponSlots, null, mAss.GetAllCustomTalismans().Select(kvp => kvp.Value).ToList());
+            mSearchResults = mAss.GetSolutionsForSearch(mSkillSelector.SelectedSkills, weaponSlots, null, talismans);
 
             // Show on Gui
             UpdateSolutions();

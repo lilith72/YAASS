@@ -12,7 +12,7 @@ namespace JustinsASS.Engine.Data
 {
     public class PersistedStorageHelper : IPersistedStorageHelper
     {
-        private const string UserDataFolderPath = "./AppData/UserData/";
+        private string UserDataFolderPath;
         private const string TalismansFileName = "Talismans.json";
         private const string PinnedSolutionsFileName = "PinnedSolutions.json";
 
@@ -22,6 +22,7 @@ namespace JustinsASS.Engine.Data
 
         public PersistedStorageHelper()
         {
+            UserDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/YAASS/UserData/";
             if (!TryFetchObjectFromFile($"{UserDataFolderPath}{TalismansFileName}", out customTalismans))
             {
                 this.customTalismans = new Dictionary<string, SkillContributor>();
