@@ -7,7 +7,7 @@
         xmlns:styles="clr-namespace:JustinsASS.Gui"
         xmlns:controls="clr-namespace:JustinsASS.Gui.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1400">
+        Title="YAASS" Height="700" Width="1400">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="btvConverter"/>
     </Window.Resources>
