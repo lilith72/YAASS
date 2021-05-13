@@ -26,7 +26,7 @@ namespace JustinsASS.Gui.Controls
             InitializeComponent();
             lblTitle.Content = chooserTitle;
             this.SelectedSlots = new int[slotMaxSize];
-            for (int i = 0; i < slotMaxSize; i++)
+            for (int i = slotMaxSize - 1; i >= 0 ; i--)
             {
                 Label newLabel = new Label();
                 newLabel.Content = "Size " + (i + 1) + " Slots";

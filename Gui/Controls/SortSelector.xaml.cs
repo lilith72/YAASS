@@ -22,6 +22,7 @@ namespace JustinsASS.Gui.Controls
     /// </summary>
     public partial class SortSelector : UserControl
     {
+        private static readonly RoutedEvent OnChangeEvent = EventManager.RegisterRoutedEvent("OnChange", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(SortSelector));
         IList<string> mAllSorts = new List<string>();
         IList<string> mSorts = new List<string>();
 
@@ -53,6 +54,12 @@ namespace JustinsASS.Gui.Controls
             UpdateSorts();
         }
 
+        public event RoutedEventHandler OnChange
+        {
+            add { AddHandler(OnChangeEvent, value); }
+            remove { RemoveHandler(OnChangeEvent, value); }
+        }
+
         private void OnClick_AddSort(object sender, RoutedEventArgs e)
         {
             if (cbAddSort.SelectedItem != null)
@@ -62,6 +69,7 @@ namespace JustinsASS.Gui.Controls
                 {
                     mSorts.Add(skill);
                     UpdateSorts();
+                    RaiseOnChangeEvent();
                 }
             }
         }
@@ -80,6 +88,7 @@ namespace JustinsASS.Gui.Controls
 
             mSorts.Remove(sort);
             UpdateSorts();
+            RaiseOnChangeEvent();
         }
 
         private void OnClick_MoveSortUp(object sender, RoutedEventArgs e)
@@ -92,6 +101,7 @@ namespace JustinsASS.Gui.Controls
             mSorts.Remove(sort);
             mSorts.Insert(newIndex, sort);
             UpdateSorts();
+            RaiseOnChangeEvent();
         }
 
         private void OnClick_MoveSortDown(object sender, RoutedEventArgs e)
@@ -104,7 +114,15 @@ namespace JustinsASS.Gui.Controls
             mSorts.Remove(sort);
             mSorts.Insert(newIndex, sort);
             UpdateSorts();
+            RaiseOnChangeEvent();
         }
+
+        private void RaiseOnChangeEvent()
+        {
+            RoutedEventArgs eventArgs = new RoutedEventArgs(SortSelector.OnChangeEvent);
+            RaiseEvent(eventArgs);
+        }
+
         private void UpdateSorts()
         {
             // Update Dropdown

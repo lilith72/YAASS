@@ -60,6 +60,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Gui\Controls\SkillSelector.xaml.cs">
+      <DependentUpon>SkillSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Controls\SlotSelector.xaml.cs">
+      <DependentUpon>SlotSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Controls\SolutionList.xaml.cs">
+      <DependentUpon>SolutionList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Controls\SortSelector.xaml.cs">
+      <DependentUpon>SortSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Controls\UpDownControl.xaml.cs">
       <DependentUpon>UpDownControl.xaml</DependentUpon>
     </Compile>
@@ -70,6 +82,22 @@
     <Compile Include="Gui\Windows\NewTalismanWindow.xaml.cs">
       <DependentUpon>NewTalismanWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Gui\Controls\SkillSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Gui\Controls\SlotSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Gui\Controls\SolutionList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Gui\Controls\SortSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Gui\Controls\UpDownControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,5 +193,6 @@
   <ItemGroup>
     <Resource Include="Gui\Media\PinButton_Hover.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
