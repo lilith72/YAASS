@@ -46,10 +46,12 @@ namespace JustinsASS
         {
             InitializeComponent();
             mSkillSelector = new SkillSelector(mAss);
+            mSkillSelector.Height = 500;
             spSearchConditions.Children.Add(mSkillSelector);
 
             mSortSelector = new SortSelector();
             mSortSelector.OnChange += OnChange_Sort;
+            mSortSelector.Height = 500;
             spSearchConditions.Children.Add(mSortSelector);
 
             mWeaponSlotSelector = new SlotSelector(Helper.MAX_SLOT_SIZE, Helper.MAX_WEAPON_SLOTS, "Weapon Decoration Slots");
@@ -88,20 +90,22 @@ namespace JustinsASS
         private void UpdateSolutions()
         {
             // Sort Search
-            if (mSortSelector.SelectedSorts.Count > 0)
+            if (mSearchResults != null)
             {
-                mSearchResults = mAss.SortSolutionsByGivenConditions(mSearchResults, mSortSelector.SelectedSorts);
+                if (mSortSelector.SelectedSorts.Count > 0 && mSearchResults.Count > 1)
+                {
+                    mSearchResults = mAss.SortSolutionsByGivenConditions(mSearchResults, mSortSelector.SelectedSorts);
+                }
+                // Update Gui
+                mSolutionList.Clear();
+                mSolutionList.Add(mSearchResults);
+
+                Stopwatch stopwatch = Stopwatch.StartNew();
+                lblNumResults.Content = mSolutionList.Count;
+                mSolutionList.UpdateList();
+
+                Console.WriteLine(stopwatch.ElapsedMilliseconds);
             }
-
-            // Update Gui
-            mSolutionList.Clear();
-            mSolutionList.Add(mSearchResults);
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            lblNumResults.Content = mSolutionList.Count;
-            mSolutionList.UpdateList();
-
-            Console.WriteLine(stopwatch.ElapsedMilliseconds);
         }
 
         private void OnClick_AddNewTalisman(object sender, RoutedEventArgs e)
