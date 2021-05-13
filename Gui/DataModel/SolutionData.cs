@@ -40,7 +40,7 @@ namespace JustinsASS.Gui.DataModel
             this.CanPin = pinnable;
             this.CanRemove = removable;
             this.Index = index;
-            Skills = Helper.GetSkillsWithMax(solution.GetSkillValues());
+            Skills = Helper.GetSkillsWithMax(solution.GetSkillValues()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
             this.Contributors = new Set(solution.Contributors);
         }
         public Solution GetAsEngineSolution()

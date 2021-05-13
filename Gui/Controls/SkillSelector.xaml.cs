@@ -52,7 +52,7 @@ namespace JustinsASS.Gui.Controls
             // Update dropdown
             cbAddSkill.ItemsSource = mSkills.Where(s => s.Value.Level == 0).OrderBy(s => s.Key).Select(s2 => s2.Key).ToList();
             // Update List of Skills
-            lvSkillList.ItemsSource = mSkills.Where(s => s.Value.Level > 0);
+            lvSkillList.ItemsSource = mSkills.Where(s => s.Value.Level > 0).OrderBy(s => s.Key);
         }
 
         private void OnClick_AddSkill(object sender, RoutedEventArgs e)
