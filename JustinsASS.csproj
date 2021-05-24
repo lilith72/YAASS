@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Gui\Controls\SkillPointBar.xaml.cs">
+      <DependentUpon>SkillPointBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Controls\SkillSelector.xaml.cs">
       <DependentUpon>SkillSelector.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
     <Compile Include="Gui\Windows\NewTalismanWindow.xaml.cs">
       <DependentUpon>NewTalismanWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Gui\Controls\SkillPointBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Controls\SkillSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -105,10 +112,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Resource Include="Gui\Styles.xaml">
+    <Resource Include="Gui\Styles\Styles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Resource>
+    <Page Include="Gui\Styles\Colors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -198,6 +209,31 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="RainbowArmorSphere.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\DragonResistance.png" />
+    <Resource Include="Gui\Media\FireResistance.png" />
+    <Resource Include="Gui\Media\IceResistance.png" />
+    <Resource Include="Gui\Media\ThunderResistance.png" />
+    <Resource Include="Gui\Media\WaterResistance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\Arms.png" />
+    <Resource Include="Gui\Media\Chest.png" />
+    <Resource Include="Gui\Media\Head.png" />
+    <Resource Include="Gui\Media\Legs.png" />
+    <Resource Include="Gui\Media\Waist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\Decoration.png" />
+    <Resource Include="Gui\Media\Talisman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\SkillPoint.png" />
+    <Resource Include="Gui\Media\SkillPoint_Empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\Armor.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

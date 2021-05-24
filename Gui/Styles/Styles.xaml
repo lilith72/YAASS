@@ -1,6 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:JustinsASS.Gui">
+                    xmlns:local="clr-namespace:JustinsASS.Gui.Styles">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="./Colors.xaml"/>
+    </ResourceDictionary.MergedDictionaries>  
+            
     <Style x:Key="RemoveButtonStyle" TargetType="Button">
         <Setter Property="ToolTip" Value="Remove"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -9,8 +13,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Image Name="Default" Source="Media/RemoveButton.png" Width="30" Height="30"/>
-                        <Image Name="Hover" Source="Media/RemoveButton_Hover.png" Width="30" Height="30" Visibility="Hidden"/>
+                        <Image Name="Default" Source="../Media/RemoveButton.png" Width="30" Height="30"/>
+                        <Image Name="Hover" Source="../Media/RemoveButton_Hover.png" Width="30" Height="30" Visibility="Hidden"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True"/>
@@ -25,6 +29,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="ResistanceIconStyle" TargetType="Image">
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Height" Value="20"/>
     </Style>
 
     <Style x:Key="PinButtonStyle" TargetType="Button">
@@ -53,6 +62,43 @@
         </Setter>
     </Style>
 
-    <Style x:Key="SolutionList" TargetType="ListView">
+    <Style x:Key="styleGridRow" TargetType="Border">
+        <Style.Resources>
+            <SolidColorBrush x:Key="brushListItem" Color="{StaticResource colorListItemBG}" />
+            <SolidColorBrush x:Key="brushListItemBorder" Color="{StaticResource colorListItemBorder}" />
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="20" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="Grid.ColumnSpan" Value="2" />
+        <!--<Setter Property="BorderBrush" Value="{StaticResource brushListBorder}"/>-->
+        <Setter Property="BorderBrush" Value="{StaticResource brushListItemBorder}" />
+        <Setter Property="BorderThickness" Value="4" />
+        <Setter Property="Background" Value="{StaticResource brushListItem}" />
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+    
+    <Style x:Key="styleListItem" TargetType="ListViewItem">
+        <Style.Resources>
+            <SolidColorBrush x:Key="brushListItem" Color="{StaticResource colorListItemBG}" />
+            <SolidColorBrush x:Key="brushListItemBorder" Color="{StaticResource colorListItemBorder}" />
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="20" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="BorderBrush" Value="{StaticResource brushListItemBorder}" />
+        <Setter Property="BorderThickness" Value="4" />
+        <Setter Property="Background" Value="{StaticResource brushListItem}" />
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+
+    <Style x:Key="styleList" TargetType="ListView">
+        <Style.Resources>
+            <SolidColorBrush x:Key="brushContainerBG" Color="{StaticResource colorContainerBG}" />
+            <SolidColorBrush x:Key="brushText" Color="{StaticResource colorText}" />
+            <Style TargetType="ListViewItem" BasedOn="{StaticResource styleListItem}"/>
+        </Style.Resources>
+        <Setter Property="Background" Value="{StaticResource brushContainerBG}" />
+        <!--<Setter Property="Foreground" Value="{StaticResource brushText}"/>-->
     </Style>
 </ResourceDictionary>
