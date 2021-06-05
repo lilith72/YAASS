@@ -26,6 +26,9 @@ namespace JustinsASS.Gui.DataModel
         public bool CanRemove { get; private set; }
         public int? Index { get; private set; }
 
+        // Needed to properly reconstruct solution, but shouldn't need to be exposed to user
+        private Dictionary<string, int> SetIdTally { get; set; }
+
         public SolutionData(Solution solution, int? index = null, bool pinnable = false, bool removable = false)
         {
             Regex vacantPattern = new Regex(@"vacant.*slot");
@@ -42,12 +45,13 @@ namespace JustinsASS.Gui.DataModel
             this.Index = index;
             Skills = Helper.GetSkillsWithMax(solution.GetSkillValues()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
             this.Contributors = new Set(solution.Contributors);
+            this.SetIdTally = solution.SetIdTally;
         }
         public Solution GetAsEngineSolution()
         {
-            Solution solution = new Solution();
+            
             IList<string> contributorIds = new List<string>();
-
+            
             contributorIds.Add(this.Contributors.Head);
             contributorIds.Add(this.Contributors.Chest);
             contributorIds.Add(this.Contributors.Arms);
@@ -58,14 +62,14 @@ namespace JustinsASS.Gui.DataModel
             {
                 contributorIds.Add(id);
             };
-            foreach (string id in contributorIds)
-            {
-                SkillContributor skillContributor = ASS.Instance.GetAllSkillContributors().Where(c => c.SkillContributorId.Equals(id)).FirstOrDefault();
-                if (null != skillContributor)
-                {
-                    solution.AddNewPiece(skillContributor);
-                }
-            }
+            Solution solution = new Solution(
+                contributorIds
+                    .Where(id => !string.IsNullOrEmpty(id))
+                    .Select(s => ASS.Instance.GetAllSkillContributors().Where(
+                                c => c.SkillContributorId.Equals(s)).FirstOrDefault())
+                    .ToList(),
+                this.SpareSlots.ToList(),
+                this.SetIdTally);
             return solution;
         }
 

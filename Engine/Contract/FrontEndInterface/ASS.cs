@@ -70,12 +70,13 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
 
         public IList<string> GetAllSkillContributorIds()
         {
-            return allInventoryFromFile.Select(skillContributor => skillContributor.SkillContributorId).ToList();
+            return allInventoryFromFile.Select(skillContributor => skillContributor.SkillContributorId)
+                .Union(this.GetAllCustomTalismans().Keys).ToList();
         }
 
         public IList<SkillContributor> GetAllSkillContributors()
         {
-            return allInventoryFromFile;
+            return allInventoryFromFile.Union(this.GetAllCustomTalismans().Values).ToList();
         }
 
         public IDictionary<string, int> GetSkillNamesToMaxLevelMapping()
