@@ -84,8 +84,17 @@ namespace JustinsASS.Engine.Search
                 inventory,
                 target,
                 partialSolution);
-            Console.WriteLine($"search took {stopwatch.ElapsedMilliseconds}ms and found {result.Count()} solutions.");
-            Console.WriteLine($"search explored {exploredNodes} nodes, {trimmedNodes} of which were skipped due to duplicate.");
+            long measuredTime = stopwatch.ElapsedMilliseconds;
+            int actuallyConsideredNodes = exploredNodes - trimmedNodes;
+            Console.WriteLine($"search took {measuredTime}ms and found {result.Count()} solutions.");
+            Console.WriteLine(
+                string.Join(Environment.NewLine, new[] {
+                    $"{exploredNodes:N0} combinations total searched,",
+                    $"{trimmedNodes:N0} combinations skipped (duplicates),",
+                    $"{actuallyConsideredNodes:N0} combinations considered,",
+                    $"{exploredNodes * 1.0 / measuredTime * 1000.0} total nodes per second,",
+                    $"{actuallyConsideredNodes * 1.0 / measuredTime * 1000.0} nodes considered per second",
+                }));
             return result;
         }
 
@@ -99,7 +108,7 @@ namespace JustinsASS.Engine.Search
             if (target.SolutionFulfillsTarget(partialSolution))
             {
                 solutionsCount++;
-                Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
+                //Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
                 resultSolutions.Add(partialSolution);
                 return resultSolutions;
             }
@@ -126,7 +135,7 @@ namespace JustinsASS.Engine.Search
                 if (TryCompleteSolutionWithDecos(partialSolution, target, out Solution completedSolution))
                 {
                     solutionsCount++;
-                    Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
+                    //Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
                     resultSolutions.Add(completedSolution);
                 }
                 // return early since decos shouldn't be handled by standard search with this optimization
@@ -178,7 +187,8 @@ namespace JustinsASS.Engine.Search
                 exploredNodes++;
                 if (exploredNodes % 100000 == 0)
                 {
-                    Console.WriteLine($"explored {exploredNodes} nodes");
+                    Console.Write(".");
+                    //Console.WriteLine($"explored {exploredNodes} nodes");
                 }
                 // Create new solution with chosen item
                 Solution newPartialSolution = partialSolution.Clone();
