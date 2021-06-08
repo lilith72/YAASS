@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Gui\Controls\DecoSlot.xaml.cs">
+      <DependentUpon>DecoSlot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Controls\SkillPointBar.xaml.cs">
       <DependentUpon>SkillPointBar.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
     <Compile Include="Gui\Windows\NewTalismanWindow.xaml.cs">
       <DependentUpon>NewTalismanWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Gui\Controls\DecoSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gui\Controls\SkillPointBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,11 +119,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Resource Include="Gui\Styles\Styles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Resource>
-    <Page Include="Gui\Styles\Colors.xaml">
+    <Page Include="Gui\Resources\Colors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,6 +211,10 @@
     <Resource Include="Gui\Media\PinButton_Hover.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Gui\Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Resource Include="RainbowArmorSphere.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -234,6 +241,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Gui\Media\Armor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Gui\Media\Decoration1.png" />
+    <Resource Include="Gui\Media\Decoration2.png" />
+    <Resource Include="Gui\Media\Decoration3.png" />
+    <Resource Include="Gui\Media\Decoration4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -16,30 +16,31 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Label Content="Add Sort" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+        <Label Content="Add Sort" HorizontalAlignment="Center" Grid.Row="0"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
             <ComboBox Name="cbAddSort" Width="180" PreviewKeyDown="OnKeyDown_AddSort" />
             <Button x:Name="btnAddSort" Width="40" Content="+" Click="OnClick_AddSort" />
         </StackPanel>
-        <ListView Name="lvSortList" Grid.Column="1" Grid.Row="2" Height="450" Width="250" HorizontalContentAlignment="Stretch">
+        <ListView Name="lvSortList" Style="{StaticResource styleList}" Background="{StaticResource brushListItem}" Grid.Row="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="80">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="20" />
-                            <ColumnDefinition Width="50" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
+                    <Grid>
+                        <Grid Height="80">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="20" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
 
-                        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  Content="{Binding}" />
-                        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
-                            <Button Content="/\" Width="20" Height="20" Tag="{Binding}" Click="OnClick_MoveSortUp" />
-                            <Button Content="\/" Width="20" Height="20" Tag="{Binding}" Click="OnClick_MoveSortDown" />
-                        </StackPanel>
-                        <Button Style="{StaticResource RemoveButtonStyle}" Grid.Row="0" Grid.Column="2" Tag="{Binding}" Click="OnClick_RemoveSort" />
+                            <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"  Content="{Binding}" />
+                            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center">
+                                <Button Content="/\" Width="20" Height="20" Tag="{Binding}" Click="OnClick_MoveSortUp" />
+                                <Button Content="\/" Width="20" Height="20" Tag="{Binding}" Click="OnClick_MoveSortDown" />
+                            </StackPanel>
+                        </Grid>
+                        <Button Style="{StaticResource RemoveButtonStyle}" Tag="{Binding}" Click="OnClick_RemoveSort" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

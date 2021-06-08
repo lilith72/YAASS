@@ -90,6 +90,7 @@ namespace JustinsASS.Gui.Controls
         public UpDownControl()
         {
             InitializeComponent();
+            pbValueBar.Foreground = (LinearGradientBrush)FindResource("brushProgressBar");
             UpdateProgressBar();
         }
 

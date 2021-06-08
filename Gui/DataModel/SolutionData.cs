@@ -29,14 +29,13 @@ namespace JustinsASS.Gui.DataModel
         public SolutionData(Solution solution, int? index = null, bool pinnable = false, bool removable = false)
         {
             Regex vacantPattern = new Regex(@"vacant.*slot");
-            //this.ContributorIds = new List<string>();
             this.ArmorPoints = solution.GetTotalArmorPoints();
             this.FireRes = solution.GetTotalFireResistance();
             this.WaterRes = solution.GetTotalWaterResistance();
             this.IceRes = solution.GetTotalIceResistance();
             this.ThunderRes = solution.GetTotalThunderResistance();
             this.DragonRes = solution.GetTotalDragonResistance();
-            this.SpareSlots = solution.GetSpareSlots();
+            this.SpareSlots = solution.GetSpareSlots().OrderByDescending(s => s).ToList();
             this.CanPin = pinnable;
             this.CanRemove = removable;
             this.Index = index;

@@ -28,86 +28,111 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
-                                <Grid Width="200">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="auto" />
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition  />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Border Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" BorderBrush="Blue" BorderThickness="2"/>
-                                    <Image Grid.Column="0" Grid.Row="0" Source="../Media/Head.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Image Grid.Column="0" Grid.Row="1" Source="../Media/Chest.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Image Grid.Column="0" Grid.Row="2" Source="../Media/Arms.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Image Grid.Column="0" Grid.Row="3" Source="../Media/Waist.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Image Grid.Column="0" Grid.Row="4" Source="../Media/Legs.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Image Grid.Column="0" Grid.Row="5" Source="../Media/Talisman.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Image Grid.Column="0" Grid.Row="6" Source="../Media/Decoration.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Label Content="{Binding Path=Contributors.Head}" Grid.Column="1" Grid.Row="0"/>
-                                    <Label Content="{Binding Path=Contributors.Chest}" Grid.Column="1" Grid.Row="1"/>
-                                    <Label Content="{Binding Path=Contributors.Arms}" Grid.Column="1" Grid.Row="2"/>
-                                    <Label Content="{Binding Path=Contributors.Waist}" Grid.Column="1" Grid.Row="3"/>
-                                    <Label Content="{Binding Path=Contributors.Legs}" Grid.Column="1" Grid.Row="4"/>
-                                    <Label Content="{Binding Path=Contributors.Talisman}" Grid.Column="1" Grid.Row="5"/>
-                                    <ItemsControl ItemsSource="{Binding Path=Contributors.Decos}" Width="Auto" Height="Auto" BorderThickness="0" Grid.Column="1" Grid.Row="6">
-                                        <ItemsControl.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Label Content="{Binding}"/>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ItemsControl.ItemTemplate>
-                                        <ItemsControl.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Vertical"/>
-                                            </ItemsPanelTemplate>
-                                        </ItemsControl.ItemsPanel>
-                                    </ItemsControl>
-                                </Grid>
-                                <Grid Width="180">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Image Grid.Column="0" Grid.Row="0" Source="../Media/Armor.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Label Grid.Column="1" Grid.Row="0" Content="{Binding Path=ArmorPoints}" />
-                                    <Image Grid.Column="0" Grid.Row="1" Source="../Media/FireResistance.png" Style="{StaticResource ResistanceIconStyle}" />
-                                    <Label Grid.Column="1" Grid.Row="1" Content="{Binding Path=FireRes}" />
-                                    <Image Grid.Column="0" Grid.Row="2" Source="../Media/WaterResistance.png" Style="{StaticResource ResistanceIconStyle}"/>
-                                    <Label Grid.Column="1" Grid.Row="2" Content="{Binding Path=WaterRes}" />
-                                    <Image Grid.Column="0" Grid.Row="3" Source="../Media/IceResistance.png" Style="{StaticResource ResistanceIconStyle}"/>
-                                    <Label Grid.Column="1" Grid.Row="3" Content="{Binding Path=IceRes}" />
-                                    <Image Grid.Column="0" Grid.Row="4" Source="../Media/ThunderResistance.png" Style="{StaticResource ResistanceIconStyle}"/>
-                                    <Label Grid.Column="1" Grid.Row="4" Content="{Binding Path=ThunderRes}" />
-                                    <Image Grid.Column="0" Grid.Row="5" Source="../Media/DragonResistance.png" Style="{StaticResource ResistanceIconStyle}"/>
-                                    <Label Grid.Column="1" Grid.Row="5" Content="{Binding Path=DragonRes}" />
-                                </Grid>
-                                <ItemsControl ItemsSource="{Binding Path=Skills}" Width="Auto" Height="Auto" BorderThickness="0">
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical" Width="250" Style="{StaticResource styleSolutionStack}">
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/Head.png" ToolTip="Head" Style="{StaticResource ResistanceIconStyle}" />
+                                            <TextBlock Text="{Binding Path=Contributors.Head}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/Chest.png" ToolTip="Chest" Style="{StaticResource ResistanceIconStyle}" />
+                                            <TextBlock Text="{Binding Path=Contributors.Chest}" Style="{StaticResource styleSolutionText}"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/Arms.png" ToolTip="Arms" Style="{StaticResource ResistanceIconStyle}" />
+                                            <TextBlock Text="{Binding Path=Contributors.Arms}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/Waist.png" ToolTip="Waist" Style="{StaticResource ResistanceIconStyle}" />
+                                            <TextBlock Text="{Binding Path=Contributors.Waist}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/Legs.png" ToolTip="Legs" Style="{StaticResource ResistanceIconStyle}" />
+                                            <TextBlock Text="{Binding Path=Contributors.Legs}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/Talisman.png" ToolTip="Talisman" Style="{StaticResource ResistanceIconStyle}" />
+                                            <TextBlock Text="{Binding Path=Contributors.Talisman}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/Decoration.png" ToolTip="Decorations" Style="{StaticResource ResistanceIconStyle}" />
+                                            <ItemsControl ItemsSource="{Binding Path=Contributors.Decos}" Width="Auto" Height="Auto" BorderThickness="0" Margin="25,0,0,0">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid>
+                                                            <TextBlock Text="{Binding}"/>
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel Orientation="Vertical"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                                <StackPanel Orientation="Vertical" Width="125" Style="{StaticResource styleSolutionStack}"  Margin="15,0,0,0">
+                                    <Border Padding="10">
+                                        <StackPanel>
+                                            <Image Source="../Media/Armor.png" ToolTip="Armor Points" Style="{StaticResource ResistanceIconStyle}"  Width="20" Height="20" />
+                                            <TextBlock Text="{Binding Path=ArmorPoints}" Style="{StaticResource styleSolutionText}"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/FireResistance.png" ToolTip="Fire Resistance" Style="{StaticResource ResistanceIconStyle}" />
+                                            <TextBlock Text="{Binding Path=FireRes}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/WaterResistance.png" ToolTip="Water Resistance" Style="{StaticResource ResistanceIconStyle}"/>
+                                            <TextBlock Text="{Binding Path=WaterRes}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/IceResistance.png" ToolTip="Ice Resistance" Style="{StaticResource ResistanceIconStyle}"/>
+                                            <TextBlock Text="{Binding Path=IceRes}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/ThunderResistance.png" ToolTip="Thunder Resistance" Style="{StaticResource ResistanceIconStyle}"/>
+                                            <TextBlock Text="{Binding Path=ThunderRes}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Border>
+                                        <StackPanel>
+                                            <Image Source="../Media/DragonResistance.png" ToolTip="Dragon Resistance" Style="{StaticResource ResistanceIconStyle}"/>
+                                            <TextBlock Text="{Binding Path=DragonRes}" Style="{StaticResource styleSolutionText}" />
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                                <ItemsControl ItemsSource="{Binding Path=Skills}" Width="Auto" Height="Auto" BorderThickness="0" Margin="15,0,0,0">
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Label Width="120" Content="{Binding Path=Key, StringFormat=\{0\}: }"/>
-                                                <local:SkillPointBar Max="{Binding Path=Value.Max}" Points="{Binding Path=Value.Level}" />
-                                                <!--<Label Content="{Binding Path=Value.Level}" Margin="0"/>
-                                                    <Label Content="/" Margin="0"/>
-                                                    <Label Content="{Binding Path=Value.Max}" Margin="0"/>-->
-                                            </StackPanel>
+                                            <Border Style="{StaticResource styleSolutionRow}">
+                                                <StackPanel>
+                                                    <TextBlock Width="120" Text="{Binding Path=Key, StringFormat=\{0\}: }"/>
+                                                    <local:SkillPointBar Max="{Binding Path=Value.Max}" Points="{Binding Path=Value.Level}" />
+                                                </StackPanel>
+                                            </Border>
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                     <ItemsControl.ItemsPanel>
@@ -117,23 +142,25 @@
                                     </ItemsControl.ItemsPanel>
                                 </ItemsControl>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Spare Slots: "/>
-                                <ItemsControl ItemsSource="{Binding Path=SpareSlots}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Label Content="{Binding}"/>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapPanel/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
-                            </StackPanel>
+                            <Border Style="{StaticResource styleSolutionRow}" Margin="0,15,0,0">
+                                <StackPanel >
+                                    <TextBlock Text="Spare Slots: "/>
+                                    <ItemsControl ItemsSource="{Binding Path=SpareSlots}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <local:DecoSlot Size="{Binding}" Margin="5,0,5,0"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel/>
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </Border>
                         </StackPanel>
                         <Button Name="btnPin" Style="{StaticResource PinButtonStyle}" Tag="{Binding Path=Index}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding Path=CanPin, Converter={StaticResource btvConverter}}" Click="OnClick_Pin" />
                         <Button Name="btnRemove" Style="{StaticResource RemoveButtonStyle}" Tag="{Binding Path=Index}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="{Binding Path=CanRemove, Converter={StaticResource btvConverter}}" Click="OnClick_Remove" />

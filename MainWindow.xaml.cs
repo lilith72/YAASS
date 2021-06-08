@@ -45,22 +45,27 @@ namespace JustinsASS
         public MainWindow()
         {
             InitializeComponent();
-            mSkillSelector = new SkillSelector(mAss);
-            mSkillSelector.Height = 500;
+            mSkillSelector = new SkillSelector(mAss)
+            {
+                Height = 500,
+                Width = 300
+            };
             spSearchConditions.Children.Add(mSkillSelector);
 
             mSortSelector = new SortSelector();
             mSortSelector.OnChange += OnChange_Sort;
             mSortSelector.Height = 500;
+            mSkillSelector.Width = 300;
             spSearchConditions.Children.Add(mSortSelector);
 
             mWeaponSlotSelector = new SlotSelector(Helper.MAX_SLOT_SIZE, Helper.MAX_WEAPON_SLOTS, "Weapon Decoration Slots");
             spWeaponSlots.Children.Add(mWeaponSlotSelector);
 
             mSolutionList = new SolutionList(false, true);
-            mSolutionList.Height = 600;
             mSolutionList.SolutionPinned += PinSolution;
             spResults.Children.Add(mSolutionList);
+            mSolutionList.Height = 610;
+            mSolutionList.SetBinding(SolutionList.WidthProperty, "{Binding RelativeSource={...}, Path=ActualWidth}");
 
             mPinnedSolutionList = new SolutionList(true, false);
             mPinnedSolutionList.Height = 450;
