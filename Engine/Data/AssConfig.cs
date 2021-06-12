@@ -12,18 +12,24 @@ namespace YAASS.Engine.Data
     public class AssConfig : IAssConfig
     {
         private bool EnableDebugAssertions = false;
+        private bool EnableLoggingToDisk = true;
         private int SearchMaxResults = 100;
         private int SearchTimeoutSeconds = 120;
+        private string LogOutputFolder;
 
         [JsonConstructor]
         public AssConfig(
+            string LogOutputFolder,
             bool EnableDebugAssertions = false,
+            bool EnableLoggingToDisk = true,
             int SearchMaxResults = 100,
             int SearchTimeoutSeconds = 120)
         {
             this.EnableDebugAssertions = EnableDebugAssertions;
+            this.EnableLoggingToDisk = EnableLoggingToDisk;
             this.SearchMaxResults = SearchMaxResults;
             this.SearchTimeoutSeconds = SearchTimeoutSeconds;
+            this.LogOutputFolder = LogOutputFolder;
         }
 
         // Steps to add new config:
@@ -37,6 +43,11 @@ namespace YAASS.Engine.Data
             return this.EnableDebugAssertions;
         }
 
+        public bool GetEnableLoggingToDisk()
+        {
+            return this.EnableLoggingToDisk;
+        }
+
         public int GetSearchMaxResults()
         {
             return this.SearchMaxResults;
@@ -45,6 +56,11 @@ namespace YAASS.Engine.Data
         public int GetSearchTimeoutSeconds()
         {
             return this.SearchTimeoutSeconds;
+        }
+
+        public string GetLogOutputFolder()
+        {
+            return this.LogOutputFolder;
         }
     }
 }

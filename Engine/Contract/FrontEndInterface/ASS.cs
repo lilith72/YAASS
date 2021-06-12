@@ -20,6 +20,7 @@ namespace YAASS.Engine.Contract.FrontEndInterface
         private readonly ISolutionSorter solutionSorter;
         private readonly IPersistedStorageHelper persistedStorageHelper;
         private readonly IAssConfigProvider assConfigProvider;
+        private readonly IAssLogger logger;
 
         private List<SkillContributor> allInventoryFromFile;
         private Dictionary<string, int> skillNameToMaxValue;
@@ -32,8 +33,9 @@ namespace YAASS.Engine.Contract.FrontEndInterface
             }
             ASS.Instance = this;
             this.assConfigProvider = new AssConfigProvider();
+            this.logger = new AssLogger(assConfigProvider);
             this.inventoryProvider = new CsvInventoryProvider();
-            this.searchWorker = new SearchWorker(assConfigProvider);
+            this.searchWorker = new SearchWorker(this.assConfigProvider, this.logger);
             this.solutionSorter = new SolutionSorter();
             this.persistedStorageHelper = new PersistedStorageHelper();
             this.RefreshDataFromFiles();
@@ -166,6 +168,11 @@ namespace YAASS.Engine.Contract.FrontEndInterface
         public bool TryUnpinSolution(Solution s, out string errorMessage)
         {
             return this.persistedStorageHelper.TryUnpinSolution(s, out errorMessage);
+        }
+
+        public IAssLogger GetInstanceLogger()
+        {
+            return this.logger;
         }
     }
 }

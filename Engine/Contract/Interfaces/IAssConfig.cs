@@ -11,6 +11,7 @@ namespace YAASS.Engine.Contract.Interfaces
         int GetSearchTimeoutSeconds();
         int GetSearchMaxResults();
         bool GetEnableDebugAssertions();
-
+        bool GetEnableLoggingToDisk();
+        string GetLogOutputFolder();
     }
 }

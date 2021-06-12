@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using YAASS.Engine.Contract.FrontEndInterface;
 
 namespace YAASS
 {
@@ -17,9 +18,18 @@ namespace YAASS
             object sender,
             System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            //MessageBox.Show($"Unhandled exception occurred: {e.Exception.Message}"
-            //    + Environment.NewLine + $"stack trace: {e.Exception.StackTrace}",
-            //    "Exception Occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
+            try
+            {
+                string dumpString = $"Unhandled exception occurred: {e.Exception}"
+                    + Environment.NewLine + $"stack trace: {e.Exception.StackTrace}";
+                ASS.Instance.GetInstanceLogger().Log(dumpString, Engine.Contract.DataModel.AssLogLevel.Error);
+                MessageBox.Show(dumpString,
+                    "Exception Occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Was not able to display and log exception due to exception: {ex}");
+            }
         }
     }
 }

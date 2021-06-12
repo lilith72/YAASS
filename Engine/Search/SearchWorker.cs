@@ -23,9 +23,10 @@ namespace YAASS.Engine.Search
         // Calculate decorations in the set without generic search, but with naive deco population once armors are filled.
         // Good optimization with theoretically no downside as long as enableSearchDecosOnlyAfterArmorExhausted is true.
         // hard coded not to do anyhthing if enableSearchDecosOnlyAfterArmorExhausted is false.
-        private bool enableSpecialDecoHandling = true;
-        private bool debugAssertionsEnabled = false;
-        private IAssConfigProvider assConfigProvider;
+        private readonly bool enableSpecialDecoHandling = true;
+
+        private readonly IAssConfigProvider assConfigProvider;
+        private readonly IAssLogger logger;
         
         private ISet<Solution> seenPartialSolutions = null;
         private Stopwatch stopwatch;
@@ -36,13 +37,17 @@ namespace YAASS.Engine.Search
         // precomputed fields
         private Dictionary<string, Decoration> SkillNameToProvidingDeco;
 
-        public SearchWorker(IAssConfigProvider configProvider)
+        public SearchWorker(
+            IAssConfigProvider configProvider,
+            IAssLogger logger)
         {
             this.assConfigProvider = configProvider;
+            this.logger = logger;
         }
 
         public IEnumerable<Solution> FindAllSolutions(Inventory inventory, SearchTarget target, IList<int> weaponDecoSlots = null)
         {
+            Console.WriteLine(weaponDecoSlots.First().ToString());
             this.stopwatch = Stopwatch.StartNew();
             this.solutionsCount = 0;
             this.exploredNodes = 0;
@@ -55,7 +60,7 @@ namespace YAASS.Engine.Search
                 partialSolution.OpenDecoSlots.AddRange(weaponDecoSlots);
             }
 
-            if (debugAssertionsEnabled)
+            if (this.assConfigProvider.GetConfig().GetEnableDebugAssertions())
             {
                 HashSet<string> seenSkillIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (Decoration deco in inventory.AllContributors
@@ -84,8 +89,8 @@ namespace YAASS.Engine.Search
                 inventory,
                 target,
                 partialSolution);
-            Console.WriteLine($"search took {stopwatch.ElapsedMilliseconds}ms and found {result.Count()} solutions.");
-            Console.WriteLine($"search explored {exploredNodes} nodes, {trimmedNodes} of which were skipped due to duplicate.");
+            this.logger.Log($"search took {stopwatch.ElapsedMilliseconds}ms and found {result.Count()} solutions.", AssLogLevel.Info);
+            this.logger.Log($"search explored {exploredNodes} nodes, {trimmedNodes} of which were skipped due to duplicate.", AssLogLevel.Info);
             return result;
         }
 
@@ -99,7 +104,7 @@ namespace YAASS.Engine.Search
             if (target.SolutionFulfillsTarget(partialSolution))
             {
                 solutionsCount++;
-                Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
+                this.logger.Log($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms", AssLogLevel.Verbose);
                 resultSolutions.Add(partialSolution);
                 return resultSolutions;
             }
@@ -127,7 +132,7 @@ namespace YAASS.Engine.Search
                 if (TryCompleteSolutionWithDecos(partialSolution, target, out Solution completedSolution))
                 {
                     solutionsCount++;
-                    Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
+                    this.logger.Log($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms", AssLogLevel.Verbose);
                     resultSolutions.Add(completedSolution);
                 }
                 // return early since decos shouldn't be handled by standard search with this optimization
@@ -179,7 +184,7 @@ namespace YAASS.Engine.Search
                 exploredNodes++;
                 if (exploredNodes % 100000 == 0)
                 {
-                    Console.WriteLine($"explored {exploredNodes} nodes");
+                    this.logger.Log($"explored {exploredNodes} nodes", AssLogLevel.Verbose);
                 }
                 // Create new solution with chosen item
                 Solution newPartialSolution = partialSolution.Clone();
@@ -250,7 +255,7 @@ namespace YAASS.Engine.Search
                     completedSolution.AddNewPiece(decoToAdd);
                 }
             }
-            if (debugAssertionsEnabled)
+            if (this.assConfigProvider.GetConfig().GetEnableDebugAssertions())
             {
                 if (!target.SolutionFulfillsTarget(completedSolution))
                 {

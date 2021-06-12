@@ -63,10 +63,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Engine\Contract\DataModel\LogLevel.cs" />
     <Compile Include="Engine\Contract\Interfaces\IAssConfig.cs" />
     <Compile Include="Engine\Contract\Interfaces\IAssConfigProvider.cs" />
+    <Compile Include="Engine\Contract\Interfaces\IAssLogger.cs" />
     <Compile Include="Engine\Data\AssConfig.cs" />
     <Compile Include="Engine\Data\AssConfigProvider.cs" />
+    <Compile Include="Engine\Data\AssLogger.cs" />
     <Compile Include="Gui\Controls\DecoSlot.xaml.cs">
       <DependentUpon>DecoSlot.xaml</DependentUpon>
     </Compile>
