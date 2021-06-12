@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:JustinsASS.Gui.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="200">
-    <Grid>
+    <Grid Style="{StaticResource styleUpDownControl}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
@@ -17,7 +17,9 @@
         </Grid.RowDefinitions>
         <Button Grid.Column="0" Width="30" Height="30" Click="OnClick_Down">-</Button>
         <ProgressBar Name="pbValueBar" Grid.Column="1" Minimum="0" Maximum="100" />
-        <TextBlock Name="tbValue" Grid.Column="1" Width="30" Height="30" Background="white" Text="0" TextAlignment="Center" VerticalAlignment="Center"/>
+        <Border Grid.Column="1" Width="30" Height="30">
+            <TextBlock Name="tbValue" Text="0" TextAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
         <Button Grid.Column="2" Width="30" Height="30" Click="OnClick_Up">+</Button>
     </Grid>
 </UserControl>

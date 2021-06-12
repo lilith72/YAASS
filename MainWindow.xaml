@@ -7,71 +7,70 @@
         xmlns:styles="clr-namespace:JustinsASS.Gui"
         xmlns:controls="clr-namespace:JustinsASS.Gui.Controls"
         mc:Ignorable="d"
-        Title="YAASS" Height="700" Width="1400">
+        Title="YAASS" Height="700" Width="1600"
+        ResizeMode="NoResize">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="btvConverter"/>
     </Window.Resources>
 
-    <StackPanel Background="Gray" Orientation="Horizontal">
-        <StackPanel Name="spSearch" Orientation="Vertical" Width="600" Margin="10">
-            <TabControl Height="580">
+    <StackPanel Background="{StaticResource brushAppBackground}" Orientation="Horizontal">
+        <StackPanel Name="spSearch" Orientation="Vertical" Width="775" Margin="10" Background="{StaticResource brushContainerBG}">
+            <TabControl Height="580" Style="{StaticResource styleTabControl}">
                 <TabItem Header="Search Conditions">
-                    <StackPanel Orientation="Vertical" Background="White">
-                        <CheckBox Name="cbUseWeaponSlot" Content="Use Weapon Slots" VerticalAlignment="Center" Margin="20,0,0,0" />
-                        <CheckBox Name="cbUseTalismans" Content="Use My Talismans" VerticalAlignment="Center" Margin="20,0,0,0" Checked="OnCheck_UseTalismans" />
-                        <StackPanel Name="spSearchConditions" Background="White" Orientation="Horizontal" HorizontalAlignment="Center" />
+                    <StackPanel Orientation="Vertical" Margin="15">
+                        <CheckBox Name="cbUseWeaponSlot" Content="Use Weapon Slots" VerticalAlignment="Center"  />
+                        <CheckBox Name="cbUseTalismans" Content="Use My Talismans" VerticalAlignment="Center" Checked="OnCheck_UseTalismans" />
+                        <StackPanel Name="spSearchConditions" Orientation="Horizontal" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </TabItem>
                 <TabItem Name="tabMyWeaponSlots" Header="My Weapon Slots" Visibility="{Binding IsChecked, ElementName=cbUseWeaponSlot, Converter={StaticResource btvConverter}}">
-                    <StackPanel Orientation="Vertical" Name="spWeaponSlots"/>
+                    <StackPanel Orientation="Vertical" Name="spWeaponSlots" Width="500" Margin="20"/>
                 </TabItem>
                 <TabItem Name="tabMyTalismans" Header="My Talismans" Visibility="{Binding IsChecked, ElementName=cbUseTalismans, Converter={StaticResource btvConverter}}">
                     <StackPanel Orientation="Vertical">
-                        <Button Name="btnAddTalisman" Content="Add New Talisman" Click="OnClick_AddNewTalisman" />
-                        <ListView Name="lvTalismans" Height="450" Width="450" BorderThickness="0" ScrollViewer.CanContentScroll="False">
+                        <Button Name="btnAddTalisman" Content="Add New Talisman" Click="OnClick_AddNewTalisman" Margin="10" Height="40" Width="150"/>
+                        <ListView Name="lvTalismans" Style="{StaticResource styleSelectorList}" HorizontalContentAlignment="Stretch" Height="480" BorderThickness="0" ScrollViewer.CanContentScroll="False" Background="{StaticResource brushContainerBG}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
-                                        <Border BorderThickness="2" BorderBrush="LightGray">
-                                            <StackPanel Orientation="Vertical">
-                                                <Label Content="{Binding Path=Name}" />
-                                                <Separator/>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Label Content="Slots: "/>
-                                                    <ItemsControl ItemsSource="{Binding Path=Slots}">
-                                                        <ItemsControl.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <Label Content="{Binding}"/>
-                                                                </StackPanel>
-                                                            </DataTemplate>
-                                                        </ItemsControl.ItemTemplate>
-                                                        <ItemsControl.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <WrapPanel/>
-                                                            </ItemsPanelTemplate>
-                                                        </ItemsControl.ItemsPanel>
-                                                    </ItemsControl>
-                                                </StackPanel>
-                                                <Separator/>
-                                                <ItemsControl ItemsSource="{Binding Path=Skills}" Height="70">
+                                        <StackPanel Orientation="Vertical">
+                                            <Label Content="{Binding Path=Name}" />
+                                            <Separator Background="{StaticResource brushListItemBorder}" />
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="Slots: "/>
+                                                <ItemsControl ItemsSource="{Binding Path=Slots}">
                                                     <ItemsControl.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackPanel Orientation="Horizontal">
-                                                                <Label Content="{Binding Path=SkillId}" />
-                                                                <Label Content="{Binding Path=Points}" HorizontalAlignment="Right" Margin="0,0,20,0"/>
+                                                                <controls:DecoSlot Size="{Binding}"/>
                                                             </StackPanel>
                                                         </DataTemplate>
                                                     </ItemsControl.ItemTemplate>
                                                     <ItemsControl.ItemsPanel>
                                                         <ItemsPanelTemplate>
-                                                            <WrapPanel Width="430" />
+                                                            <WrapPanel/>
                                                         </ItemsPanelTemplate>
                                                     </ItemsControl.ItemsPanel>
                                                 </ItemsControl>
-                                                <Button Style="{StaticResource RemoveButtonStyle}" Tag="{Binding Path=Name}" Click="OnClick_RemoveTalisman"/>
                                             </StackPanel>
-                                        </Border>
+                                            <Separator Background="{StaticResource brushListItemBorder}" />
+                                            <ItemsControl ItemsSource="{Binding Path=Skills}" Height="70" HorizontalContentAlignment="Stretch">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Label Content="{Binding Path=SkillId}" />
+                                                            <controls:SkillPointBar Points="{Binding Path=Points}" Margin="0,0,20,0"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                            </ItemsControl>
+                                            <Button Style="{StaticResource RemoveButtonStyle}" Width="30" Height="30" Tag="{Binding Path=Name}" Click="OnClick_RemoveTalisman"/>
+                                        </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -82,14 +81,16 @@
                     <Grid Name="gridPinnedSolutions"/>
                 </TabItem>
             </TabControl>
-            <Button Name="btnSearch" Content="Search" Click="SearchForSolutions" Width="200" Height="40" Margin="10" VerticalAlignment="Bottom" VerticalContentAlignment="Center" />
+            <Button Name="btnSearch" Style="{StaticResource styleButton}" Content="Search" Click="SearchForSolutions" Width="200" Height="40" Margin="10" VerticalAlignment="Bottom" VerticalContentAlignment="Center" />
         </StackPanel>
-        <StackPanel Name="spResults" Orientation="Vertical" Width="750" Margin="0, 10, 10, 10" Background="White">
-            <StackPanel Orientation="Horizontal">
-                <Label Name="lblNumResults" Content="0"/>
-                <Label Content="Results" />
+        <Border CornerRadius="15">
+            <StackPanel Name="spResults" Orientation="Vertical" Width="775"  Margin="0, 10, 10, 10" Background="{StaticResource brushContainerBG}">
+                <StackPanel Orientation="Horizontal">
+                    <Label Name="lblNumResults" Margin="5,0,0,0" Content="0" Foreground="{StaticResource brushText}" />
+                    <Label Content="Results" Foreground="{StaticResource brushText}" />
+                </StackPanel>
+                <Separator />
             </StackPanel>
-            <Separator />
-        </StackPanel>
+        </Border>
     </StackPanel>
 </Window>

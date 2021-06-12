@@ -42,28 +42,38 @@ namespace JustinsASS
         SolutionList mSolutionList;
         SolutionList mPinnedSolutionList;
 
+        const int SEARCH_COL_WIDTH = 350;
+        const int SEARCH_COL_HEIGHT = 500;
+
         public MainWindow()
         {
             InitializeComponent();
-            mSkillSelector = new SkillSelector(mAss);
-            mSkillSelector.Height = 500;
+            mSkillSelector = new SkillSelector(mAss)
+            {
+                Height = SEARCH_COL_HEIGHT,
+                Width = SEARCH_COL_WIDTH
+            };
             spSearchConditions.Children.Add(mSkillSelector);
 
-            mSortSelector = new SortSelector();
+            mSortSelector = new SortSelector()
+            {
+                Height = SEARCH_COL_HEIGHT,
+                Width = SEARCH_COL_WIDTH
+            };
             mSortSelector.OnChange += OnChange_Sort;
-            mSortSelector.Height = 500;
             spSearchConditions.Children.Add(mSortSelector);
 
             mWeaponSlotSelector = new SlotSelector(Helper.MAX_SLOT_SIZE, Helper.MAX_WEAPON_SLOTS, "Weapon Decoration Slots");
             spWeaponSlots.Children.Add(mWeaponSlotSelector);
 
             mSolutionList = new SolutionList(false, true);
-            mSolutionList.Height = 600;
             mSolutionList.SolutionPinned += PinSolution;
             spResults.Children.Add(mSolutionList);
+            mSolutionList.Height = 610;
+            mSolutionList.SetBinding(SolutionList.WidthProperty, "{Binding RelativeSource={...}, Path=ActualWidth}");
 
             mPinnedSolutionList = new SolutionList(true, false);
-            mPinnedSolutionList.Height = 450;
+            mPinnedSolutionList.SetBinding(SolutionList.HeightProperty, "{Binding RelativeSource={...}, Path=ActualHeight}");
             mPinnedSolutionList.SolutionRemoved += RemovePinnedSolution;
             gridPinnedSolutions.Children.Add(mPinnedSolutionList);
 
