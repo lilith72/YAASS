@@ -1,15 +1,15 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.Interfaces;
-using JustinsASS.Engine.Data;
-using JustinsASS.Engine.DataReader;
-using JustinsASS.Engine.Search;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.Interfaces;
+using YAASS.Engine.Data;
+using YAASS.Engine.DataReader;
+using YAASS.Engine.Search;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Contract.FrontEndInterface
+namespace YAASS.Engine.Contract.FrontEndInterface
 {
     public class ASS : IASS
     {

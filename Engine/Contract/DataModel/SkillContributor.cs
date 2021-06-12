@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Contract.DataModel
+namespace YAASS.Engine.Contract.DataModel
 {
     public class SkillContributor
     {

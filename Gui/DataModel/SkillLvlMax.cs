@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Gui.DataModel
+namespace YAASS.Gui.DataModel
 {
     public class SkillLvlMax
     {

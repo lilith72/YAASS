@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Contract.Interfaces
+namespace YAASS.Engine.Contract.Interfaces
 {
     public interface IAssConfigProvider
     {

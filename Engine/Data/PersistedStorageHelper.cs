@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JustinsASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.DataModel;
 using Newtonsoft.Json;
 using System.IO;
-using JustinsASS.Engine.Contract.Interfaces;
+using YAASS.Engine.Contract.Interfaces;
 
-namespace JustinsASS.Engine.Data
+namespace YAASS.Engine.Data
 {
     public class PersistedStorageHelper : IPersistedStorageHelper
     {

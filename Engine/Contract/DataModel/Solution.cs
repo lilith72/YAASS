@@ -1,5 +1,5 @@
-﻿using JustinsASS.Engine.Contract.FrontEndInterface;
-using JustinsASS.Engine.Search;
+﻿using YAASS.Engine.Contract.FrontEndInterface;
+using YAASS.Engine.Search;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Contract.DataModel
+namespace YAASS.Engine.Contract.DataModel
 {
     public class Solution
     {

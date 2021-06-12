@@ -1,4 +1,4 @@
-﻿using JustinsASS.Engine.Contract.Interfaces;
+﻿using YAASS.Engine.Contract.Interfaces;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Data
+namespace YAASS.Engine.Data
 {
     public class AssConfigProvider : IAssConfigProvider
     {

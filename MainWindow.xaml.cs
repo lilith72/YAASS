@@ -15,18 +15,18 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-using JustinsASS.Engine.Contract.FrontEndInterface;
-using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.Interfaces;
+using YAASS.Engine.Contract.FrontEndInterface;
+using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.Interfaces;
 using System.Text.RegularExpressions;
 using System.Globalization;
-using JustinsASS.Gui.Windows;
-using JustinsASS.Gui.DataModel;
-using JustinsASS.Gui;
-using JustinsASS.Gui.Controls;
+using YAASS.Gui.Windows;
+using YAASS.Gui.DataModel;
+using YAASS.Gui;
+using YAASS.Gui.Controls;
 using System.Diagnostics;
 
-namespace JustinsASS
+namespace YAASS
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

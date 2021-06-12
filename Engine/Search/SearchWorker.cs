@@ -1,6 +1,6 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.Interfaces;
-using JustinsASS.Engine.Data;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.Interfaces;
+using YAASS.Engine.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Search
+namespace YAASS.Engine.Search
 {
     public class SearchWorker : ISearchWorker
     {

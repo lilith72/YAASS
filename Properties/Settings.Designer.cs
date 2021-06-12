@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JustinsASS.Properties
+namespace YAASS.Properties
 {
 
 

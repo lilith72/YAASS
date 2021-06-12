@@ -1,6 +1,6 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.FrontEndInterface;
-using JustinsASS.Gui.DataModel;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.FrontEndInterface;
+using YAASS.Gui.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JustinsASS.Gui.Controls
+namespace YAASS.Gui.Controls
 {
     /// <summary>
     /// Interaction logic for SkillSelector.xaml

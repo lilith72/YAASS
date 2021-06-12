@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.FrontEndInterface;
-using JustinsASS.Gui.DataModel;
+using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.FrontEndInterface;
+using YAASS.Gui.DataModel;
 
-namespace JustinsASS.Gui
+namespace YAASS.Gui
 {
     public class Helper
     {
