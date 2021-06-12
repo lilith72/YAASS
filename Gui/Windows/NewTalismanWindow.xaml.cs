@@ -38,6 +38,7 @@ namespace JustinsASS.Gui.Windows
 
             mSkillSelector = new SkillSelector(ass);
             gridChoosers.Children.Add(mSkillSelector);
+            mSkillSelector.Height = 400;
             Grid.SetColumn(mSkillSelector, 0);
             Grid.SetRow(mSkillSelector, 0);
 
@@ -49,12 +50,15 @@ namespace JustinsASS.Gui.Windows
 
         private void OnClick_AddTalisman(object sender, RoutedEventArgs e)
         {
-            IList<int> decoSlots = Helper.DecorationArrayToList(mSlotSelector.SelectedSlots);
-            IList<SkillValue> skillList = mSkillSelector.SelectedSkills.Where(s => s.Value > 0).Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList(); ;
-            SkillContributor newTalisman = new SkillContributor(tbTalismanName.Text, 0, decoSlots, ArmorSlot.Talisman, skillList);
-            this.Result = newTalisman;
-            this.DialogResult = true;
-            this.Close();
+            if (tbTalismanName.Text.Length > 0)
+            {
+                IList<int> decoSlots = Helper.DecorationArrayToList(mSlotSelector.SelectedSlots);
+                IList<SkillValue> skillList = mSkillSelector.SelectedSkills.Where(s => s.Value > 0).Select(kvp => new SkillValue(kvp.Key, kvp.Value)).ToList(); ;
+                SkillContributor newTalisman = new SkillContributor(tbTalismanName.Text, 0, decoSlots, ArmorSlot.Talisman, skillList);
+                this.Result = newTalisman;
+                this.DialogResult = true;
+                this.Close();
+            }
         }
     }
 }

@@ -4,18 +4,20 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="./Colors.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-
+    <!--TODO: Clean this up-->
+    
     <Style x:Key="RemoveButtonStyle" TargetType="Button">
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
         <Setter Property="ToolTip" Value="Remove"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="Margin" Value="0,0,-15,-15"/>
+        <Setter Property="Margin" Value="0,0,-10,-10"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Image Name="Default" Source="../Media/RemoveButton.png" Width="30" Height="30"/>
-                        <Image Name="Hover" Source="../Media/RemoveButton_Hover.png" Width="30" Height="30" Visibility="Hidden"/>
+                        <Image Name="Default" Source="../Media/RemoveButton.png"/>
+                        <Image Name="Hover" Source="../Media/RemoveButton_Hover.png" Visibility="Hidden"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True"/>
@@ -35,19 +37,21 @@
     <Style x:Key="ResistanceIconStyle" TargetType="Image">
         <Setter Property="Width" Value="25"/>
         <Setter Property="Height" Value="25"/>
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
     </Style>
 
     <Style x:Key="PinButtonStyle" TargetType="Button">
+        <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
         <Setter Property="ToolTip" Value="Pin"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="VerticalAlignment" Value="Bottom"/>
-        <Setter Property="Margin" Value="0,-15,-15,0"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="0,-10,-10,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Grid>
-                        <Image Name="Default" Source="../Media/PinButton.png" Width="30" Height="30"/>
-                        <Image Name="Hover" Source="../Media/PinButton_Hover.png" Width="30" Height="30" Visibility="Hidden"/>
+                        <Image Name="Default" Source="../Media/PinButton.png" />
+                        <Image Name="Hover" Source="../Media/PinButton_Hover.png" Visibility="Hidden"/>
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True"/>
@@ -77,14 +81,6 @@
             <SolidColorBrush x:Key="brushSolutionItem" Color="{StaticResource colorSolutionItemBG}" />
             <SolidColorBrush x:Key="brushSolutionItemBorder" Color="{StaticResource colorSolutionItemBorder}" />
             <Style TargetType="StackPanel">
-                <!--<Style.Resources>
-                    <Style TargetType="Image">
-                        <Setter Property="Margin" Value="50"/>
-                    </Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
-                    </Style>
-                </Style.Resources>-->
                 <Setter Property="Orientation" Value="Horizontal" />
             </Style>
         </Style.Resources>
@@ -92,6 +88,19 @@
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Padding" Value="8" />
         <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource brushSolutionItemBorder}"/>
+    </Style>
+
+    <Style x:Key="styleSelectorItemBorder" TargetType="Border">
+        <Style.Resources>
+            <SolidColorBrush x:Key="brushSolutionItem" Color="{StaticResource colorSolutionItemBG}" />
+            <SolidColorBrush x:Key="brushSolutionItemBorder" Color="{StaticResource colorSolutionItemBorder}" />
+        </Style.Resources>
+        <Setter Property="Background" Value="{StaticResource brushSolutionItem}" />
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="15" />
+        <Setter Property="CornerRadius" Value="15" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="BorderBrush" Value="{StaticResource brushSolutionItemBorder}"/>
     </Style>
@@ -105,6 +114,30 @@
         <Style.Resources>
             <Style TargetType="TextBlock" BasedOn="{StaticResource styleTextBlock}"/>
             <Style TargetType="Border" BasedOn="{StaticResource styleSolutionRow}"/>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="styleSelectorList" TargetType="ListView">
+        <Style.Resources>
+            <Style TargetType="ListViewItem">
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <Border CornerRadius="15" 
+                                    Padding="15,10,15,15"
+                            BorderBrush="{StaticResource brushListItemBorder}"
+                            BorderThickness="1"
+                            Background="{StaticResource brushItemBG}">
+                                <ContentPresenter/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True"/>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Style.Resources>
     </Style>
 
@@ -143,6 +176,25 @@
         <Setter Property="Background" Value="{StaticResource brushContainerBG}" />
     </Style>
 
+    <Style x:Key="styleButton" TargetType="Button">
+        <Setter Property="Foreground" Value="{StaticResource brushText}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="Border" BorderBrush="{StaticResource brushText}" BorderThickness="1" Background="{StaticResource brushButtonBG}" CornerRadius="5">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter TargetName="Border" Property="Background" Value="{StaticResource brushButtonHoverBG}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="styleTabControl" TargetType="TabControl">
         <Setter Property="Background" Value="{StaticResource brushContainerBG}" />
         <Setter Property="Foreground" Value="{StaticResource brushText}" />
@@ -165,23 +217,46 @@
             <Style TargetType="ListView">
                 <Setter Property="Background" Value="{StaticResource brushContainerBG}" />
             </Style>
-            <Style TargetType="Button">
-                <Setter Property="BorderBrush" Value="{StaticResource brushButtonFG}" />
-                <Setter Property="Background" Value="{StaticResource brushButtonBG}" />
-            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource styleButton}"/>
             <Style TargetType="TabItem">
                 <Setter Property="Background" Value="{StaticResource brushTabBG}" />
                 <Setter Property="Foreground" Value="{StaticResource brushTabText}" />
-                <Style.Triggers>
-                    <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Background" Value="{StaticResource brushContainerBG}" />
-                        <Setter Property="Foreground" Value="{StaticResource brushText}" />
-                    </Trigger>
-                    <Trigger Property="IsSelected" Value="False">
-                        <Setter Property="Background" Value="{StaticResource brushTabBG}" />
-                        <Setter Property="Foreground" Value="{StaticResource brushTabText}" />
-                    </Trigger>
-                </Style.Triggers>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TabItem">
+                            <Grid>
+                                <Border Name="Border" Background="{StaticResource brushTabBG}" BorderThickness="1" BorderBrush="{StaticResource brushText}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10" ContentSource="Header"/>
+                                </Border>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background" Value="{StaticResource brushContainerBG}" />
+                                    <Setter Property="Foreground" Value="{StaticResource brushText}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="styleNewTalismanStack" TargetType="StackPanel">
+        <Setter Property="Background" Value="{StaticResource brushContainerBG}" />
+        <Style.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="{StaticResource brushText}" />
+            </Style>
+            <Style TargetType="Button" BasedOn="{StaticResource styleButton}" />
+            <Style TargetType="TextBox">
+                <Setter Property="Foreground" Value="{StaticResource brushText}" />
+                <Setter Property="Background" Value="{StaticResource brushTabBG}" />
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="3"/>
+            </Style>
+            <Style TargetType="StackPanel">
+                <Setter Property="Background" Value="{StaticResource brushContainerBG}" />
             </Style>
         </Style.Resources>
     </Style>
@@ -221,5 +296,47 @@
                 </Setter>
             </Style>
         </Style.Resources>
+    </Style>
+
+    <Style x:Key="styleComboBox" TargetType="ComboBox">
+        <Style.Resources>
+            <Style TargetType="ComboBoxItem">
+                <Setter Property="Background" Value="{StaticResource brushTabBG}" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="BorderBrush" Value="{StaticResource brushTabBG}" />
+                <Setter Property="Foreground" Value="{StaticResource brushText}" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="IsEditable" Value="True" />
+
+        <Setter Property="Template">
+            <!--Used https://stackoverflow.com/questions/16392670/custom-combobox-in-wpf-application to fix WPF's busted comboBoxes-->
+            <Setter.Value>
+                <ControlTemplate TargetType="ComboBox">
+                    <Grid>
+                        <ToggleButton Name="ToggleButton" Background="{StaticResource brushTabBG}" Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press" />
+                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Margin="3,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                        <TextBox x:Name="PART_EditableTextBox" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                                 Margin="10,3,23,3" Focusable="True"  Background="Transparent" Foreground="{StaticResource brushText}" BorderThickness="0" IsReadOnly="{TemplateBinding IsReadOnly}"/>
+                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                            <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                <Border x:Name="DropDownBorder" Background="{StaticResource brushAppBackground}" BorderThickness="1"/>
+                                <ScrollViewer Margin="4,6,4,6" SnapsToDevicePixels="True">
+                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained" />
+                                </ScrollViewer>
+                            </Grid>
+                        </Popup>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="Black"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" TargetName="PART_EditableTextBox" Value="Black"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 </ResourceDictionary>

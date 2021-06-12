@@ -128,7 +128,7 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <Border Style="{StaticResource styleSolutionRow}">
-                                                <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
                                                     <TextBlock Width="120" Text="{Binding Path=Key, StringFormat=\{0\}: }"/>
                                                     <local:SkillPointBar Max="{Binding Path=Value.Max}" Points="{Binding Path=Value.Level}" />
                                                 </StackPanel>
@@ -162,8 +162,8 @@
                                 </StackPanel>
                             </Border>
                         </StackPanel>
-                        <Button Name="btnPin" Style="{StaticResource PinButtonStyle}" Tag="{Binding Path=Index}" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding Path=CanPin, Converter={StaticResource btvConverter}}" Click="OnClick_Pin" />
-                        <Button Name="btnRemove" Style="{StaticResource RemoveButtonStyle}" Tag="{Binding Path=Index}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="{Binding Path=CanRemove, Converter={StaticResource btvConverter}}" Click="OnClick_Remove" />
+                        <Button Name="btnPin" Style="{StaticResource PinButtonStyle}" Tag="{Binding Path=Index}" Width="30" Height="30" Visibility="{Binding Path=CanPin, Converter={StaticResource btvConverter}}" Click="OnClick_Pin" />
+                        <Button Name="btnRemove" Style="{StaticResource RemoveButtonStyle}" Tag="{Binding Path=Index}" Width="30" Height="30" Visibility="{Binding Path=CanRemove, Converter={StaticResource btvConverter}}" Click="OnClick_Remove" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

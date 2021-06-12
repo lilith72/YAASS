@@ -7,12 +7,11 @@
         xmlns:controls="clr-namespace:JustinsASS.Gui.Controls"
         mc:Ignorable="d"
         Title="NewTalismanWindow" Height="700" Width="600">
-    <StackPanel Orientation="Vertical">
+    <StackPanel Orientation="Vertical" Style="{StaticResource styleNewTalismanStack}">
         <StackPanel Orientation="Horizontal" Margin="20">
             <Label Content=" Talisman Name: "/>
-            <TextBox Name="tbTalismanName" Width="300" />
+            <TextBox Name="tbTalismanName" Width="300" Height="30" />
         </StackPanel>
-
         <Grid Name="gridChoosers" Width="520" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="250">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -16,16 +16,20 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Label Content="Add Sort" HorizontalAlignment="Center" Grid.Row="0"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <ComboBox Name="cbAddSort" Width="180" PreviewKeyDown="OnKeyDown_AddSort" />
-            <Button x:Name="btnAddSort" Width="40" Content="+" Click="OnClick_AddSort" />
-        </StackPanel>
-        <ListView Name="lvSortList" Style="{StaticResource styleList}" Background="{StaticResource brushListItem}" Grid.Row="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+        <Label Content="Add Sort" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" Name="cbAddSort" PreviewKeyDown="OnKeyDown_AddSort" Style="{StaticResource styleComboBox}" />
+            <Button Grid.Column="1" Name="btnAddSort" Width="40" Content="+" Click="OnClick_AddSort" Margin="0,0,5,0"/>
+        </Grid>
+        <ListView Name="lvSortList" Style="{StaticResource styleSelectorList}" Background="{StaticResource brushListItem}" Grid.Row="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <Grid Height="80">
+                        <Grid Height="70">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="20" />
@@ -40,7 +44,7 @@
                                 <Button Content="\/" Width="20" Height="20" Tag="{Binding}" Click="OnClick_MoveSortDown" />
                             </StackPanel>
                         </Grid>
-                        <Button Style="{StaticResource RemoveButtonStyle}" Tag="{Binding}" Click="OnClick_RemoveSort" />
+                        <Button Style="{StaticResource RemoveButtonStyle}" Tag="{Binding}" Click="OnClick_RemoveSort" Width="20" Height="20"/>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

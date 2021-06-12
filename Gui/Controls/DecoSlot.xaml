@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Image Width="25" Height="25" Name="imgDecoSlot" />
+        <Image Width="25" Height="25" Name="imgDecoSlot" RenderOptions.BitmapScalingMode="HighQuality" />
     </Grid>
 </UserControl>
