@@ -25,7 +25,7 @@
             <ComboBox Grid.Column="0" Name="cbAddSort" PreviewKeyDown="OnKeyDown_AddSort" Style="{StaticResource styleComboBox}" />
             <Button Grid.Column="1" Name="btnAddSort" Width="40" Content="+" Click="OnClick_AddSort" Margin="0,0,5,0"/>
         </Grid>
-        <ListView Name="lvSortList" Style="{StaticResource styleSelectorList}" Background="{StaticResource brushListItem}" Grid.Row="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+        <ListView Name="lvSortList" Style="{StaticResource styleSelectorList}" Background="{StaticResource brushListItem}" ScrollViewer.CanContentScroll="False" Grid.Row="2" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

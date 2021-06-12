@@ -25,7 +25,7 @@
             <ComboBox Grid.Column="0" Name="cbAddSkill" PreviewKeyDown="OnKeyDown_AddSkill" Style="{StaticResource styleComboBox}"/>
             <Button Grid.Column="1" Content="+" Width="40" Click="OnClick_AddSkill" Margin="0,0,5,0"/>
         </Grid>
-        <ListView Name="lvSkillList" Background="{StaticResource brushListItem}" Style="{StaticResource styleSelectorList}" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0">
+        <ListView Name="lvSkillList" Background="{StaticResource brushListItem}" ScrollViewer.CanContentScroll="False" Style="{StaticResource styleSelectorList}" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Padding="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="70">
