@@ -1,5 +1,6 @@
 ﻿using JustinsASS.Engine.Contract.DataModel;
 using JustinsASS.Engine.Contract.Interfaces;
+using JustinsASS.Engine.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,10 +14,8 @@ namespace JustinsASS.Engine.Search
     {
         // TODO move all these to config file
         private bool enableSearchDecosOnlyAfterArmorExhausted = true;
-        private bool enableStopAfterNSeconds = false;
-        private int secondsToStopAt = 30;
+        private bool enableStopAfterNSeconds = true;
         private bool enableStopAfterNSolutions = true;
-        private int solutionsToStopAt = 100;
 
         // in practice this doesn't help much and causes search to skip many valid solutions. Best to leave it off.
         private bool enableGreedySkillSelectionHeuristic = false;
@@ -26,6 +25,7 @@ namespace JustinsASS.Engine.Search
         // hard coded not to do anyhthing if enableSearchDecosOnlyAfterArmorExhausted is false.
         private bool enableSpecialDecoHandling = true;
         private bool debugAssertionsEnabled = false;
+        private IAssConfigProvider assConfigProvider;
         
         private ISet<Solution> seenPartialSolutions = null;
         private Stopwatch stopwatch;
@@ -36,9 +36,9 @@ namespace JustinsASS.Engine.Search
         // precomputed fields
         private Dictionary<string, Decoration> SkillNameToProvidingDeco;
 
-        public SearchWorker()
+        public SearchWorker(IAssConfigProvider configProvider)
         {
-            // Intentionally empty
+            this.assConfigProvider = configProvider;
         }
 
         public IEnumerable<Solution> FindAllSolutions(Inventory inventory, SearchTarget target, IList<int> weaponDecoSlots = null)
@@ -104,12 +104,13 @@ namespace JustinsASS.Engine.Search
                 return resultSolutions;
             }
 
-            if (enableStopAfterNSeconds && stopwatch.ElapsedMilliseconds > secondsToStopAt * 1000)
+            if (enableStopAfterNSeconds &&
+                stopwatch.ElapsedMilliseconds > this.assConfigProvider.GetConfig().GetSearchTimeoutSeconds() * 1000)
             {
                 return resultSolutions;
             }
 
-            if (enableStopAfterNSolutions && solutionsCount >= solutionsToStopAt)
+            if (enableStopAfterNSolutions && solutionsCount >= this.assConfigProvider.GetConfig().GetSearchMaxResults())
             {
                 // Their search is not refined; just quit.
                 return resultSolutions;
@@ -194,7 +195,7 @@ namespace JustinsASS.Engine.Search
 
                 // Recurse and check using this chosen item
                 resultSolutions.AddRange(SearchForSolutionsRecursive(helpfulInventory, target, newPartialSolution));
-                if (enableStopAfterNSolutions && solutionsCount >= solutionsToStopAt)
+                if (enableStopAfterNSolutions && solutionsCount >= this.assConfigProvider.GetConfig().GetSearchMaxResults())
                 {
                     return resultSolutions;
                 }

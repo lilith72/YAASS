@@ -63,6 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Engine\Contract\Interfaces\IAssConfig.cs" />
+    <Compile Include="Engine\Contract\Interfaces\IAssConfigProvider.cs" />
+    <Compile Include="Engine\Data\AssConfig.cs" />
+    <Compile Include="Engine\Data\AssConfigProvider.cs" />
     <Compile Include="Gui\Controls\DecoSlot.xaml.cs">
       <DependentUpon>DecoSlot.xaml</DependentUpon>
     </Compile>
@@ -178,6 +182,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AppData\Config\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="AppData\Decorations\Decorations.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -248,5 +255,6 @@
     <Resource Include="Gui\Media\Decoration3.png" />
     <Resource Include="Gui\Media\Decoration4.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

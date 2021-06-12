@@ -1,0 +1,5 @@
+﻿{
+    "EnableDebugAssertions" : false,
+    "SearchMaxResults" : 100,
+    "SearchTimeoutSeconds" : 120
+}

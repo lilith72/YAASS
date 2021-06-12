@@ -19,6 +19,7 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         private readonly ISearchWorker searchWorker;
         private readonly ISolutionSorter solutionSorter;
         private readonly IPersistedStorageHelper persistedStorageHelper;
+        private readonly IAssConfigProvider assConfigProvider;
 
         private List<SkillContributor> allInventoryFromFile;
         private Dictionary<string, int> skillNameToMaxValue;
@@ -30,8 +31,9 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                 throw new Exception("ASS does not support duplicate instance construction and should be used as a singleton.");
             }
             ASS.Instance = this;
+            this.assConfigProvider = new AssConfigProvider();
             this.inventoryProvider = new CsvInventoryProvider();
-            this.searchWorker = new SearchWorker();
+            this.searchWorker = new SearchWorker(assConfigProvider);
             this.solutionSorter = new SolutionSorter();
             this.persistedStorageHelper = new PersistedStorageHelper();
             this.RefreshDataFromFiles();
