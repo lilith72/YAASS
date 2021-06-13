@@ -26,15 +26,15 @@ namespace YAASS.Engine.Contract.DataModel
         /// <returns></returns>
         public bool SkillContributorHelpsTarget(SkillContributor contributor, Solution partialSolution)
         {
-            if (contributor.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul", StringComparison.OrdinalIgnoreCase)))
-            {
-                return true;
-            }
-
             if (!partialSolution.CanFitNewPiece(contributor)
                 && !(partialSolution.Contributors.Any(contr => contr is VacantSlot) && contributor is Decoration)) // Don't discard decos we could potentially fit later
             {
                 return false;
+            }
+
+            if (contributor.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul", StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
             }
 
             // TODO: take armors that don't help skills but do add skill slots

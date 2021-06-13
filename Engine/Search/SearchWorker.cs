@@ -100,15 +100,6 @@ namespace YAASS.Engine.Search
         {
             List<Solution> resultSolutions = new List<Solution>();
             
-            if (partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Brigade Lobos S"))
-                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Kamura Garb S"))
-                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Ludroth Bracers S"))
-                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Nargacuga Coil S"))
-                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Anjanath Greaves S")))
-            {
-                Console.WriteLine("DEBUG BREAK");
-            }
-
             if (target.SolutionFulfillsTarget(partialSolution))
             {
                 solutionsCount++;
@@ -135,7 +126,7 @@ namespace YAASS.Engine.Search
             // optimization A: only check decorations if we're out of armors
             // this does decrease quality of results by preventing surfacing sets with decos but without armors.
             bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration) 
-                && !s.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Soulstorm")));
+                && !s.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul")));
             if (enableSpecialDecoHandling && !areArmorsLeft)
             {
                 if (TryCompleteSolutionWithDecos(partialSolution, target, out Solution completedSolution))
@@ -178,6 +169,15 @@ namespace YAASS.Engine.Search
 
             foreach (SkillContributor chosenItem in skillContrsToTry)
             {
+                /*if (partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Brigade Lobos S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Kamura Garb S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Ludroth Bracers S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Nargacuga Coil S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Anjanath Greaves S"))
+                    && chosenItem.SkillContributorId.Contains("staminasurge2plus11"))
+                {
+                    Console.WriteLine("DEBUG BREAK");
+                }*/
                 /*if (chosenItem.SkillContributorId.Equals("Ironwall Jewel 2")
                     && partialSolution.Contributors.Count(contr => contr is VacantSlot) == 5
                     && partialSolution.Contributors.Any(contr => contr.SkillContributorId.Equals("Bazelgeuse Greaves")))
