@@ -42,7 +42,7 @@ namespace YAASS.Gui.DataModel
             this.CanPin = pinnable;
             this.CanRemove = removable;
             this.Index = index;
-            Skills = Helper.GetSkillsWithMax(solution.GetSkillValues()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
+            Skills = Helper.GetSkillsWithMax(solution.GetSkillValues_NoCache()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
             this.Contributors = new Set(solution.Contributors);
             this.SetIdTally = solution.SetIdTally;
         }

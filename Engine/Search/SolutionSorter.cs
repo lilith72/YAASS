@@ -74,7 +74,7 @@ namespace YAASS.Engine.Search
                     // and desired is same for all. So just order by total.
                     return Comparer<Solution>.Create((s1, s2) =>
                     {
-                        return s2.GetSkillValues().Sum(val => val.Points) - s1.GetSkillValues().Sum(val => val.Points);
+                        return s2.GetSkillValues_NoCache().Sum(val => val.Points) - s1.GetSkillValues_NoCache().Sum(val => val.Points);
                     });
                 case SolutionSortCondition.TotalEmptyArmorSlots:
                     return Comparer<Solution>.Create((s1, s2) =>

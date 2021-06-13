@@ -72,11 +72,11 @@ namespace YAASS.Engine.Contract.DataModel
                 remainingSkillPoints.Add(desiredSkill.SkillId, desiredSkill.Points);
             }
 
-            foreach (SkillValue skillPoints in solution.GetSkillValues())
+            foreach (KeyValuePair<string, int> skillPoints in solution.GetSkillValuesPrecomputed())
             {
-                if (remainingSkillPoints.ContainsKey(skillPoints.SkillId))
+                if (remainingSkillPoints.ContainsKey(skillPoints.Key))
                 {
-                    remainingSkillPoints[skillPoints.SkillId] = remainingSkillPoints[skillPoints.SkillId] - skillPoints.Points;
+                    remainingSkillPoints[skillPoints.Key] = remainingSkillPoints[skillPoints.Key] - skillPoints.Value;
                 }
             }
             /*foreach (SkillContributor contributor in solution.Contributors)

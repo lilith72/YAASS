@@ -120,8 +120,10 @@ namespace YAASS.Engine.Search
                 return resultSolutions;
             }
 
+            Dictionary<string, int> remainingSkillPoints = target.GetRemainingSkillPointsGivenSolution(partialSolution);
+
             Inventory helpfulInventory = inventory.FilterInventory((SkillContributor sc) => 
-                target.SkillContributorHelpsTarget(sc, partialSolution));
+                this.SkillContributorHelpsTarget(sc, partialSolution, remainingSkillPoints));
 
             // optimization A: only check decorations if we're out of armors
             // this does decrease quality of results by preventing surfacing sets with decos but without armors.
@@ -215,6 +217,29 @@ namespace YAASS.Engine.Search
                 }
             }
             return resultSolutions;
+        }
+
+        private bool SkillContributorHelpsTarget(
+            SkillContributor contributor,
+            Solution partialSolution,
+            Dictionary<string, int> remainingSkillPoints)
+        {
+            if (!partialSolution.CanFitNewPiece(contributor)
+                && !(partialSolution.Contributors.Any(contr => contr is VacantSlot) && contributor is Decoration)) // Don't discard decos we could potentially fit later
+            {
+                return false;
+            }
+
+            if (contributor.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul", StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
+            }
+
+            // TODO: take armors that don't help skills but do add skill slots
+
+            return contributor.ProvidedSkillValues.Any((skillValue) =>
+                remainingSkillPoints.ContainsKey(skillValue.SkillId)
+                && remainingSkillPoints[skillValue.SkillId] > 0);
         }
 
         // decoration helpers

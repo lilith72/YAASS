@@ -15,10 +15,14 @@ namespace YAASS.Engine.Contract.DataModel
         public Dictionary<string, int> SetIdTally { get; set; }
 
         public List<int> OpenDecoSlots { get; private set; }
+
+        private Dictionary<string, int> skillNameToTotal { get; set; }
+
         public Solution()
         {
             this.Contributors = new List<SkillContributor>();
             this.SetIdTally = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            this.skillNameToTotal = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
             // Initialize all the slots as empty
             // If there end up being different slots game, abstract this constructor to a factory.
@@ -43,6 +47,10 @@ namespace YAASS.Engine.Contract.DataModel
             this.Contributors = contributors;
             this.OpenDecoSlots = openDecoSlots;
             this.SetIdTally = setIdTally;
+            // Don't break existing ones in file, so recalculate.
+            /*this.skillNameToTotal = this.GetSkillValues_NoCache()
+                .Select(sv => new KeyValuePair<string, int>(sv.SkillId, sv.Points))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);*/
         }
 
         public Solution Clone()
@@ -56,6 +64,10 @@ namespace YAASS.Engine.Contract.DataModel
             foreach (string setId in this.SetIdTally.Keys)
             {
                 result.SetIdTally[setId] = this.SetIdTally[setId];
+            }
+            foreach (string skillName in this.skillNameToTotal.Keys)
+            {
+                result.skillNameToTotal[skillName] = this.skillNameToTotal[skillName];
             }
             return result;
         }
@@ -95,6 +107,17 @@ namespace YAASS.Engine.Contract.DataModel
                     this.OpenDecoSlots.Add(slot);
                 }
                 this.Contributors.Remove(this.Contributors.Find(contributor => (contributor is VacantSlot) && contributor.Slot == piece.Slot));
+            }
+
+            foreach (SkillValue sv in piece.ProvidedSkillValues)
+            {
+                ASS.Instance.GetSkillNamesToMaxLevelMapping().TryGetValue(sv.SkillId, out int maxLevel);
+                if (!this.skillNameToTotal.ContainsKey(sv.SkillId))
+                {
+                    this.skillNameToTotal[sv.SkillId] = 0;
+                }
+                this.skillNameToTotal[sv.SkillId] += sv.Points;
+                this.skillNameToTotal[sv.SkillId] = Math.Min(maxLevel, this.skillNameToTotal[sv.SkillId]);
             }
         }
 
@@ -156,7 +179,7 @@ namespace YAASS.Engine.Contract.DataModel
                     $"---decorations---",
                     string.Join(Environment.NewLine, Contributors.Where(contr => contr.Slot == ArmorSlot.Deco).Select(s => $"Deco:\t{s}")),
                     $"---skills---",
-                    string.Join(Environment.NewLine, this.GetSkillValues().Select(skillValue => $"{skillValue.SkillId}: Lv.{skillValue.Points}")),
+                    string.Join(Environment.NewLine, this.GetSkillValuesPrecomputed().Select(kvp => $"{kvp.Key}: Lv.{kvp.Value}")),
                     $"---stats---",
                     $"ArmorPoints:\t{this.GetTotalArmorPoints()}",
                     $"Fire Resist:\t{this.GetTotalFireResistance()}",
@@ -208,7 +231,12 @@ namespace YAASS.Engine.Contract.DataModel
             return OpenDecoSlots;
         }
 
-        public IList<SkillValue> GetSkillValues()
+        public Dictionary<string, int> GetSkillValuesPrecomputed()
+        {
+            return this.skillNameToTotal;
+        }
+
+        public IList<SkillValue> GetSkillValues_NoCache()
         {
             Dictionary<string, int> skillsToTotals = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             foreach (SkillContributor contributor in this.Contributors)
