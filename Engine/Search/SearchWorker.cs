@@ -47,7 +47,6 @@ namespace YAASS.Engine.Search
 
         public IEnumerable<Solution> FindAllSolutions(Inventory inventory, SearchTarget target, IList<int> weaponDecoSlots = null)
         {
-            Console.WriteLine(weaponDecoSlots.First().ToString());
             this.stopwatch = Stopwatch.StartNew();
             this.solutionsCount = 0;
             this.exploredNodes = 0;
@@ -101,6 +100,15 @@ namespace YAASS.Engine.Search
         {
             List<Solution> resultSolutions = new List<Solution>();
             
+            if (partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Brigade Lobos S"))
+                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Kamura Garb S"))
+                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Ludroth Bracers S"))
+                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Nargacuga Coil S"))
+                && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Anjanath Greaves S")))
+            {
+                Console.WriteLine("DEBUG BREAK");
+            }
+
             if (target.SolutionFulfillsTarget(partialSolution))
             {
                 solutionsCount++;
@@ -126,7 +134,8 @@ namespace YAASS.Engine.Search
 
             // optimization A: only check decorations if we're out of armors
             // this does decrease quality of results by preventing surfacing sets with decos but without armors.
-            bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration));
+            bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration) 
+                && !s.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Soulstorm")));
             if (enableSpecialDecoHandling && !areArmorsLeft)
             {
                 if (TryCompleteSolutionWithDecos(partialSolution, target, out Solution completedSolution))

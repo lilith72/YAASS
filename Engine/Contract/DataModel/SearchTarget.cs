@@ -26,6 +26,11 @@ namespace YAASS.Engine.Contract.DataModel
         /// <returns></returns>
         public bool SkillContributorHelpsTarget(SkillContributor contributor, Solution partialSolution)
         {
+            if (contributor.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul", StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
+            }
+
             if (!partialSolution.CanFitNewPiece(contributor)
                 && !(partialSolution.Contributors.Any(contr => contr is VacantSlot) && contributor is Decoration)) // Don't discard decos we could potentially fit later
             {
@@ -67,7 +72,14 @@ namespace YAASS.Engine.Contract.DataModel
                 remainingSkillPoints.Add(desiredSkill.SkillId, desiredSkill.Points);
             }
 
-            foreach (SkillContributor contributor in solution.Contributors)
+            foreach (SkillValue skillPoints in solution.GetSkillValues())
+            {
+                if (remainingSkillPoints.ContainsKey(skillPoints.SkillId))
+                {
+                    remainingSkillPoints[skillPoints.SkillId] = remainingSkillPoints[skillPoints.SkillId] - skillPoints.Points;
+                }
+            }
+            /*foreach (SkillContributor contributor in solution.Contributors)
             {
                 foreach (SkillValue skillPoints in contributor.ProvidedSkillValues)
                 {
@@ -76,7 +88,7 @@ namespace YAASS.Engine.Contract.DataModel
                         remainingSkillPoints[skillPoints.SkillId] = remainingSkillPoints[skillPoints.SkillId] - skillPoints.Points;
                     }
                 }
-            }
+            }*/
 
             return remainingSkillPoints;
         }

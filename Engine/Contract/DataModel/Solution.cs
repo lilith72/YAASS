@@ -222,7 +222,19 @@ namespace YAASS.Engine.Contract.DataModel
                     skillsToTotals[skillValue.SkillId] += skillValue.Points;
                 }
             }
-            return skillsToTotals.Select(kvp =>
+
+            int stormSoulBonus = 0;
+            if (skillsToTotals.ContainsKey("Stormsoul"))
+            {
+                int stormSoulPoints = skillsToTotals["Stormsoul"];
+                if (stormSoulPoints == 4) stormSoulBonus = 1;
+                if (stormSoulBonus >= 5) stormSoulBonus = 2;
+            }
+
+            return skillsToTotals
+                .Select(kvp => new KeyValuePair<string, int>(kvp.Key,
+                    kvp.Key.Equals("Stormsoul") ? kvp.Value : kvp.Value + stormSoulBonus))
+                .Select(kvp =>
                 {
                     ASS.Instance.GetSkillNamesToMaxLevelMapping().TryGetValue(kvp.Key, out int maxLevel);
                     if (maxLevel == 0)
