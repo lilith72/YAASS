@@ -1,8 +1,8 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.FrontEndInterface;
-using JustinsASS.Gui.Controls;
-using JustinsASS.Gui.DataModel;
-using JustinsASS.Gui;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.FrontEndInterface;
+using YAASS.Gui.Controls;
+using YAASS.Gui.DataModel;
+using YAASS.Gui;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-namespace JustinsASS.Gui.Windows
+namespace YAASS.Gui.Windows
 {
     /// <summary>
     /// Interaction logic for NewTalismanWindow.xaml

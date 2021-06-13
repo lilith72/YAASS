@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Contract.DataModel
+namespace YAASS.Engine.Contract.DataModel
 {
     public class SearchTarget
     {
@@ -30,6 +30,11 @@ namespace JustinsASS.Engine.Contract.DataModel
                 && !(partialSolution.Contributors.Any(contr => contr is VacantSlot) && contributor is Decoration)) // Don't discard decos we could potentially fit later
             {
                 return false;
+            }
+
+            if (contributor.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul", StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
             }
 
             // TODO: take armors that don't help skills but do add skill slots
@@ -67,7 +72,14 @@ namespace JustinsASS.Engine.Contract.DataModel
                 remainingSkillPoints.Add(desiredSkill.SkillId, desiredSkill.Points);
             }
 
-            foreach (SkillContributor contributor in solution.Contributors)
+            foreach (KeyValuePair<string, int> skillPoints in solution.GetSkillValuesPrecomputed())
+            {
+                if (remainingSkillPoints.ContainsKey(skillPoints.Key))
+                {
+                    remainingSkillPoints[skillPoints.Key] = remainingSkillPoints[skillPoints.Key] - skillPoints.Value;
+                }
+            }
+            /*foreach (SkillContributor contributor in solution.Contributors)
             {
                 foreach (SkillValue skillPoints in contributor.ProvidedSkillValues)
                 {
@@ -76,7 +88,7 @@ namespace JustinsASS.Engine.Contract.DataModel
                         remainingSkillPoints[skillPoints.SkillId] = remainingSkillPoints[skillPoints.SkillId] - skillPoints.Points;
                     }
                 }
-            }
+            }*/
 
             return remainingSkillPoints;
         }

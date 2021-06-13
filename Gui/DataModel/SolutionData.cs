@@ -1,5 +1,5 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.FrontEndInterface;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.FrontEndInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Gui.DataModel
+namespace YAASS.Gui.DataModel
 {
     public class SolutionData
     {
@@ -42,7 +42,7 @@ namespace JustinsASS.Gui.DataModel
             this.CanPin = pinnable;
             this.CanRemove = removable;
             this.Index = index;
-            Skills = Helper.GetSkillsWithMax(solution.GetSkillValues()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
+            Skills = Helper.GetSkillsWithMax(solution.GetSkillValues_NoCache()).OrderBy(s => s.Key).ToDictionary(s => s.Key, s => s.Value);
             this.Contributors = new Set(solution.Contributors);
             this.SetIdTally = solution.SetIdTally;
         }

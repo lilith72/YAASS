@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JustinsASS.Gui.Controls
+namespace YAASS.Gui.Controls
 {
     /// <summary>
     /// Interaction logic for SkillPointBar.xaml

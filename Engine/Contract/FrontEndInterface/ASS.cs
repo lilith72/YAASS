@@ -1,15 +1,15 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.Interfaces;
-using JustinsASS.Engine.Data;
-using JustinsASS.Engine.DataReader;
-using JustinsASS.Engine.Search;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.Interfaces;
+using YAASS.Engine.Data;
+using YAASS.Engine.DataReader;
+using YAASS.Engine.Search;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Contract.FrontEndInterface
+namespace YAASS.Engine.Contract.FrontEndInterface
 {
     public class ASS : IASS
     {
@@ -19,6 +19,8 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         private readonly ISearchWorker searchWorker;
         private readonly ISolutionSorter solutionSorter;
         private readonly IPersistedStorageHelper persistedStorageHelper;
+        private readonly IAssConfigProvider assConfigProvider;
+        private readonly IAssLogger logger;
 
         private List<SkillContributor> allInventoryFromFile;
         private Dictionary<string, int> skillNameToMaxValue;
@@ -30,8 +32,10 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
                 throw new Exception("ASS does not support duplicate instance construction and should be used as a singleton.");
             }
             ASS.Instance = this;
+            this.assConfigProvider = new AssConfigProvider();
+            this.logger = new AssLogger(assConfigProvider);
             this.inventoryProvider = new CsvInventoryProvider();
-            this.searchWorker = new SearchWorker();
+            this.searchWorker = new SearchWorker(this.assConfigProvider, this.logger);
             this.solutionSorter = new SolutionSorter();
             this.persistedStorageHelper = new PersistedStorageHelper();
             this.RefreshDataFromFiles();
@@ -164,6 +168,11 @@ namespace JustinsASS.Engine.Contract.FrontEndInterface
         public bool TryUnpinSolution(Solution s, out string errorMessage)
         {
             return this.persistedStorageHelper.TryUnpinSolution(s, out errorMessage);
+        }
+
+        public IAssLogger GetInstanceLogger()
+        {
+            return this.logger;
         }
     }
 }

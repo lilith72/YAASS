@@ -1,5 +1,5 @@
-﻿using JustinsASS.Engine.Contract.FrontEndInterface;
-using JustinsASS.Engine.Search;
+﻿using YAASS.Engine.Contract.FrontEndInterface;
+using YAASS.Engine.Search;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Contract.DataModel
+namespace YAASS.Engine.Contract.DataModel
 {
     public class Solution
     {
@@ -15,10 +15,14 @@ namespace JustinsASS.Engine.Contract.DataModel
         public Dictionary<string, int> SetIdTally { get; set; }
 
         public List<int> OpenDecoSlots { get; private set; }
+
+        private Dictionary<string, int> skillNameToTotal { get; set; }
+
         public Solution()
         {
             this.Contributors = new List<SkillContributor>();
             this.SetIdTally = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+            this.skillNameToTotal = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 
             // Initialize all the slots as empty
             // If there end up being different slots game, abstract this constructor to a factory.
@@ -43,6 +47,10 @@ namespace JustinsASS.Engine.Contract.DataModel
             this.Contributors = contributors;
             this.OpenDecoSlots = openDecoSlots;
             this.SetIdTally = setIdTally;
+            // Don't break existing ones in file, so recalculate.
+            /*this.skillNameToTotal = this.GetSkillValues_NoCache()
+                .Select(sv => new KeyValuePair<string, int>(sv.SkillId, sv.Points))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);*/
         }
 
         public Solution Clone()
@@ -56,6 +64,10 @@ namespace JustinsASS.Engine.Contract.DataModel
             foreach (string setId in this.SetIdTally.Keys)
             {
                 result.SetIdTally[setId] = this.SetIdTally[setId];
+            }
+            foreach (string skillName in this.skillNameToTotal.Keys)
+            {
+                result.skillNameToTotal[skillName] = this.skillNameToTotal[skillName];
             }
             return result;
         }
@@ -95,6 +107,17 @@ namespace JustinsASS.Engine.Contract.DataModel
                     this.OpenDecoSlots.Add(slot);
                 }
                 this.Contributors.Remove(this.Contributors.Find(contributor => (contributor is VacantSlot) && contributor.Slot == piece.Slot));
+            }
+
+            foreach (SkillValue sv in piece.ProvidedSkillValues)
+            {
+                ASS.Instance.GetSkillNamesToMaxLevelMapping().TryGetValue(sv.SkillId, out int maxLevel);
+                if (!this.skillNameToTotal.ContainsKey(sv.SkillId))
+                {
+                    this.skillNameToTotal[sv.SkillId] = 0;
+                }
+                this.skillNameToTotal[sv.SkillId] += sv.Points;
+                this.skillNameToTotal[sv.SkillId] = Math.Min(maxLevel, this.skillNameToTotal[sv.SkillId]);
             }
         }
 
@@ -156,7 +179,7 @@ namespace JustinsASS.Engine.Contract.DataModel
                     $"---decorations---",
                     string.Join(Environment.NewLine, Contributors.Where(contr => contr.Slot == ArmorSlot.Deco).Select(s => $"Deco:\t{s}")),
                     $"---skills---",
-                    string.Join(Environment.NewLine, this.GetSkillValues().Select(skillValue => $"{skillValue.SkillId}: Lv.{skillValue.Points}")),
+                    string.Join(Environment.NewLine, this.GetSkillValuesPrecomputed().Select(kvp => $"{kvp.Key}: Lv.{kvp.Value}")),
                     $"---stats---",
                     $"ArmorPoints:\t{this.GetTotalArmorPoints()}",
                     $"Fire Resist:\t{this.GetTotalFireResistance()}",
@@ -208,7 +231,12 @@ namespace JustinsASS.Engine.Contract.DataModel
             return OpenDecoSlots;
         }
 
-        public IList<SkillValue> GetSkillValues()
+        public Dictionary<string, int> GetSkillValuesPrecomputed()
+        {
+            return this.skillNameToTotal;
+        }
+
+        public IList<SkillValue> GetSkillValues_NoCache()
         {
             Dictionary<string, int> skillsToTotals = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
             foreach (SkillContributor contributor in this.Contributors)
@@ -222,7 +250,19 @@ namespace JustinsASS.Engine.Contract.DataModel
                     skillsToTotals[skillValue.SkillId] += skillValue.Points;
                 }
             }
-            return skillsToTotals.Select(kvp =>
+
+            int stormSoulBonus = 0;
+            if (skillsToTotals.ContainsKey("Stormsoul"))
+            {
+                int stormSoulPoints = skillsToTotals["Stormsoul"];
+                if (stormSoulPoints == 4) stormSoulBonus = 1;
+                if (stormSoulBonus >= 5) stormSoulBonus = 2;
+            }
+
+            return skillsToTotals
+                .Select(kvp => new KeyValuePair<string, int>(kvp.Key,
+                    kvp.Key.Equals("Stormsoul") ? kvp.Value : kvp.Value + stormSoulBonus))
+                .Select(kvp =>
                 {
                     ASS.Instance.GetSkillNamesToMaxLevelMapping().TryGetValue(kvp.Key, out int maxLevel);
                     if (maxLevel == 0)

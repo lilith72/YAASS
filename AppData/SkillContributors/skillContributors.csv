@@ -38,7 +38,7 @@ Bnahabra Hat S,34,-2,,,,2,Head,2,,,Poison Attack,1,Recoil Down,2,,,,,Bnahabra S
 Bnahabra Suit S,34,-2,,,,2,Chest,1,1,,Paralysis Attack,1,Evade Window,1,,,,,Bnahabra S
 Bnahabra Gloves S,34,-2,,,,2,Arms,1,,,Poison Attack,2,Evade Window,1,,,,,Bnahabra S
 Bnahabra Coil S,34,-2,,,,2,Waist,1,1,,Paralysis Attack,1,Evade Window,1,,,,,Bnahabra S
-Bnahabra Boots S,34,-2,,,,2,Legs,2,2,,Paralysis Attack,1,Recoil Down,1,,,,,Bnahabra S
+Bnahabra Boots S,34,-2,,,,2,Legs,2,1,,Paralysis Attack,1,Recoil Down,1,,,,,Bnahabra S
 Izuchi Helm S,36,2,-1,-2,,,Head,1,1,,Critical Eye,1,,,,,,,Izuchi S
 Izuchi Mail S,36,2,-1,-2,,,Chest,1,,,Critical Eye,2,Recovery Speed,1,,,,,Izuchi S
 Izuchi Braces S,36,2,-1,-2,,,Arms,1,1,,Constitution,2,,,,,,,Izuchi S
@@ -322,14 +322,20 @@ Bazelgeuse Mail,72,3,1,-4,-2,-2,Chest,1,1,,Guard Up,2,Agitator,1,,,,,Bazel
 Bazelgeuse Braces ,72,3,1,-4,-2,-2,Arms,2,2,,Load Shells,1,Guard Up,1,,,,,Bazel
 Bazelgeuse Coil,72,3,1,-4,-2,-2,Waist,2,2,,Load Shells,1,Guard,1,,,,,Bazel
 Bazelgeuse Greaves ,72,3,1,-4,-2,-2,Legs,3,,,Artillery,2,Guard,1,,,,,Bazel
-Ibushi's Helm,66,-1,,,,-2,Head,,,,Wind Alignment,1,Focus,1,Evade Extender,1,,,Ibushi
-Ibushi Breastplate,66,-1,,,,-2,Chest,,,,Wind Alignment,1,Guard,1,Flinch Free,1,,,Ibushi
-Ibushi's Pauldrons,66,-1,,,,-2,Arms,,,,Wind Alignment,1,Constitution,1,Stamina Surge,1,,,Ibushi
-Ibushi's Fauld,66,-1,,,,-2,Waist,,,,Wind Alignment,1,Power Prolonger,1,Evade Window,1,,,Ibushi
-Foot of Ibushi,66,-1,,,,-2,Legs,,,,Wind Alignment,1,Slugger,1,Guard Up,1,,,Ibushi
-Narwa's Helm,76,2,1,4,-3,-4,Head,,,,Thunder Alignment,1,Rapid Morph,1,Offensive Guard,1,,,Narwa
-Narwa Breastplate,76,2,1,4,-3,-4,Chest,,,,Thunder Alignment,1,Constitution,1,Critical Draw,1,,,Narwa
-Narwa's Paildrons,76,2,1,4,-3,-4,Arms,,,,Thunder Alignment,1,Guard,1,Partbreaker,1,,,Narwa
-Narwa's Fauld,76,2,1,4,-3,-4,Waist,,,,Thunder Alignment,1,Guard,1,Artillery,1,,,Narwa
-Foot of Narwa,76,2,1,4,-3,-4,Legs,,,,Thunder Alignment,1,Evade Window,1,Marathon Runner,1,,,Narwa
+Ibushi's Helm,66,-1,,,,-2,Head,,,,Wind Alignment,1,Focus,1,Evade Extender,1,Stormsoul,1,Ibushi
+Ibushi Breastplate,66,-1,,,,-2,Chest,,,,Wind Alignment,1,Guard,1,Flinch Free,1,Stormsoul,1,Ibushi
+Ibushi's Pauldrons,66,-1,,,,-2,Arms,,,,Wind Alignment,1,Constitution,1,Stamina Surge,1,Stormsoul,1,Ibushi
+Ibushi's Fauld,66,-1,,,,-2,Waist,,,,Wind Alignment,1,Power Prolonger,1,Evade Window,1,Stormsoul,1,Ibushi
+Foot of Ibushi,66,-1,,,,-2,Legs,,,,Wind Alignment,1,Slugger,1,Guard Up,1,Stormsoul,1,Ibushi
+Narwa's Helm,76,2,1,4,-3,-4,Head,,,,Thunder Alignment,1,Rapid Morph,1,Offensive Guard,1,Stormsoul,1,Narwa
+Narwa Breastplate,76,2,1,4,-3,-4,Chest,,,,Thunder Alignment,1,Constitution,1,Critical Draw,1,Stormsoul,1,Narwa
+Narwa's Paildrons,76,2,1,4,-3,-4,Arms,,,,Thunder Alignment,1,Guard,1,Partbreaker,1,Stormsoul,1,Narwa
+Narwa's Fauld,76,2,1,4,-3,-4,Waist,,,,Thunder Alignment,1,Guard,1,Artillery,1,Stormsoul,1,Narwa
+Foot of Narwa,76,2,1,4,-3,-4,Legs,,,,Thunder Alignment,1,Evade Window,1,Marathon Runner,1,Stormsoul,1,Narwa
+Valstrax Helm,80,-2,-2,-2,-2,3,Head,2,1,,Dragonheart,1,Weakness Exploit,1,,,,,Crimson Valstrax
+Valstrax Mail,80,-2,-2,-2,-2,3,Chest,3,1,,Dragonheart,1,Resuscitate,2,,,,,Crimson Valstrax
+Valstrax Braces,80,-2,-2,-2,-2,3,Arms,2,,,Dragonheart,1,Weakness Exploit,2,,,,,Crimson Valstrax
+Valstrax Coil,80,-2,-2,-2,-2,3,Waist,2,,,Dragonheart,1,Resuscitate,1,Resentment,2,,,Crimson Valstrax
+Valstrax Greaves,80,-2,-2,-2,-2,3,Legs,3,1,,Dragonheart,1,Resuscitate,1,,,,,Crimson Valstrax
 Flame Seal Eyepatch,56,,,,,,Head,,,,Critical Eye,4,,,,,,,Flame Seal Eyepatch
+Cunning Specs,60,2,2,2,2,2,Head,2,2,,Geologist,2,,,,,,,Cunning Specs

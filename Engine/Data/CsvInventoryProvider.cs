@@ -1,5 +1,5 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.Interfaces;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.DataReader
+namespace YAASS.Engine.DataReader
 {
     public class CsvInventoryProvider : IInventoryProvider
     {

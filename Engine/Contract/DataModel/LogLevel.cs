@@ -6,16 +6,11 @@ using System.Threading.Tasks;
 
 namespace YAASS.Engine.Contract.DataModel
 {
-    public enum ArmorSlot
+    public enum AssLogLevel
     {
-        // TODO add the others
-        None,
-        Head,
-        Chest,
-        Arms,
-        Waist,
-        Legs,
-        Talisman,
-        Deco
+        Verbose,
+        Info,
+        Warn,
+        Error
     }
 }

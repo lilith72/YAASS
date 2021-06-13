@@ -1,5 +1,5 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.Interfaces;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Search
+namespace YAASS.Engine.Search
 {
     public class SolutionSorter : ISolutionSorter
     {
@@ -74,7 +74,7 @@ namespace JustinsASS.Engine.Search
                     // and desired is same for all. So just order by total.
                     return Comparer<Solution>.Create((s1, s2) =>
                     {
-                        return s2.GetSkillValues().Sum(val => val.Points) - s1.GetSkillValues().Sum(val => val.Points);
+                        return s2.GetSkillValues_NoCache().Sum(val => val.Points) - s1.GetSkillValues_NoCache().Sum(val => val.Points);
                     });
                 case SolutionSortCondition.TotalEmptyArmorSlots:
                     return Comparer<Solution>.Create((s1, s2) =>

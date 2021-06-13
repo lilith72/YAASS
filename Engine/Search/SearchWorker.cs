@@ -1,5 +1,6 @@
-﻿using JustinsASS.Engine.Contract.DataModel;
-using JustinsASS.Engine.Contract.Interfaces;
+﻿using YAASS.Engine.Contract.DataModel;
+using YAASS.Engine.Contract.Interfaces;
+using YAASS.Engine.Data;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,16 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JustinsASS.Engine.Search
+namespace YAASS.Engine.Search
 {
     public class SearchWorker : ISearchWorker
     {
         // TODO move all these to config file
         private bool enableSearchDecosOnlyAfterArmorExhausted = true;
-        private bool enableStopAfterNSeconds = false;
-        private int secondsToStopAt = 30;
+        private bool enableStopAfterNSeconds = true;
         private bool enableStopAfterNSolutions = true;
-        private int solutionsToStopAt = 100;
 
         // in practice this doesn't help much and causes search to skip many valid solutions. Best to leave it off.
         private bool enableGreedySkillSelectionHeuristic = false;
@@ -24,8 +23,10 @@ namespace JustinsASS.Engine.Search
         // Calculate decorations in the set without generic search, but with naive deco population once armors are filled.
         // Good optimization with theoretically no downside as long as enableSearchDecosOnlyAfterArmorExhausted is true.
         // hard coded not to do anyhthing if enableSearchDecosOnlyAfterArmorExhausted is false.
-        private bool enableSpecialDecoHandling = true;
-        private bool debugAssertionsEnabled = false;
+        private readonly bool enableSpecialDecoHandling = true;
+
+        private readonly IAssConfigProvider assConfigProvider;
+        private readonly IAssLogger logger;
         
         private ISet<Solution> seenPartialSolutions = null;
         private Stopwatch stopwatch;
@@ -36,9 +37,12 @@ namespace JustinsASS.Engine.Search
         // precomputed fields
         private Dictionary<string, Decoration> SkillNameToProvidingDeco;
 
-        public SearchWorker()
+        public SearchWorker(
+            IAssConfigProvider configProvider,
+            IAssLogger logger)
         {
-            // Intentionally empty
+            this.assConfigProvider = configProvider;
+            this.logger = logger;
         }
 
         public IEnumerable<Solution> FindAllSolutions(Inventory inventory, SearchTarget target, IList<int> weaponDecoSlots = null)
@@ -55,7 +59,7 @@ namespace JustinsASS.Engine.Search
                 partialSolution.OpenDecoSlots.AddRange(weaponDecoSlots);
             }
 
-            if (debugAssertionsEnabled)
+            if (this.assConfigProvider.GetConfig().GetEnableDebugAssertions())
             {
                 HashSet<string> seenSkillIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
                 foreach (Decoration deco in inventory.AllContributors
@@ -84,8 +88,8 @@ namespace JustinsASS.Engine.Search
                 inventory,
                 target,
                 partialSolution);
-            Console.WriteLine($"search took {stopwatch.ElapsedMilliseconds}ms and found {result.Count()} solutions.");
-            Console.WriteLine($"search explored {exploredNodes} nodes, {trimmedNodes} of which were skipped due to duplicate.");
+            this.logger.Log($"search took {stopwatch.ElapsedMilliseconds}ms and found {result.Count()} solutions.", AssLogLevel.Info);
+            this.logger.Log($"search explored {exploredNodes} nodes, {trimmedNodes} of which were skipped due to duplicate.", AssLogLevel.Info);
             return result;
         }
 
@@ -99,34 +103,38 @@ namespace JustinsASS.Engine.Search
             if (target.SolutionFulfillsTarget(partialSolution))
             {
                 solutionsCount++;
-                Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
+                this.logger.Log($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms", AssLogLevel.Verbose);
                 resultSolutions.Add(partialSolution);
                 return resultSolutions;
             }
 
-            if (enableStopAfterNSeconds && stopwatch.ElapsedMilliseconds > secondsToStopAt * 1000)
+            if (enableStopAfterNSeconds &&
+                stopwatch.ElapsedMilliseconds > this.assConfigProvider.GetConfig().GetSearchTimeoutSeconds() * 1000)
             {
                 return resultSolutions;
             }
 
-            if (enableStopAfterNSolutions && solutionsCount >= solutionsToStopAt)
+            if (enableStopAfterNSolutions && solutionsCount >= this.assConfigProvider.GetConfig().GetSearchMaxResults())
             {
                 // Their search is not refined; just quit.
                 return resultSolutions;
             }
 
+            Dictionary<string, int> remainingSkillPoints = target.GetRemainingSkillPointsGivenSolution(partialSolution);
+
             Inventory helpfulInventory = inventory.FilterInventory((SkillContributor sc) => 
-                target.SkillContributorHelpsTarget(sc, partialSolution));
+                this.SkillContributorHelpsTarget(sc, partialSolution, remainingSkillPoints));
 
             // optimization A: only check decorations if we're out of armors
             // this does decrease quality of results by preventing surfacing sets with decos but without armors.
-            bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration));
+            bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration) 
+                && !s.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul")));
             if (enableSpecialDecoHandling && !areArmorsLeft)
             {
                 if (TryCompleteSolutionWithDecos(partialSolution, target, out Solution completedSolution))
                 {
                     solutionsCount++;
-                    Console.WriteLine($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms");
+                    this.logger.Log($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms", AssLogLevel.Verbose);
                     resultSolutions.Add(completedSolution);
                 }
                 // return early since decos shouldn't be handled by standard search with this optimization
@@ -163,6 +171,15 @@ namespace JustinsASS.Engine.Search
 
             foreach (SkillContributor chosenItem in skillContrsToTry)
             {
+                /*if (partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Brigade Lobos S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Kamura Garb S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Ludroth Bracers S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Nargacuga Coil S"))
+                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Anjanath Greaves S"))
+                    && chosenItem.SkillContributorId.Contains("staminasurge2plus11"))
+                {
+                    Console.WriteLine("DEBUG BREAK");
+                }*/
                 /*if (chosenItem.SkillContributorId.Equals("Ironwall Jewel 2")
                     && partialSolution.Contributors.Count(contr => contr is VacantSlot) == 5
                     && partialSolution.Contributors.Any(contr => contr.SkillContributorId.Equals("Bazelgeuse Greaves")))
@@ -178,7 +195,7 @@ namespace JustinsASS.Engine.Search
                 exploredNodes++;
                 if (exploredNodes % 100000 == 0)
                 {
-                    Console.WriteLine($"explored {exploredNodes} nodes");
+                    this.logger.Log($"explored {exploredNodes} nodes", AssLogLevel.Verbose);
                 }
                 // Create new solution with chosen item
                 Solution newPartialSolution = partialSolution.Clone();
@@ -194,12 +211,35 @@ namespace JustinsASS.Engine.Search
 
                 // Recurse and check using this chosen item
                 resultSolutions.AddRange(SearchForSolutionsRecursive(helpfulInventory, target, newPartialSolution));
-                if (enableStopAfterNSolutions && solutionsCount >= solutionsToStopAt)
+                if (enableStopAfterNSolutions && solutionsCount >= this.assConfigProvider.GetConfig().GetSearchMaxResults())
                 {
                     return resultSolutions;
                 }
             }
             return resultSolutions;
+        }
+
+        private bool SkillContributorHelpsTarget(
+            SkillContributor contributor,
+            Solution partialSolution,
+            Dictionary<string, int> remainingSkillPoints)
+        {
+            if (!partialSolution.CanFitNewPiece(contributor)
+                && !(partialSolution.Contributors.Any(contr => contr is VacantSlot) && contributor is Decoration)) // Don't discard decos we could potentially fit later
+            {
+                return false;
+            }
+
+            if (contributor.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul", StringComparison.OrdinalIgnoreCase)))
+            {
+                return true;
+            }
+
+            // TODO: take armors that don't help skills but do add skill slots
+
+            return contributor.ProvidedSkillValues.Any((skillValue) =>
+                remainingSkillPoints.ContainsKey(skillValue.SkillId)
+                && remainingSkillPoints[skillValue.SkillId] > 0);
         }
 
         // decoration helpers
@@ -249,7 +289,7 @@ namespace JustinsASS.Engine.Search
                     completedSolution.AddNewPiece(decoToAdd);
                 }
             }
-            if (debugAssertionsEnabled)
+            if (this.assConfigProvider.GetConfig().GetEnableDebugAssertions())
             {
                 if (!target.SolutionFulfillsTarget(completedSolution))
                 {
