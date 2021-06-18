@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace YAASS.Engine.Search
 {
@@ -27,12 +28,15 @@ namespace YAASS.Engine.Search
 
         private readonly IAssConfigProvider assConfigProvider;
         private readonly IAssLogger logger;
-        
+
+        private static Object SeenPartialSolutionsLock = new object();
         private ISet<Solution> seenPartialSolutions = null;
         private Stopwatch stopwatch;
         private int solutionsCount;
         private int exploredNodes;
         private int trimmedNodes;
+
+
 
         // precomputed fields
         private Dictionary<string, Decoration> SkillNameToProvidingDeco;
@@ -87,22 +91,28 @@ namespace YAASS.Engine.Search
             IEnumerable<Solution> result = SearchForSolutionsRecursive(
                 inventory,
                 target,
-                partialSolution);
+                partialSolution,
+                0).Distinct();
             this.logger.Log($"search took {stopwatch.ElapsedMilliseconds}ms and found {result.Count()} solutions.", AssLogLevel.Info);
             this.logger.Log($"search explored {exploredNodes} nodes, {trimmedNodes} of which were skipped due to duplicate.", AssLogLevel.Info);
+
+            // Cleanup to save user's ram
+            this.seenPartialSolutions.Clear();
+            
             return result;
         }
 
         private IEnumerable<Solution> SearchForSolutionsRecursive(
             Inventory inventory,
             SearchTarget target,
-            Solution partialSolution)
+            Solution partialSolution,
+            int depth)
         {
             List<Solution> resultSolutions = new List<Solution>();
             
             if (target.SolutionFulfillsTarget(partialSolution))
             {
-                solutionsCount++;
+                Interlocked.Increment(ref solutionsCount);
                 this.logger.Log($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms", AssLogLevel.Verbose);
                 resultSolutions.Add(partialSolution);
                 return resultSolutions;
@@ -125,15 +135,15 @@ namespace YAASS.Engine.Search
             Inventory helpfulInventory = inventory.FilterInventory((SkillContributor sc) => 
                 this.SkillContributorHelpsTarget(sc, partialSolution, remainingSkillPoints));
 
-            // optimization A: only check decorations if we're out of armors
-            // this does decrease quality of results by preventing surfacing sets with decos but without armors.
             bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration) 
-                && !s.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul")));
+                && (!s.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul")
+                    && !(remainingSkillPoints.ContainsKey("Stormsoul")
+                        && remainingSkillPoints["Stormsoul"] > 0))));
             if (enableSpecialDecoHandling && !areArmorsLeft)
             {
                 if (TryCompleteSolutionWithDecos(partialSolution, target, out Solution completedSolution))
                 {
-                    solutionsCount++;
+                    Interlocked.Increment(ref solutionsCount);
                     this.logger.Log($"so far found {solutionsCount} solutions after {stopwatch.ElapsedMilliseconds}ms", AssLogLevel.Verbose);
                     resultSolutions.Add(completedSolution);
                 }
@@ -145,7 +155,6 @@ namespace YAASS.Engine.Search
                 ? helpfulInventory.AllContributors.Where(s => !(s is Decoration))
                 : helpfulInventory.AllContributors;
 
-            // optimization B: deterministically sort the skills we still need, and only investigate armors which give the front one.
             if (enableGreedySkillSelectionHeuristic && areArmorsLeft)
             {
                 List<string> selectedSkillNames = target.GetRemainingSkillPointsGivenSolution(partialSolution)
@@ -163,36 +172,24 @@ namespace YAASS.Engine.Search
             // potential optimization: determine skills which don't have decos, and fill those first.
             // very small optimization so low-pri.
 
-            // potential optimization: if assembled armor is not within N points, where N is number of deco slots,
-            // stop the search for that path.
+            Object resultsLock = new object();
 
-            // optimization B2: same as optimization b1, but also use a heuristic to bring rarer skills to the front? or skills which don't have decos?
-            // or skills which need more points?
-
-            foreach (SkillContributor chosenItem in skillContrsToTry)
+            Parallel.ForEach(skillContrsToTry,
+                new ParallelOptions { 
+                    MaxDegreeOfParallelism =
+                        depth == 0 
+                        ? this.assConfigProvider.GetConfig().GetDegreeOfParallelism()
+                        : 1 
+                    },
+                chosenItem =>
             {
-                /*if (partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Brigade Lobos S"))
-                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Kamura Garb S"))
-                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Ludroth Bracers S"))
-                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Nargacuga Coil S"))
-                    && partialSolution.Contributors.Any(sc => sc.SkillContributorId.Equals("Anjanath Greaves S"))
-                    && chosenItem.SkillContributorId.Contains("staminasurge2plus11"))
-                {
-                    Console.WriteLine("DEBUG BREAK");
-                }*/
-                /*if (chosenItem.SkillContributorId.Equals("Ironwall Jewel 2")
-                    && partialSolution.Contributors.Count(contr => contr is VacantSlot) == 5
-                    && partialSolution.Contributors.Any(contr => contr.SkillContributorId.Equals("Bazelgeuse Greaves")))
-                {
-                    int a = 4;
-                }*/
                 // Check that the chosen item fits on the set
                 if (!partialSolution.CanFitNewPiece(chosenItem))
                 {
-                    continue;
+                    return;
                 }
 
-                exploredNodes++;
+                Interlocked.Increment(ref exploredNodes);
                 if (exploredNodes % 100000 == 0)
                 {
                     this.logger.Log($"explored {exploredNodes} nodes", AssLogLevel.Verbose);
@@ -204,18 +201,21 @@ namespace YAASS.Engine.Search
                 // Skip new solution if we've checked this path before
                 if (seenPartialSolutions.Contains(newPartialSolution))
                 {
-                    trimmedNodes++;
-                    continue;
+                    Interlocked.Increment(ref trimmedNodes);
+                    return;
                 }
-                seenPartialSolutions.Add(newPartialSolution);
-
-                // Recurse and check using this chosen item
-                resultSolutions.AddRange(SearchForSolutionsRecursive(helpfulInventory, target, newPartialSolution));
-                if (enableStopAfterNSolutions && solutionsCount >= this.assConfigProvider.GetConfig().GetSearchMaxResults())
+                lock (SeenPartialSolutionsLock)
                 {
-                    return resultSolutions;
+                    seenPartialSolutions.Add(newPartialSolution);
                 }
-            }
+
+                IEnumerable<Solution> recursedSolutionResults = SearchForSolutionsRecursive(helpfulInventory, target, newPartialSolution, depth + 1);
+                // Recurse and check using this chosen item
+                lock (resultsLock)
+                {
+                    resultSolutions.AddRange(recursedSolutionResults);
+                }
+            });
             return resultSolutions;
         }
 
