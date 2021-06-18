@@ -40,29 +40,28 @@ namespace YAASS.Engine.Contract.FrontEndInterface
             this.persistedStorageHelper = new PersistedStorageHelper();
             this.RefreshDataFromFiles();
 
-            /*
-            IEnumerable<Solution> alreadyPinnedSolutions = this.GetAllPinnedSolutions();
-            Console.WriteLine($"Loaded pinned solutions and got {alreadyPinnedSolutions.Count()}");
-            foreach(Solution s in alreadyPinnedSolutions)
+            /*List<Dictionary<string, int>> debugSearches = new List<Dictionary<string, int>>()
             {
-                Console.WriteLine($"pinned solution found: {s}");
-            }
-
-            IEnumerable<Solution> solutionsToPin = GetSolutionsForSearch(new Dictionary<string, int>()
+                new Dictionary<string, int>()
+                {
+                    { "Botanist", 4 },
+                    { "Evade Extender", 3 },
+                    { "Geologist", 3 },
+                    { "Hunger Resistance", 3 },
+                    { "Marathon Runner", 3 },
+                    { "Stamina Surge", 3 },
+                    { "Wall Runner", 3 },
+                    { "Wirebug Whisperer", 3 },
+                },
+            };
+            for (int i = 0; i < debugSearches.Count(); i++)
             {
-                { "Guard", 5 },
-                { "Guard Up", 3 },
-                { "Artillery", 3 },
-                { "Load Shells", 2 },
-                { "Diversion", 1 },
-                { "Defense Boost", 3 },
-                { "Hunger Resistance", 2 },
-                { "Speed Sharpening", 1 },
-                { "Flinch Free", 1 },
-            }).Take(3);
-            foreach(Solution s in solutionsToPin)
-            {
-                //this.PinSolution(s);
+                Console.WriteLine($"=============START SEARCH {i}=============");
+                IEnumerable<Solution> search1 = GetSolutionsForSearch(
+                    debugSearches[i],
+                    weaponDecoSlots: new List<int> { 2, 1, 1 },
+                    talismans: this.GetAllCustomTalismans().Values.ToList());
+                Console.WriteLine($"=============END SEARCH {i}=============");
             }*/
         }
 

@@ -37,8 +37,6 @@ namespace YAASS.Engine.Contract.DataModel
                 return true;
             }
 
-            // TODO: take armors that don't help skills but do add skill slots
-
             Dictionary<string, int> remainingSkillPoints = GetRemainingSkillPointsGivenSolution(partialSolution);
             return contributor.ProvidedSkillValues.Any((skillValue) => 
                 remainingSkillPoints.ContainsKey(skillValue.SkillId)
@@ -57,8 +55,6 @@ namespace YAASS.Engine.Contract.DataModel
                     return false;
                 }
             }
-
-            // TODO: If user doesn't want vacant slots shown, then check against vacant non-deco slots here.
 
             return true;
         }
@@ -79,16 +75,6 @@ namespace YAASS.Engine.Contract.DataModel
                     remainingSkillPoints[skillPoints.Key] = remainingSkillPoints[skillPoints.Key] - skillPoints.Value;
                 }
             }
-            /*foreach (SkillContributor contributor in solution.Contributors)
-            {
-                foreach (SkillValue skillPoints in contributor.ProvidedSkillValues)
-                {
-                    if (remainingSkillPoints.ContainsKey(skillPoints.SkillId))
-                    {
-                        remainingSkillPoints[skillPoints.SkillId] = remainingSkillPoints[skillPoints.SkillId] - skillPoints.Points;
-                    }
-                }
-            }*/
 
             return remainingSkillPoints;
         }

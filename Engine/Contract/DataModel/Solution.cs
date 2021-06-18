@@ -47,10 +47,6 @@ namespace YAASS.Engine.Contract.DataModel
             this.Contributors = contributors;
             this.OpenDecoSlots = openDecoSlots;
             this.SetIdTally = setIdTally;
-            // Don't break existing ones in file, so recalculate.
-            /*this.skillNameToTotal = this.GetSkillValues_NoCache()
-                .Select(sv => new KeyValuePair<string, int>(sv.SkillId, sv.Points))
-                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);*/
         }
 
         public Solution Clone()

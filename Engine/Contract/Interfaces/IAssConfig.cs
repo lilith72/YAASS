@@ -8,6 +8,7 @@ namespace YAASS.Engine.Contract.Interfaces
 {
     public interface IAssConfig
     {
+        int GetDegreeOfParallelism();
         int GetSearchTimeoutSeconds();
         int GetSearchMaxResults();
         bool GetEnableDebugAssertions();

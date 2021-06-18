@@ -12,6 +12,7 @@ namespace YAASS.Engine.Data
     public class AssLogger : IAssLogger
     {
         private const string logsFileName = "assLogs.txt";
+        private object LogLock = new object();
         private IAssConfigProvider config;
         public AssLogger(IAssConfigProvider config)
         {
@@ -24,18 +25,26 @@ namespace YAASS.Engine.Data
             Console.WriteLine(logString);
             if (this.config.GetConfig().GetEnableLoggingToDisk())
             {
-                try
+                lock (LogLock)
                 {
-                    File.AppendAllLines(
-                        $"{config.GetConfig().GetLogOutputFolder()}/{logsFileName}",
-                        new List<string>() { logString });
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    Directory.CreateDirectory(config.GetConfig().GetLogOutputFolder());
-                    File.AppendAllLines(
-                        $"{config.GetConfig().GetLogOutputFolder()}/{logsFileName}",
-                        new List<string>() { logString });
+                    try
+                    {
+                        File.AppendAllLines(
+                            $"{config.GetConfig().GetLogOutputFolder()}/{logsFileName}",
+                            new List<string>() { logString });
+                    }
+                    catch (DirectoryNotFoundException)
+                    {
+                        Directory.CreateDirectory(config.GetConfig().GetLogOutputFolder());
+                        File.AppendAllLines(
+                            $"{config.GetConfig().GetLogOutputFolder()}/{logsFileName}",
+                            new List<string>() { logString });
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine($"DEBUG WARNING -- failed to write to disk with exception {e}");
+                        // Give up on logging to disk -- this can sometimes happen 
+                    }
                 }
             }
         }

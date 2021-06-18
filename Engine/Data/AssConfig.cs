@@ -11,6 +11,7 @@ namespace YAASS.Engine.Data
 {
     public class AssConfig : IAssConfig
     {
+        private int DegreeOfParallelism;
         private bool EnableDebugAssertions = false;
         private bool EnableLoggingToDisk = true;
         private int SearchMaxResults = 100;
@@ -23,13 +24,15 @@ namespace YAASS.Engine.Data
             bool EnableDebugAssertions = false,
             bool EnableLoggingToDisk = true,
             int SearchMaxResults = 100,
-            int SearchTimeoutSeconds = 120)
+            int SearchTimeoutSeconds = 120,
+            int DegreeOfParallelism = 8)
         {
             this.EnableDebugAssertions = EnableDebugAssertions;
             this.EnableLoggingToDisk = EnableLoggingToDisk;
             this.SearchMaxResults = SearchMaxResults;
             this.SearchTimeoutSeconds = SearchTimeoutSeconds;
             this.LogOutputFolder = LogOutputFolder;
+            this.DegreeOfParallelism = DegreeOfParallelism;
         }
 
         // Steps to add new config:
@@ -37,6 +40,11 @@ namespace YAASS.Engine.Data
         // 2. Add the same to IAssConfig
         // 3. add private field for config value
         // 4. add param to AssConfig JsonConstructor
+
+        public int GetDegreeOfParallelism()
+        {
+            return this.DegreeOfParallelism;
+        }
 
         public bool GetEnableDebugAssertions()
         {
