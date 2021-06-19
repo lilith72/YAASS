@@ -25,8 +25,8 @@ This ASS is written and supported by three people with real life jobs and hobbie
 ## Credits
 This ASS is the product of three people's hard work.
 - Justin, who wrote the search logic and some other core modules.
-- TODO who designed and wrote the UI, going far above the minimum requirements to make it very polished.
-- TODO who spent long hours gathering data for the engine and performed various testing as well as providing design guidance as our resident MH veteran.
+- Lilith, who designed and wrote the UI, going far above the minimum requirements to make it very polished.
+- Nathan, who spent long hours gathering data for the engine and performed various testing as well as providing design guidance as our resident MH veteran.
 
 Also:
 - Special thanks to Athena. While we didn't leverage the existing code in athena's ASS and wrote it in a new framework, the concepts laid down in athena's ASS for world and previous MH games heavily inspired this tool.
