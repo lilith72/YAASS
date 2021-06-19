@@ -194,6 +194,9 @@
     <None Include="AppData\SkillContributors\skillContributors.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="AppData\SkillMetadata\skillMetadata.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

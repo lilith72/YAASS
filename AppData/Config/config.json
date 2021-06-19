@@ -1,8 +1,8 @@
 ﻿{
-  "DegreeOfParallelism": 1,
+  "DegreeOfParallelism": 8,
   "EnableDebugAssertions": false,
   "EnableLoggingToDisk": true,
   "LogOutputFolder": "./Logs",
   "SearchMaxResults": 100,
-  "SearchTimeoutSeconds": 1200
+  "SearchTimeoutSeconds": 120
 }

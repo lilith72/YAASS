@@ -105,15 +105,44 @@ namespace YAASS.Engine.Contract.DataModel
                 this.Contributors.Remove(this.Contributors.Find(contributor => (contributor is VacantSlot) && contributor.Slot == piece.Slot));
             }
 
+            int stormSoulBonusAddedWithThisPiece = 0;
             foreach (SkillValue sv in piece.ProvidedSkillValues)
             {
                 ASS.Instance.GetSkillNamesToMaxLevelMapping().TryGetValue(sv.SkillId, out int maxLevel);
+                if (maxLevel == 0)
+                {
+                    maxLevel = int.MaxValue;
+                }
                 if (!this.skillNameToTotal.ContainsKey(sv.SkillId))
                 {
                     this.skillNameToTotal[sv.SkillId] = 0;
                 }
+                int originalValue = this.skillNameToTotal[sv.SkillId];
                 this.skillNameToTotal[sv.SkillId] += sv.Points;
                 this.skillNameToTotal[sv.SkillId] = Math.Min(maxLevel, this.skillNameToTotal[sv.SkillId]);
+                if (sv.SkillId.Equals("Stormsoul") && skillNameToTotal[sv.SkillId] > originalValue && originalValue >= 3)
+                {
+                    stormSoulBonusAddedWithThisPiece += skillNameToTotal[sv.SkillId] - originalValue;
+                }
+            }
+
+            if (stormSoulBonusAddedWithThisPiece > 0)
+            {
+                foreach (string key in this.skillNameToTotal.Keys.ToList())
+                {
+                    if (this.skillNameToTotal[key] == 0 || key.Equals("Stormsoul"))
+                    {
+                        continue;
+                    }
+
+                    ASS.Instance.GetSkillNamesToMaxLevelMapping().TryGetValue(key, out int maxLevel);
+                    if (maxLevel == 0)
+                    {
+                        maxLevel = int.MaxValue;
+                    }
+
+                    this.skillNameToTotal[key] = Math.Min(maxLevel, this.skillNameToTotal[key] + stormSoulBonusAddedWithThisPiece);
+                }
             }
         }
 
@@ -252,7 +281,7 @@ namespace YAASS.Engine.Contract.DataModel
             {
                 int stormSoulPoints = skillsToTotals["Stormsoul"];
                 if (stormSoulPoints == 4) stormSoulBonus = 1;
-                if (stormSoulBonus >= 5) stormSoulBonus = 2;
+                if (stormSoulPoints >= 5) stormSoulBonus = 2;
             }
 
             return skillsToTotals

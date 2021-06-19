@@ -135,10 +135,12 @@ namespace YAASS.Engine.Search
             Inventory helpfulInventory = inventory.FilterInventory((SkillContributor sc) => 
                 this.SkillContributorHelpsTarget(sc, partialSolution, remainingSkillPoints));
 
-            bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration) 
+            // Are there armors left? we include stormsoul pieces in "helpfulinventory" as long as they fit, so,
+            // have to specially calculate if we still need any skills from stormsoul pieces.
+            bool areArmorsLeft = helpfulInventory.AllContributors.Any(s => !(s is Decoration)
                 && (!s.ProvidedSkillValues.Any(sv => sv.SkillId.Equals("Stormsoul")
-                    && !(remainingSkillPoints.ContainsKey("Stormsoul")
-                        && remainingSkillPoints["Stormsoul"] > 0))));
+                    && !s.ProvidedSkillValues.Any(skillVal => remainingSkillPoints.ContainsKey(skillVal.SkillId)
+                        && remainingSkillPoints[skillVal.SkillId] > 0))));
             if (enableSpecialDecoHandling && !areArmorsLeft)
             {
                 if (TryCompleteSolutionWithDecos(partialSolution, target, out Solution completedSolution))
