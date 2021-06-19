@@ -20,13 +20,13 @@ In AppData/Config you will find a config.json file. You can edit this to adjust 
 - Search is currently unoptimized in some areas and can take multiple minutes on complex searches. Having a good computer with multiple cores will help this. The most complex searches on my reasonably powerful computer take a bit less than 2 minutes.
 
 ## Upcoming
-YAASS is written and supported by three people with real life jobs and hobbies on a for-fun basis. No further updates are guaranteed, but realistically we'll probably update it for any new armors in Rise, and potentially future games. There are likely to be some engine optimizations to speed up search as well.
+This ASS is written and supported by three people with real life jobs and hobbies on a for-fun basis. No further updates are guaranteed, but realistically we'll probably update it for any new armors in Rise, and potentially future games. There are likely to be some engine optimizations to speed up search as well.
 
 ## Credits
-YAASS is the product of three people's hard work.
+This ASS is the product of three people's hard work.
 - Justin, who wrote the search logic and some other core modules.
 - TODO who designed and wrote the UI, going far above the minimum requirements to make it very polished.
-- TODO who spent long hours gathering data for the engine and performed various testing.
+- TODO who spent long hours gathering data for the engine and performed various testing as well as providing design guidance as our resident MH veteran.
 
 Also:
 - Special thanks to Athena. While we didn't leverage the existing code in athena's ASS and wrote it in a new framework, the concepts laid down in athena's ASS for world and previous MH games heavily inspired this tool.
