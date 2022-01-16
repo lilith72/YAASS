@@ -44,6 +44,7 @@ namespace YAASS
 
         const int SEARCH_COL_WIDTH = 350;
         const int SEARCH_COL_HEIGHT = 500;
+        private const string MUSHROOMANCER_NAME = "Mushroomancer";
 
         public MainWindow()
         {
@@ -85,6 +86,12 @@ namespace YAASS
             // Prevent search spam while working
             btnSearch.IsEnabled = false;
             IList<int> weaponSlots = (bool)cbUseWeaponSlot.IsChecked ? Helper.DecorationArrayToList(mWeaponSlotSelector.SelectedSlots) : null;
+
+            if (mSkillSelector.SelectedSkills.Keys.Any(key => key.Equals(MUSHROOMANCER_NAME, StringComparison.OrdinalIgnoreCase))
+                && mSkillSelector.SelectedSkills[MUSHROOMANCER_NAME] > 0)
+            {
+                MessageBox.Show("Don't build around mushroomancer you redditor");
+            }
 
             // Do search
             IList<SkillContributor> talismans = (bool)cbUseTalismans.IsChecked ? mAss.GetAllCustomTalismans().Select(kvp => kvp.Value).ToList() : null;
