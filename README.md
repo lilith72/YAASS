@@ -1,5 +1,5 @@
 # Yet Another Armor Set Search
-Alpha 0.1
+Alpha 0.1.2
 
 ## About
 Yet Another Armor Set Search is a spiritual successor to Athena's ASS. This tool allows you to input the skills you want, and optionally your weapon slots and talismans, and will give you the combinations of armor which will let you have your dream build.
