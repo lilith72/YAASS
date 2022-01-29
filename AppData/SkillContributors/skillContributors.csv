@@ -29,11 +29,11 @@ Bone Mail S,32,,,,-1,,Chest,1,,,Stamina Thief,1,Marathon Runner,1,,,,,Bone S
 Bone Vambraces S,32,,,,-1,,Arms,1,1,,Muck Resistance,1,Stamina Thief,1,,,,,Bone S
 Bone Coil S,32,,,,-1,,Waist,2,1,,Focus,1,,,,,,,Bone S
 Bone Greaves S,32,,,,-1,,Legs,2,,,Muck Resistance,2,Focus,1,,,,,Bone S
-Spio Vertex S,32,3,-1,-1,-1,3,Head,2,,,Poison Attack,2,,,,,,,Spio S
-Spio Thorax S,32,3,-1,-1,-1,3,Chest,2,,,Latent Power,1,,,,,,,Spio S
-Spio Brachia S,32,3,-1,-1,-1,3,Arms,1,1,,Latent Power,1,Poison Resistance,1,,,,,Spio S
-Spio Elytra S,32,3,-1,-1,-1,3,Waist,,,,Weakness Exploit,2,,,,,,,Spio S
-Spio Cura S,32,3,-1,-1,-1,3,Legs,1,,,Latent Power,1,Poison Resistance,1,Mind's Eye,1,,,Spio S
+Spio Vertex S/Skalda Vertex S,32,3,-1,-1,-1,3,Head,2,,,Poison Attack,2,,,,,,,Spio S
+Spio Thorax S/Skalda Thorax S,32,3,-1,-1,-1,3,Chest,2,,,Latent Power,1,,,,,,,Spio S
+Spio Brachia S/Skalda Brachia S,32,3,-1,-1,-1,3,Arms,1,1,,Latent Power,1,Poison Resistance,1,,,,,Spio S
+Spio Elytra S/Skalda Elytra S,32,3,-1,-1,-1,3,Waist,,,,Weakness Exploit,2,,,,,,,Spio S
+Spio Crura S/Skalda Crura S,32,3,-1,-1,-1,3,Legs,1,,,Latent Power,1,Poison Resistance,1,Mind's Eye,1,,,Spio S
 Bnahabra Hat S,34,-2,,,,2,Head,2,,,Poison Attack,1,Recoil Down,2,,,,,Bnahabra S
 Bnahabra Suit S,34,-2,,,,2,Chest,1,1,,Paralysis Attack,1,Evade Window,1,,,,,Bnahabra S
 Bnahabra Gloves S,34,-2,,,,2,Arms,1,,,Poison Attack,2,Evade Window,1,,,,,Bnahabra S
@@ -260,7 +260,7 @@ Brigade Suit S,62,1,,2,,2,Chest,1,,,Capture Master,1,Geologist,1,,,,,Brigade S
 Brigade Vambraces S,62,1,,2,,2,Arms,3,1,,Geologist,2,,,,,,,Brigade S
 Brigade Coil S,62,1,,2,,2,Waist,3,1,,Good Luck,1,,,,,,,Brigade S
 Brigade Boots S,62,1,,2,,2,Legs,1,1,1,Carving Pro,1,Botanist,2,,,,,Brigade S
-Mighty Bow Feather,56,,,,,,Head,,,,Bow Charge Plus,1,,,,,,,Mighty Bow Feather
+Mighty Bow Feather,56,,,,,,Head,,,,Bow Charge Plus,1,,,,,,,Bow Charge Plus
 Gargwa Mask S,54,-3,-2,-2,1,,Head,,,,Leap of Faith,1,Good Luck,1,,,,,Gargwa Mask S
 Sinister Helm S,64,3,-3,-2,1,1,Head,2,,,Resentment,1,Handicraft,1,Flinch Free,1,,,Sinister S
 Sinister Garb S,64,3,-3,-2,1,1,Chest,2,,,Hellfire Cloak,1,Resentment,1,,,,,Sinister S
