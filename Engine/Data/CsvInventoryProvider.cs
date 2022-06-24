@@ -12,15 +12,27 @@ namespace YAASS.Engine.DataReader
     public class CsvInventoryProvider : IInventoryProvider
     {
         private const string SkillContributorFilePath = "./AppData/SkillContributors/skillContributors.csv";
+        private const string SunbreakSkillContributorsFilePath = "./AppData/SkillContributors/sunbreakSkillContributors.csv";
         private const string SkillMetadataFilePath = "./AppData/SkillMetadata/skillMetadata.csv";
         // Decos could be combined into skill contributors file but this makes data entry easier
         // plus it helps keep data organized
         private const string DecorationsFilePath = "./AppData/Decorations/decorations.csv";
 
-        public List<SkillContributor> GetSkillContributors()
+        public List<SkillContributor> GetSkillContributors(
+            bool useHighRankArmors,
+            bool useGRankArmors)
         {
             List<SkillContributor> results = new List<SkillContributor>();
             HashSet<string> seenArmorNames = new HashSet<string>();
+            IEnumerable<Dictionary<string, string>> rawData = Enumerable.Empty<Dictionary<string, string>>();
+            if (useHighRankArmors)
+            {
+                rawData = rawData.Union(this.GetCsvRows(SkillContributorFilePath));
+            }
+            if (useGRankArmors)
+            {
+                rawData = rawData.Union(this.GetCsvRows(SunbreakSkillContributorsFilePath));
+            }
             foreach (Dictionary<string, string> entry in this.GetCsvRows(SkillContributorFilePath))
             {
                 List<SkillValue> skillValues = GetSkillValuesFromCsvEntry(entry);

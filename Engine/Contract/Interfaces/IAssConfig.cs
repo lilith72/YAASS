@@ -14,5 +14,6 @@ namespace YAASS.Engine.Contract.Interfaces
         bool GetEnableDebugAssertions();
         bool GetEnableLoggingToDisk();
         string GetLogOutputFolder();
+        int GetEquipmentMode();
     }
 }

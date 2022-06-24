@@ -67,7 +67,11 @@ namespace YAASS.Engine.Contract.FrontEndInterface
 
         public void RefreshDataFromFiles()
         {
-            this.allInventoryFromFile = inventoryProvider.GetSkillContributors();
+            int equipmentMode = Instance.assConfigProvider.GetConfig().GetEquipmentMode();
+            // I'm too lazy to remember how to do bitwise comparison
+            this.allInventoryFromFile = inventoryProvider.GetSkillContributors(
+                useHighRankArmors: equipmentMode == 3 || equipmentMode == 1,
+                useGRankArmors: equipmentMode == 3 || equipmentMode == 2);
             this.skillNameToMaxValue = inventoryProvider.GetSkillNameToMaxLevelMapping();
         }
 

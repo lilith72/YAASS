@@ -4,5 +4,6 @@
   "EnableLoggingToDisk": true,
   "LogOutputFolder": "./Logs",
   "SearchMaxResults": 100,
-  "SearchTimeoutSeconds": 120
+  "SearchTimeoutSeconds": 120,
+  "EquipmentMode": 2,
 }

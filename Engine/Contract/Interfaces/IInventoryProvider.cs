@@ -9,7 +9,9 @@ namespace YAASS.Engine.Contract.Interfaces
 {
     public interface IInventoryProvider
     {
-        List<SkillContributor> GetSkillContributors();
+        List<SkillContributor> GetSkillContributors(
+            bool useHighRankArmors,
+            bool useGRankArmors);
 
         Dictionary<string, int> GetSkillNameToMaxLevelMapping();
     }

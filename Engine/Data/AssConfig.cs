@@ -18,6 +18,11 @@ namespace YAASS.Engine.Data
         private int SearchTimeoutSeconds = 120;
         private string LogOutputFolder;
 
+        // 1 = High rank only
+        // 2 = G rank only
+        // 3 = Both
+        private int EquipmentMode = 2;
+
         [JsonConstructor]
         public AssConfig(
             string LogOutputFolder,
@@ -69,6 +74,11 @@ namespace YAASS.Engine.Data
         public string GetLogOutputFolder()
         {
             return this.LogOutputFolder;
+        }
+
+        public int GetEquipmentMode()
+        {
+            return this.EquipmentMode;
         }
     }
 }
